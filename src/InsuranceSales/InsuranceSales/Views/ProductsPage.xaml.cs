@@ -10,6 +10,9 @@ namespace InsuranceSales.Views
         public ProductsPage()
         {
             InitializeComponent();
+
+            // Hide navigation bar
+            Shell.SetNavBarIsVisible(this, false);
         }
     }
 }
