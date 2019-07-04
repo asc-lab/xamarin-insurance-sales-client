@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="InsuranceSales.Views.ProductsPage">
     <ContentPage.Content>
-        
+        <Label Text="Products Page"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"/>
     </ContentPage.Content>
 </ContentPage>
