@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsuranceSales.iOS", "Insur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsuranceSales", "InsuranceSales\InsuranceSales.csproj", "{D6B06868-1EBC-4A98-94E3-0EF1E57423C3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{09141484-4E16-46C2-BD8E-6442975DAABE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsuranceSales.UnitTests", "Tests\InsuranceSales.UnitTests\InsuranceSales.UnitTests.csproj", "{874E0C0A-9D3A-415E-92A3-AEE8FC392B37}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,5 +57,20 @@ Global
 		{D6B06868-1EBC-4A98-94E3-0EF1E57423C3}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{D6B06868-1EBC-4A98-94E3-0EF1E57423C3}.Release|iPhone.ActiveCfg = Release|Any CPU
 		{D6B06868-1EBC-4A98-94E3-0EF1E57423C3}.Release|iPhone.Build.0 = Release|Any CPU
+		{874E0C0A-9D3A-415E-92A3-AEE8FC392B37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{874E0C0A-9D3A-415E-92A3-AEE8FC392B37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{874E0C0A-9D3A-415E-92A3-AEE8FC392B37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{874E0C0A-9D3A-415E-92A3-AEE8FC392B37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{874E0C0A-9D3A-415E-92A3-AEE8FC392B37}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{874E0C0A-9D3A-415E-92A3-AEE8FC392B37}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{874E0C0A-9D3A-415E-92A3-AEE8FC392B37}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{874E0C0A-9D3A-415E-92A3-AEE8FC392B37}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{874E0C0A-9D3A-415E-92A3-AEE8FC392B37}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{874E0C0A-9D3A-415E-92A3-AEE8FC392B37}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{874E0C0A-9D3A-415E-92A3-AEE8FC392B37}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{874E0C0A-9D3A-415E-92A3-AEE8FC392B37}.Release|iPhone.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{874E0C0A-9D3A-415E-92A3-AEE8FC392B37} = {09141484-4E16-46C2-BD8E-6442975DAABE}
 	EndGlobalSection
 EndGlobal
