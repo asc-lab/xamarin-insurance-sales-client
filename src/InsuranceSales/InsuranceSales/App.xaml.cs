@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using InsuranceSales.Interfaces;
+using InsuranceSales.Services;
+using Xamarin.Forms;
 
 namespace InsuranceSales
 {
@@ -9,11 +11,14 @@ namespace InsuranceSales
             InitializeComponent();
 
             MainPage = new AppShell();
+
+            DependencyService.Register<IAuthenticationService, AuthenticationService>();
         }
 
         protected override void OnStart()
         {
             // Handle when your app starts
+
         }
 
         protected override void OnSleep()
