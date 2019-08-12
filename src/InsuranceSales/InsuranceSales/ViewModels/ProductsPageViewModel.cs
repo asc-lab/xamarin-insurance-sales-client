@@ -1,14 +1,22 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using InsuranceSales.Models;
 using MvvmHelpers;
 
 namespace InsuranceSales.ViewModels
 {
-    public class ProductsPageViewModel : BaseViewModel
+    public class ProductsPageViewModel : ViewModelBase
     {
         public ObservableRangeCollection<Product> Products { get; set; }
 
         public ProductsPageViewModel()
+        {
+            Task.Run(async () =>
+            {
+                await InitializeAsync();
+            });
+        }
+
+        public override Task InitializeAsync()
         {
             Header = "Available products";
             Products = new ObservableRangeCollection<Product>
@@ -50,6 +58,8 @@ namespace InsuranceSales.ViewModels
                     }
                 }
             };
+
+            return base.InitializeAsync();
         }
     }
 }
