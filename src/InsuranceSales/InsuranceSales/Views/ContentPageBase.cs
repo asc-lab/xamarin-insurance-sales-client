@@ -1,6 +1,4 @@
-﻿using System;
-using InsuranceSales.ViewModels;
-using MvvmHelpers;
+﻿using InsuranceSales.ViewModels;
 using Xamarin.Forms;
 
 namespace InsuranceSales.Views
