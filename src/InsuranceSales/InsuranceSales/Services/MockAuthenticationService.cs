@@ -1,11 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using InsuranceSales.Interfaces;
 using InsuranceSales.Models;
 
 namespace InsuranceSales.Services
 {
-    public class AuthenticationService : IAuthenticationService
+    public class MockAuthenticationService : IAuthenticationService
     {
         private bool _isAuthenticated;
 
