@@ -3,9 +3,19 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:InsuranceSales.ViewModels"
-    x:Class="InsuranceSales.Views.LoginPage">
+    x:Class="InsuranceSales.Views.LoginPage"
+    Visual="Material">
     <ContentPage.BindingContext>
         <vm:LoginPageViewModel />
     </ContentPage.BindingContext>
-    <Label Text="Login Page" />
+    <StackLayout VerticalOptions="CenterAndExpand"
+                 Margin="10, 0, 10, 0">
+        <Entry Placeholder="Username"
+               Text="{Binding Username}" />
+        <Entry Placeholder="Password"
+               IsPassword="True"
+               Text="{Binding Password}" />
+        <Button Text="Sign In"
+                Command="{Binding SignInCommand}" />
+    </StackLayout>
 </ContentPage>
