@@ -12,7 +12,7 @@ namespace InsuranceSales
 
             MainPage = new AppShell();
 
-            DependencyService.Register<IAuthenticationService, AuthenticationService>();
+            DependencyService.Register<IAuthenticationService, MockAuthenticationService>();
         }
 
         protected override void OnStart()
