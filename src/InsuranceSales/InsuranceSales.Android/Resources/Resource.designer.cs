@@ -1259,6 +1259,7 @@ namespace InsuranceSales.Droid
 			global::Xamarin.Forms.Material.Android.Resource.Id.fill_horizontal = global::InsuranceSales.Droid.Resource.Id.fill_horizontal;
 			global::Xamarin.Forms.Material.Android.Resource.Id.fill_vertical = global::InsuranceSales.Droid.Resource.Id.fill_vertical;
 			global::Xamarin.Forms.Material.Android.Resource.Id.filled = global::InsuranceSales.Droid.Resource.Id.filled;
+			global::Xamarin.Forms.Material.Android.Resource.Id.@fixed = global::InsuranceSales.Droid.Resource.Id.@fixed;
 			global::Xamarin.Forms.Material.Android.Resource.Id.flyoutcontent_appbar = global::InsuranceSales.Droid.Resource.Id.flyoutcontent_appbar;
 			global::Xamarin.Forms.Material.Android.Resource.Id.flyoutcontent_recycler = global::InsuranceSales.Droid.Resource.Id.flyoutcontent_recycler;
 			global::Xamarin.Forms.Material.Android.Resource.Id.forever = global::InsuranceSales.Droid.Resource.Id.forever;
@@ -3832,6 +3833,7 @@ namespace InsuranceSales.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Id.fill_horizontal = global::InsuranceSales.Droid.Resource.Id.fill_horizontal;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.fill_vertical = global::InsuranceSales.Droid.Resource.Id.fill_vertical;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.filled = global::InsuranceSales.Droid.Resource.Id.filled;
+			global::Xamarin.Forms.Platform.Android.Resource.Id.@fixed = global::InsuranceSales.Droid.Resource.Id.@fixed;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.flyoutcontent_appbar = global::InsuranceSales.Droid.Resource.Id.flyoutcontent_appbar;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.flyoutcontent_recycler = global::InsuranceSales.Droid.Resource.Id.flyoutcontent_recycler;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.forever = global::InsuranceSales.Droid.Resource.Id.forever;
@@ -9061,9 +9063,6 @@ namespace InsuranceSales.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7F08004E
-			public const int @fixed = 2131230798;
-			
 			// aapt resource value: 0x7F080006
 			public const int action0 = 2131230726;
 			
@@ -9285,6 +9284,9 @@ namespace InsuranceSales.Droid
 			
 			// aapt resource value: 0x7F08004C
 			public const int fill_vertical = 2131230796;
+			
+			// aapt resource value: 0x7F08004E
+			public const int @fixed = 2131230798;
 			
 			// aapt resource value: 0x7F08004F
 			public const int flyoutcontent_appbar = 2131230799;
