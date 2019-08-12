@@ -5,9 +5,6 @@ namespace InsuranceSales.ViewModels
 {
     public class ViewModelBase : BaseViewModel
     {
-        public virtual Task InitializeAsync()
-        {
-            return Task.FromResult(true);
-        }
+        public virtual Task InitializeAsync() => Task.CompletedTask;
     }
 }
