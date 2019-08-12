@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using InsuranceSales.Interfaces;
 using InsuranceSales.Models;
 using InsuranceSales.Views;
 using MvvmHelpers;
@@ -9,21 +8,22 @@ namespace InsuranceSales.ViewModels
 {
     public class ProductsPageViewModel : ViewModelBase
     {
-        private readonly IAuthenticationService _authenticationService;
+        private ObservableRangeCollection<Product> products;
 
-        public ObservableRangeCollection<Product> Products { get; set; }
-
-        public ProductsPageViewModel()
-        {
-            _authenticationService = DependencyService.Get<IAuthenticationService>();
-        }
+        public ObservableRangeCollection<Product> Products { get => products; set => SetProperty(ref products, value); }
 
         public override async Task InitializeAsync()
         {
-            if (!_authenticationService.IsAuthenticated())
-                await Shell.Current.Navigation.PushModalAsync(new LoginPage());
-
             Header = "Available products";
+
+            MessagingCenter.Subscribe<LoginPageViewModel>(this, "AUTH_MSG", async (sender) => await LoadData());
+
+            if (!AuthenticationService.IsAuthenticated())
+                await Shell.Current.Navigation.PushModalAsync(new LoginPage());
+        }
+
+        private async Task LoadData()
+        {
             Products = new ObservableRangeCollection<Product>
             {
                 new Product
