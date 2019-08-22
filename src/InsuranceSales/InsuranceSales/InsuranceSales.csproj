@@ -23,5 +23,6 @@
     <Folder Include="Services\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Resources\" />
+    <Folder Include="Controls\" />
   </ItemGroup>
 </Project>

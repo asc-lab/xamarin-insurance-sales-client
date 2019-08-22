@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:InsuranceSales.ViewModels"
+    xmlns:controls="clr-namespace:InsuranceSales.Controls"
     x:Class="InsuranceSales.Views.LoginPage"
     Visual="Material">
     <ContentPage.BindingContext>
@@ -10,11 +11,8 @@
     </ContentPage.BindingContext>
     <StackLayout VerticalOptions="CenterAndExpand"
                  Margin="10, 0, 10, 0">
-        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0, 10, 0, 10">
-            <BoxView HeightRequest="40" WidthRequest="40" Color="Orange" />
-            <BoxView WidthRequest="1" Color="{StaticResource Key=SeperatorLineColor}" />
-            <Label Text="Insurance Company" Style="{StaticResource Key=CompanyHeaderStyle}"/>
-        </StackLayout>
+
+        <controls:CompanyHeader />
         <Entry Placeholder="Username"
                Text="{Binding Username}" />
         <Entry Placeholder="Password"
