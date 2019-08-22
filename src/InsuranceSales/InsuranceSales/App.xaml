@@ -6,6 +6,6 @@
              mc:Ignorable="d"
              x:Class="InsuranceSales.App">
     <Application.Resources>
-
+        <ResourceDictionary Source="./Resources/Styles.xaml" />
     </Application.Resources>
 </Application>

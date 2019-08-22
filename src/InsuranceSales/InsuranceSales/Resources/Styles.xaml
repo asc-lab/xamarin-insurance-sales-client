@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InsuranceSales.Resources.Styles">
+    <ResourceDictionary Source="Colors.xaml" />
+
+    <Style TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource Key=ContentTextColor}" />
+    </Style>
+
+    <Style TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource Key=ButtonBackgroundColor}" />
+        <Setter Property="TextColor" Value="{StaticResource Key=ContentTextColor}" />
+    </Style>
+
+    <Style TargetType="Entry">
+        <Setter Property="PlaceholderColor" Value="{StaticResource Key=PlaceholderTextColor}" />
+    </Style>
+
+
+    <Style x:Key="CompanyHeaderStyle" TargetType="Label">
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="Large" />
+        <Setter Property="TextColor" Value="{StaticResource Key=CompanyHeaderColor}" />
+     </Style>
+
+    <Style x:Key="TitleStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="{OnPlatform iOS=Header, Android=Medium}" />
+    </Style>
+
+    <Style x:Key="DescriptionStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="Large" />
+    </Style>
+</ResourceDictionary>
