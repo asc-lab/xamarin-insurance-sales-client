@@ -1,21 +1,26 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Linq;
 using System.Threading.Tasks;
+using InsuranceSales.Interfaces;
 using InsuranceSales.Models;
 using InsuranceSales.Views;
+using MvvmHelpers;
 using Xamarin.Forms;
 
 namespace InsuranceSales.ViewModels
 {
     public class ProductsPageViewModel : ViewModelBase
     {
-        public ObservableCollection<Product> Products { get; set; }
+        private readonly IProductsService service;
+
+        public ObservableRangeCollection<Product> Products { get; set; } = new ObservableRangeCollection<Product>();
 
         public ProductsPageViewModel()
         {
+            service = DependencyService.Get<IProductsService>();
+
             if (DesignMode.IsDesignModeEnabled)
             {
-                Header = "Available products";
-                Products = new ObservableCollection<Product>
+                Products = new ObservableRangeCollection<Product>
                 {
                     new Product
                     {
@@ -67,6 +72,14 @@ namespace InsuranceSales.ViewModels
                 await Shell.Current.Navigation.PushModalAsync(new LoginPage());
         }
 
-        private Task LoadData() => Task.CompletedTask;
+        private async Task LoadData()
+        {
+            var results = await service.FetchAsync();
+            if(results.Count() > 0)
+            {
+                Products.Clear();
+                Products.AddRange(results);
+            }
+        }
     }
 }
