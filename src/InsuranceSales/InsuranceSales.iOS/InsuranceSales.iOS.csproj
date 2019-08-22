@@ -110,8 +110,6 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\DevImage.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\DevImage.imageset\happy-driver.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -137,5 +135,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\DevImage.imageset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\homeInsurance.jpg" />
   </ItemGroup>
 </Project>
