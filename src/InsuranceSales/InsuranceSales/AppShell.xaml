@@ -6,9 +6,7 @@
     x:Class="InsuranceSales.AppShell">
     <TabBar>
         <Tab>
-            <ShellContent>
-                <views:ProductsPage />
-            </ShellContent>
+            <ShellContent Icon="products.png" Title="Products" ContentTemplate="{DataTemplate views:ProductsPage}" />
         </Tab>
     </TabBar>
 </Shell>
