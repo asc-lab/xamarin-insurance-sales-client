@@ -24,6 +24,8 @@ namespace InsuranceSales.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             // Initialize Material Design
             FormsMaterial.Init(this, savedInstanceState);
+            Window.DecorView.SystemUiVisibility = StatusBarVisibility.Hidden;
+
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

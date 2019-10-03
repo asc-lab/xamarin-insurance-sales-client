@@ -3,10 +3,42 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:InsuranceSales.Views"
+    BackgroundColor="White"
     x:Class="InsuranceSales.AppShell">
+<!--<Shell.Resources>
+    <ResourceDictionary>
+        <Color x:Key="NavigationPrimary">#2196F3</Color>
+        <Style x:Key="BaseStyle" TargetType="Element">
+            <Setter Property="Shell.BackgroundColor" Value="{StaticResource NavigationPrimary}" />
+            <Setter Property="Shell.ForegroundColor" Value="White" />
+            <Setter Property="Shell.TitleColor" Value="White" />
+            <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+            <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+            <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+            <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+            <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
+            <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+        </Style>
+        <Style x:Key="MyBaseStyle" TargetType="Element">
+
+            <Setter Property="Shell.ForegroundColor" Value="White" />
+            <Setter Property="Shell.TitleColor" Value="White" />
+            <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+            <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+            <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+            <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+            <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
+            <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+        </Style>
+
+        <Style TargetType="ShellItem" BasedOn="{StaticResource BaseStyle}" />
+        <Style TargetType="TabBar" BasedOn="{StaticResource MyBaseStyle}" />
+    </ResourceDictionary>
+</Shell.Resources>-->
     <TabBar>
-        <Tab>
-            <ShellContent Icon="products.png" Title="Products" ContentTemplate="{DataTemplate views:ProductsPage}" />
+        <Tab Icon="products.png" Title="Products">
+            <ShellContent Shell.NavBarIsVisible="False"
+                          ContentTemplate="{DataTemplate views:ProductsPage}" />
         </Tab>
     </TabBar>
 </Shell>

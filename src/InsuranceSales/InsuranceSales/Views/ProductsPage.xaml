@@ -10,6 +10,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Visual="Material"
+    BackgroundColor="White"
     x:Class="InsuranceSales.Views.ProductsPage"
     x:TypeArguments="vm:ProductsPageViewModel"
     BindingContext="{x:Static design:ViewModelLocator.ProductsPageViewModel}">
