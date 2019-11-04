@@ -29,6 +29,8 @@
 
         <BoxView Grid.Row="1" HeightRequest="1" Color="{StaticResource Key=SeperatorLineColor}" />
 
+        <ActivityIndicator Grid.Row="2" IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
+
         <ListView Grid.Row="2" Footer=""
                   HorizontalOptions="FillAndExpand"
                   VerticalOptions="FillAndExpand"
