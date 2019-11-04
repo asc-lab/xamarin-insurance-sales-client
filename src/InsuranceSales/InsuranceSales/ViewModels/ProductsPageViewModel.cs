@@ -74,9 +74,11 @@ namespace InsuranceSales.ViewModels
 
         private async Task LoadData()
         {
+            IsBusy = true;
             var results = await service.FetchAsync();
             if(results.Count() > 0)
             {
+                IsBusy = false;
                 Products.Clear();
                 Products.AddRange(results);
             }
