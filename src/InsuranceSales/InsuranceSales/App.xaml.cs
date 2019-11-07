@@ -15,8 +15,9 @@ namespace InsuranceSales
             if(AppSettings.UseMockAuthentication)
                 DependencyService.Register<IAuthenticationService, MockAuthenticationService>();
 
-            if (AppSettings.UseMockDataService)
-                DependencyService.Register<IProductsService, MockProductsService>();
+            // TODO: Remove
+            /*if (AppSettings.UseMockDataService)
+                DependencyService.Register<IProductsService, MockProductsService>();*/
         }
 
         protected override void OnStart()
