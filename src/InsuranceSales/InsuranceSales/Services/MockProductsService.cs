@@ -8,7 +8,7 @@ namespace InsuranceSales.Services
 {
     public class MockProductsService : IProductsService
     {
-        public async Task<IEnumerable<Product>> FetchAsync()
+        public async Task<IEnumerable<Product>> Fetch()
         {
             await Task.Delay(1000);
 
