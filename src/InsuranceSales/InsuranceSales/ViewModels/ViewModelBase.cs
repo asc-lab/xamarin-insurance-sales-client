@@ -9,7 +9,6 @@ namespace InsuranceSales.ViewModels
     public class ViewModelBase : BaseViewModel
     {
         protected IAuthenticationService AuthenticationService => DependencyService.Get<IAuthenticationService>();
-        protected NetworkManager NetworkManager => new NetworkManager();
 
         public virtual Task InitializeAsync() => Task.CompletedTask;
     }
