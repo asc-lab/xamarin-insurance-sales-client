@@ -70,7 +70,7 @@ namespace InsuranceSales.ViewModels
         private async Task LoadData()
         {
             IsBusy = true;
-            var products = await NetworkManager.GetProducts();
+            var products = await App.NetworkManager.GetProducts();
             if(products.Count() > 0)
             {
                 IsBusy = false;
