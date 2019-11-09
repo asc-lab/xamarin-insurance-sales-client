@@ -6,6 +6,8 @@ namespace InsuranceSales
 {
     public partial class App : Application
     {
+        protected internal static NetworkManager NetworkManager => new NetworkManager();
+
         public App()
         {
             InitializeComponent();
