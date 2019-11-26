@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Xamarin.Forms;
-
-namespace InsuranceSales.Views
+﻿namespace InsuranceSales.Views
 {
-    public partial class LoginPage : ContentPage
+    public partial class LoginPage
     {
-        public LoginPage()
-        {
-            InitializeComponent();
-        }
+        public LoginPage() => InitializeComponent();
     }
 }

@@ -1,12 +1,7 @@
-﻿using Xamarin.Forms;
-
-namespace InsuranceSales.Resources
+﻿namespace InsuranceSales.Resources
 {
-    public partial class Styles : ResourceDictionary
+    public partial class Styles
     {
-        public Styles()
-        {
-            InitializeComponent();
-        }
+        public Styles() => InitializeComponent();
     }
 }

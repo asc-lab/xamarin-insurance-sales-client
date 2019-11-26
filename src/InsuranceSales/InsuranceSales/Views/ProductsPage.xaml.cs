@@ -4,9 +4,6 @@ namespace InsuranceSales.Views
 {
     public partial class ProductsPage : ContentPageBase<ProductsPageViewModel>
     {
-        public ProductsPage()
-        {
-            InitializeComponent();
-        }
+        public ProductsPage() => InitializeComponent();
     }
 }

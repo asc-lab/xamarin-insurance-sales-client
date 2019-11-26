@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Xamarin.Forms;
-
-namespace InsuranceSales
+﻿namespace InsuranceSales
 {
-    public partial class AppShell : Shell
+    public partial class AppShell
     {
-        public AppShell()
-        {
-            InitializeComponent();
-        }
+        public AppShell() => InitializeComponent();
     }
 }

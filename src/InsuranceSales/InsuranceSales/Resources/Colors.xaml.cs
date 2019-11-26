@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Xamarin.Forms;
-
-namespace InsuranceSales.Resources
+﻿namespace InsuranceSales.Resources
 {
-    public partial class Colors : ResourceDictionary
+    public partial class Colors
     {
-        public Colors()
-        {
-            InitializeComponent();
-        }
+        public Colors() => InitializeComponent();
     }
 }
