@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:views="clr-namespace:InsuranceSales.Views"
+    xmlns:products="clr-namespace:InsuranceSales.Views.Products"
     x:Class="InsuranceSales.AppShell"
     BackgroundColor="White">
     <Shell.Resources>
-        <ResourceDictionary Source="Resources/Styles.xaml" />
+        <ResourceDictionary Source="./Resources/Styles.xaml" />
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="{StaticResource NavigationPrimary}" />
@@ -36,8 +36,8 @@
     </Shell.Resources>
     <TabBar>
         <Tab Icon="products.png" Title="Products">
-            <ShellContent Shell.NavBarIsVisible="False"
-                          ContentTemplate="{DataTemplate views:ProductsPage}" />
+            <ShellContent Shell.NavBarIsVisible="False" Route="Products"
+                          ContentTemplate="{DataTemplate products:ProductsPage}" />
         </Tab>
     </TabBar>
 </Shell>

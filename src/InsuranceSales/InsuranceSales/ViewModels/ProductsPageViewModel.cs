@@ -9,7 +9,7 @@ namespace InsuranceSales.ViewModels
 {
     public class ProductsPageViewModel : ViewModelBase
     {
-        public ObservableRangeCollection<Product> Products { get; set; } = new ObservableRangeCollection<Product>();
+        public ObservableRangeCollection<Product> Products { get; } = new ObservableRangeCollection<Product>();
 
         public ProductsPageViewModel()
         {
@@ -24,7 +24,7 @@ namespace InsuranceSales.ViewModels
                         Code = "SUP",
                         Image = "",
                         MaxNumberOfInsured = 1,
-                        Covers = new Cover[]
+                        Covers = new[]
                         {
                             new Cover
                             {
@@ -42,7 +42,7 @@ namespace InsuranceSales.ViewModels
                         Code = "SUP",
                         Image = "",
                         MaxNumberOfInsured = 1,
-                        Covers = new Cover[]
+                        Covers = new[]
                         {
                             new Cover
                             {
@@ -61,17 +61,17 @@ namespace InsuranceSales.ViewModels
         {
             Header = "Available products";
 
-            MessagingCenter.Subscribe<LoginPageViewModel>(this, "AUTH_MSG", (sender) => LoadData().ConfigureAwait(false));
+            MessagingCenter.Subscribe<LoginPageViewModel>(this, "AUTH_MSG", sender => LoadData().ConfigureAwait(false));
 
             if (!AuthenticationService.IsAuthenticated())
-                await Shell.Current.Navigation.PushModalAsync(new LoginPage());
+                await Shell.Current.Navigation.PushModalAsync(new LoginPage()).ConfigureAwait(false);
         }
 
         private async Task LoadData()
         {
             IsBusy = true;
-            var products = await App.NetworkManager.GetProducts();
-            if(products.Count() > 0)
+            var products = await App.NetworkManager.GetProducts().ConfigureAwait(false);
+            if (products.Any())
             {
                 IsBusy = false;
                 Products.Clear();

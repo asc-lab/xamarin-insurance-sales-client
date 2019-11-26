@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<view:ContentPageBase
+<views:ContentPageBase
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:design="clr-namespace:InsuranceSales"
     xmlns:vm="clr-namespace:InsuranceSales.ViewModels"
-    xmlns:view="clr-namespace:InsuranceSales.Views"
+    xmlns:views="clr-namespace:InsuranceSales.Views"
     xmlns:controls="clr-namespace:InsuranceSales.Controls"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Class="InsuranceSales.Views.Products.ProductsPage"
+    x:TypeArguments="vm:ProductsPageViewModel"
+    BindingContext="{x:Static design:ViewModelLocator.ProductsPageViewModel}"
     mc:Ignorable="d"
     Visual="Material"
-    BackgroundColor="White"
-    x:Class="InsuranceSales.Views.ProductsPage"
-    x:TypeArguments="vm:ProductsPageViewModel"
-    BindingContext="{x:Static design:ViewModelLocator.ProductsPageViewModel}">
-    <ContentPage.BindingContext>
+    BackgroundColor="White">
+    <views:ContentPageBase.BindingContext>
         <vm:ProductsPageViewModel />
-    </ContentPage.BindingContext>
+    </views:ContentPageBase.BindingContext>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -82,4 +82,4 @@
             </ListView.ItemTemplate>
         </ListView>
     </Grid>
-</view:ContentPageBase>
+</views:ContentPageBase>
