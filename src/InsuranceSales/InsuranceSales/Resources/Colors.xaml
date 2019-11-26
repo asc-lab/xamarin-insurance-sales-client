@@ -4,7 +4,9 @@
                     x:Class="InsuranceSales.Resources.Colors">
     <Color x:Key="CompanyHeaderColor">#325F80</Color>
     <Color x:Key="ContentTextColor">#FFFFFF</Color>
-    <Color x:Key="SeperatorLineColor">#586F80</Color>
+    <Color x:Key="SeparatorLineColor">#586F80</Color>
     <Color x:Key="ButtonBackgroundColor">#63BEFF</Color>
     <Color x:Key="PlaceholderTextColor">#8DB2CC</Color>
+    
+    <Color x:Key="NavigationPrimary">#2C3E50</Color>
 </ResourceDictionary>

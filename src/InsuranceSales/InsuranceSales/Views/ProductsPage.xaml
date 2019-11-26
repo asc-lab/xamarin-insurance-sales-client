@@ -27,9 +27,13 @@
 
         <controls:CompanyHeader />
 
-        <BoxView Grid.Row="1" HeightRequest="1" Color="{StaticResource Key=SeperatorLineColor}" />
+        <BoxView Grid.Row="1" 
+                 HeightRequest="1" 
+                 Color="{StaticResource Key=SeparatorLineColor}" />
 
-        <ActivityIndicator Grid.Row="2" IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
+        <ActivityIndicator Grid.Row="2" 
+                           IsVisible="{Binding IsBusy}" 
+                           IsRunning="{Binding IsBusy}" />
 
         <ListView Grid.Row="2" Footer=""
                   HorizontalOptions="FillAndExpand"
@@ -37,6 +41,7 @@
                   ItemsSource="{Binding Products}"
                   HasUnevenRows="True"
                   SeparatorVisibility="None">
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -52,13 +57,20 @@
                                 </Grid.ColumnDefinitions>
 
 
-                                <Image Grid.Row="0" Grid.ColumnSpan="2" d:Source="homeInsurance.jpg" />
-                                <BoxView Grid.Row="0" Grid.ColumnSpan="2" HeightRequest="24" Color="#586F80" Opacity=".3" />
-                                <StackLayout Grid.Row="0" Grid.ColumnSpan="2" Margin="20">
+                                <Image Grid.Row="0" Grid.ColumnSpan="2" 
+                                       d:Source="homeInsurance.jpg" />
+                                <BoxView Grid.Row="0" Grid.ColumnSpan="2" 
+                                         HeightRequest="24" 
+                                         Color="#586F80" 
+                                         Opacity=".3" />
+                                <StackLayout Grid.Row="0" Grid.ColumnSpan="2" 
+                                             Margin="20">
+
                                     <Label Style="{StaticResource Key=TitleStyle}"
-                                           Text="{Binding Name}"/>
+                                           Text="{Binding Name}" />
+
                                     <Label Style="{StaticResource Key=DescriptionStyle}"
-                                           Text="{Binding Description}"/>
+                                           Text="{Binding Description}" />
                                 </StackLayout>
 
                                 <Button Grid.Row="1" Grid.Column="1"
@@ -69,7 +81,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
     </Grid>
-
 </view:ContentPageBase>

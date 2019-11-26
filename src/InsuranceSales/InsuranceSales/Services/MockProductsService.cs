@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using InsuranceSales.Interfaces;
+using InsuranceSales.Models;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using InsuranceSales.Interfaces;
-using InsuranceSales.Models;
 
 namespace InsuranceSales.Services
 {
@@ -21,7 +21,7 @@ namespace InsuranceSales.Services
                     Code = "SUP",
                     Image = "homeInsurance.jpg",
                     MaxNumberOfInsured = 1,
-                    Covers = new Cover[]
+                    Covers = new[]
                     {
                         new Cover
                         {
@@ -39,7 +39,7 @@ namespace InsuranceSales.Services
                     Code = "SUP",
                     Image = "homeInsurance.jpg",
                     MaxNumberOfInsured = 1,
-                    Covers = new Cover[]
+                    Covers = new[]
                     {
                         new Cover
                         {

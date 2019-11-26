@@ -2,9 +2,9 @@
 
 namespace InsuranceSales
 {
-    public class ViewModelLocator
+    public static class ViewModelLocator
     {
-        private static ProductsPageViewModel productsPageViewModel;
-        public static ProductsPageViewModel ProductsPageViewModel => productsPageViewModel ?? (productsPageViewModel = new ProductsPageViewModel());
+        private static ProductsPageViewModel _productsPageViewModel;
+        public static ProductsPageViewModel ProductsPageViewModel => _productsPageViewModel ?? (_productsPageViewModel = new ProductsPageViewModel());
     }
 }

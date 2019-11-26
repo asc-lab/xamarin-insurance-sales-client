@@ -19,7 +19,7 @@ namespace InsuranceSales.UnitTests
             vm.SignInCommand.Execute(null);
 
             // Assert
-            Assert.True(vm.IsSignIn);
+            Assert.True(vm.IsSignedIn);
         }
     }
 }

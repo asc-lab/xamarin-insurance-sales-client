@@ -11,13 +11,13 @@ namespace InsuranceSales.Services
 {
     public class NetworkManager
     {
-        private readonly static HttpClient _httpClient = new HttpClient(new HttpTracerHandler());
+        private static readonly HttpClient HttpClient = new HttpClient(new HttpTracerHandler());
         private readonly IProductsService _productsService;
 
         public NetworkManager()
         {
-            _httpClient.BaseAddress = new Uri(AppSettings.backendUrl);
-            _productsService = RestService.For<IProductsService>(_httpClient);
+            HttpClient.BaseAddress = new Uri(AppSettings.backendUrl);
+            _productsService = RestService.For<IProductsService>(HttpClient);
         }
 
         public Task<IEnumerable<Product>> GetProducts()
