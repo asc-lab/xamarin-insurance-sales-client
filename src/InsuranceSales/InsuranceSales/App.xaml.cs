@@ -1,5 +1,7 @@
 ﻿using InsuranceSales.Interfaces;
 using InsuranceSales.Services;
+using System;
+using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace InsuranceSales
@@ -7,28 +9,34 @@ namespace InsuranceSales
     public partial class App
     {
         private static NetworkManager _networkManager;
-        protected internal static NetworkManager NetworkManager => _networkManager ?? (_networkManager = new NetworkManager());
+        public static NetworkManager NetworkManager => _networkManager ??= new NetworkManager();
 
         public App()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
 
-            MainPage = new AppShell();
+                MainPage = new AppShell();
 
-            if (AppSettings.UseMockAuthentication)
-                DependencyService.Register<IAuthenticationService, MockAuthenticationService>();
+                // TODO: Connect to API
+                if (AppSettings.UseMockAuthentication)
+                    DependencyService.Register<IAuthenticationService, MockAuthenticationService>();
 
-            // TODO: Remove
-            /*if (AppSettings.UseMockDataService)
-                DependencyService.Register<IProductsService, MockProductsService>();*/
+                if (AppSettings.UseMockDataService)
+                    DependencyService.Register<IProductsService, MockProductsService>();
 
-            DependencyService.Register<IDialogService, DialogService>();
+                DependencyService.Register<IDialogService, DialogService>();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                throw;
+            }
         }
 
         protected override void OnStart() { }
-
         protected override void OnSleep() { }
-
         protected override void OnResume() { }
     }
 }
