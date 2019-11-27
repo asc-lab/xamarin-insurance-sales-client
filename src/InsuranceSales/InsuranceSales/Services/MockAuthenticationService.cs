@@ -11,7 +11,7 @@ namespace InsuranceSales.Services
         public Task AuthenticateAsync(UserCredentialsModel userCredentials)
         {
             // TODO: Implement
-            if (userCredentials.Username == "admin" && userCredentials.Password == "admin")
+            if (userCredentials?.Username == "admin" && userCredentials.Password == "admin")
                 _isAuthenticated = true;
 
             return Task.FromResult(true);

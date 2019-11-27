@@ -9,9 +9,9 @@ namespace InsuranceSales.Interfaces
     public interface IProductsService
     {
         [Get("/products")]
-        Task<IEnumerable<ProductModel>> Fetch();
+        Task<IEnumerable<ProductModel>> FetchAsync();
 
         [Get("/products/{productId}")]
-        Task<ProductModel> GetById(Guid productId);
+        Task<ProductModel> GetByIdAsync(Guid productId);
     }
 }

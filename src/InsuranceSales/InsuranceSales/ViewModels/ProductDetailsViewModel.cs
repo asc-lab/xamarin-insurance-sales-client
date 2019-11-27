@@ -68,7 +68,7 @@ namespace InsuranceSales.ViewModels
             Code = _productModel.Code;
             Name = _productModel.Name;
             Description = _productModel.Description;
-            Image = ImageSource.FromUri(new Uri(_productModel.Image));
+            //Image = ImageSource.FromUri(new Uri(AppSettings.BackendUrl + _productModel.Image));
             Covers = _productModel.Covers;
             MaxNumberOfInsured = _productModel.MaxNumberOfInsured;
             Questions = _productModel.Questions;

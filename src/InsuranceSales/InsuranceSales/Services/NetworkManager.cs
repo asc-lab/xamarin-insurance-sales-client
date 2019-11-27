@@ -12,24 +12,21 @@ namespace InsuranceSales.Services
 {
     public class NetworkManager
     {
+        #region SERVICES
         private static readonly HttpClient HttpClient = new HttpClient(new HttpTracerHandler());
         private readonly IProductsService _productsService;
+        #endregion
 
         public NetworkManager()
         {
             HttpClient.BaseAddress = new Uri(AppSettings.BackendUrl);
-            //_productsService = RestService.For<IProductsService>(HttpClient);
-            _productsService = DependencyService.Resolve<IProductsService>();
+            _productsService = AppSettings.UseMockDataService 
+                ? DependencyService.Resolve<IProductsService>() 
+                : RestService.For<IProductsService>(HttpClient);
         }
 
-        public Task<IEnumerable<ProductModel>> GetProducts()
-        {
-            return _productsService.Fetch();
-        }   
-        
-        public Task<ProductModel> GetProductByIdAsync(Guid productId)
-        {
-            return _productsService.GetById(productId);
-        }
+        public Task<IEnumerable<ProductModel>> GetProductsAsync() => _productsService.FetchAsync();
+
+        public Task<ProductModel> GetProductByIdAsync(Guid productId) => _productsService.GetByIdAsync(productId);
     }
 }

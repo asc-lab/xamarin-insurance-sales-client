@@ -9,7 +9,7 @@ namespace InsuranceSales.Services
 {
     public class MockProductsService : IProductsService
     {
-        public async Task<IEnumerable<ProductModel>> Fetch()
+        public async Task<IEnumerable<ProductModel>> FetchAsync()
         {
             await Task.Delay(1000);
             var products = new List<ProductModel>
@@ -57,7 +57,7 @@ namespace InsuranceSales.Services
             return products.AsEnumerable();
         }
 
-        public async Task<ProductModel> GetById(Guid productId)
+        public async Task<ProductModel> GetByIdAsync(Guid productId)
         {
             await Task.Delay(500);
             var productModel = new ProductModel

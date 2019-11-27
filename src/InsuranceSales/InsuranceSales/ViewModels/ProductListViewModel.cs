@@ -1,12 +1,12 @@
-﻿using InsuranceSales.Models.Product;
+﻿using InsuranceSales.Interfaces;
+using InsuranceSales.Models.Product;
+using InsuranceSales.Resources;
 using InsuranceSales.Views.Login;
 using MvvmHelpers;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using InsuranceSales.Interfaces;
-using InsuranceSales.Resources;
 using Xamarin.Forms;
 
 namespace InsuranceSales.ViewModels
@@ -72,7 +72,7 @@ namespace InsuranceSales.ViewModels
         {
             Header = "Available products";
 
-            MessagingCenter.Subscribe<LoginPageViewModel>(this, MessageKeys.AUTH_MSG, sender => LoadData());
+            MessagingCenter.Subscribe<LoginPageViewModel>(this, MessageKeys.AUTH_MSG, async sender => await LoadData());
 
             if (!AuthenticationService.IsAuthenticated())
                 await Shell.Current.Navigation.PushModalAsync(new LoginPage());
@@ -81,7 +81,7 @@ namespace InsuranceSales.ViewModels
         private async Task LoadData()
         {
             IsBusy = true;
-            var products = await App.NetworkManager.GetProducts();
+            var products = await App.NetworkManager.GetProductsAsync();
             if (products.Any())
             {
                 IsBusy = false;
@@ -92,7 +92,8 @@ namespace InsuranceSales.ViewModels
 
         public static async Task ShowProductDetails(Guid productId)
         {
-            await Shell.Current.GoToAsync($"/Product/Details?{nameof(productId)}={productId}");
+            var uri = $"/Product/Details?{nameof(productId)}={productId}";
+            await Shell.Current.GoToAsync(uri);
         }
     }
 }
