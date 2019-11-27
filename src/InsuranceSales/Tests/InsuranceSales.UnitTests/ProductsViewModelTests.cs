@@ -10,7 +10,7 @@ namespace InsuranceSales.UnitTests
         public async Task InitializationShouldLoadAvailableProducts()
         {
             // Arrange
-            var vm = new ProductsPageViewModel();
+            var vm = new ProductListViewModel();
 
             // Act
             await Task.Delay(1000);
@@ -23,7 +23,7 @@ namespace InsuranceSales.UnitTests
         public async Task InitializationShouldSetHeader()
         {
             // Arrange
-            var vm = new ProductsPageViewModel();
+            var vm = new ProductListViewModel();
 
             // Act
             await Task.Delay(1000);

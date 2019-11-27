@@ -4,8 +4,8 @@ namespace InsuranceSales
 {
     public static class ViewModelLocator
     {
-        private static ProductsPageViewModel _productsPageViewModel;
+        private static ProductListViewModel _productsViewModel;
 
-        public static ProductsPageViewModel ProductsPageViewModel => _productsPageViewModel ??= new ProductsPageViewModel();   
+        public static ProductListViewModel ProductsViewModel => _productsViewModel ??= new ProductListViewModel();   
     }
 }

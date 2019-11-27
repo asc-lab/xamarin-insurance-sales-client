@@ -9,20 +9,15 @@ namespace InsuranceSales.Views
 
         protected virtual T ViewModel => BindingContext as T;
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
-            if (!_isInitialized)
-            {
-                ViewModel.InitializeAsync();
-                _isInitialized = true;
-            }
-        }
+            if (_isInitialized)
+                return;
 
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
+            await ViewModel.InitializeAsync();
+            _isInitialized = true;
         }
     }
 }

@@ -1,13 +1,22 @@
-﻿using System;
+using InsuranceSales.i18n;
+using InsuranceSales.Interfaces;
 using InsuranceSales.Models;
+using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using InsuranceSales.Resources;
 using Xamarin.Forms;
 
 namespace InsuranceSales.ViewModels
 {
     public class LoginPageViewModel : ViewModelBase
     {
+        #region SERVICES
+        private readonly IDialogService _dialogService;
+        #endregion
+
+        #region PROPS
         private string _username;
         public string Username { get => _username; set => SetProperty(ref _username, value); }
 
@@ -15,28 +24,42 @@ namespace InsuranceSales.ViewModels
         public string Password { get => _password; set => SetProperty(ref _password, value); }
 
         public bool IsSignedIn { get; set; }
+        #endregion
 
+        #region COMMANDS
         private ICommand _signInCommand;
-        public ICommand SignInCommand => _signInCommand ?? (_signInCommand = new Command(async () =>  await SignInAction()));
+        public ICommand SignInCommand => _signInCommand ??= new Command(async () => await SignInAction());
+        #endregion
+
+        public LoginPageViewModel(IAuthenticationService authenticationService, IDialogService dialogService)
+            : base(authenticationService)
+        {
+            _dialogService = dialogService;
+        }
+
+        public LoginPageViewModel()
+            : base(DependencyService.Resolve<IAuthenticationService>())
+        {
+            _dialogService = DependencyService.Resolve<IDialogService>();
+        }
 
         private async Task SignInAction()
         {
             if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
             {
-                await Application.Current.MainPage.DisplayAlert("Sign In", "Username or password cannot be empty.", "Ok");
+                await _dialogService.DisplayCustomAlertAsync(Labels.SignIn, Messages.UsernameOrPasswordCannotBeEmpty, Labels.Ok);
                 return;
             }
-
             try
             {
                 await AuthenticationService.AuthenticateAsync(new UserCredentialsModel { Username = _username, Password = _password });
-                await Application.Current.MainPage.Navigation.PopModalAsync();
+                await Shell.Current.Navigation.PopModalAsync();
 
-                MessagingCenter.Send(this, "AUTH_MSG");
+                MessagingCenter.Send(this, MessageKeys.AUTH_MSG);
             }
             catch (Exception ex)
             {
-
+                Debug.WriteLine(ex);
                 throw;
             }
         }

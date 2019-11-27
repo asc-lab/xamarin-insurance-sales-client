@@ -1,15 +1,16 @@
-﻿using System.Threading.Tasks;
-using InsuranceSales.Interfaces;
-using InsuranceSales.Services;
+﻿using InsuranceSales.Interfaces;
 using MvvmHelpers;
-using Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace InsuranceSales.ViewModels
 {
     public class ViewModelBase : BaseViewModel
     {
-        protected IAuthenticationService AuthenticationService => DependencyService.Get<IAuthenticationService>();
+        protected readonly IAuthenticationService AuthenticationService;
 
-        public virtual Task InitializeAsync() => Task.CompletedTask;
+        public ViewModelBase(IAuthenticationService authenticationService) =>
+            AuthenticationService = authenticationService;
+
+        public virtual async Task InitializeAsync() => await Task.CompletedTask;
     }
 }

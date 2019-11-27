@@ -1,4 +1,5 @@
-﻿using InsuranceSales.Models.Product;
+﻿using InsuranceSales.i18n;
+using InsuranceSales.Models.Policy;
 using Newtonsoft.Json;
 using System;
 
@@ -20,7 +21,7 @@ namespace InsuranceSales.Serialization
             {
                 "choice" => QuestionTypeEnum.Choice,
                 "numeric" => QuestionTypeEnum.Numeric,
-                _ => throw new Exception("Cannot unmarshal type TypeEnum")
+                _ => throw new Exception(Exceptions.CannotUnmarshalTypeEnum)
             };
         }
 
@@ -41,7 +42,7 @@ namespace InsuranceSales.Serialization
                     serializer?.Serialize(writer, "numeric");
                     return;
                 default:
-                    throw new Exception("Cannot marshal type TypeEnum");
+                    throw new Exception(Exceptions.CannotUnmarshalTypeEnum);
             }
         }
     }

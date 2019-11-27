@@ -40,7 +40,7 @@
     <TabBar>
         <Tab Icon="products.png" Title="Products">
             <ShellContent Shell.NavBarIsVisible="False" Route="Products"
-                          ContentTemplate="{DataTemplate products:ProductsPage}" />
+                          ContentTemplate="{DataTemplate products:ProductListPage}" />
         </Tab>
     </TabBar>
 </Shell>

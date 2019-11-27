@@ -1,4 +1,5 @@
 ﻿using InsuranceSales.Models.Product;
+using InsuranceSales.Serialization;
 using Newtonsoft.Json;
 
 namespace InsuranceSales.Extensions
