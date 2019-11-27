@@ -2,27 +2,28 @@
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="InsuranceSales.Resources.Styles">
-    <ResourceDictionary Source="Colors.xaml" />
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="./Colors.xaml" />
+    </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="Label">
-        <Setter Property="TextColor" Value="{StaticResource Key=ContentTextColor}" />
+        <Setter Property="TextColor" Value="{StaticResource ContentTextColor}" />
     </Style>
 
     <Style TargetType="Button">
-        <Setter Property="BackgroundColor" Value="{StaticResource Key=ButtonBackgroundColor}" />
-        <Setter Property="TextColor" Value="{StaticResource Key=ContentTextColor}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource ButtonBackgroundColor}" />
+        <Setter Property="TextColor" Value="{StaticResource ContentTextColor}" />
     </Style>
 
     <Style TargetType="Entry">
-        <Setter Property="PlaceholderColor" Value="{StaticResource Key=PlaceholderTextColor}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource PlaceholderTextColor}" />
     </Style>
-
 
     <Style x:Key="CompanyHeaderStyle" TargetType="Label">
         <Setter Property="VerticalTextAlignment" Value="Center" />
         <Setter Property="FontSize" Value="Large" />
-        <Setter Property="TextColor" Value="{StaticResource Key=CompanyHeaderColor}" />
-     </Style>
+        <Setter Property="TextColor" Value="{StaticResource CompanyHeaderColor}" />
+    </Style>
 
     <Style x:Key="TitleStyle" TargetType="Label">
         <Setter Property="FontSize" Value="{OnPlatform iOS=Header, Android=Medium}" />

@@ -1,4 +1,4 @@
-﻿namespace InsuranceSales.Views
+﻿namespace InsuranceSales.Views.Login
 {
     public partial class LoginPage
     {

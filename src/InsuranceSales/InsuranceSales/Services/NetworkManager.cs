@@ -16,7 +16,7 @@ namespace InsuranceSales.Services
 
         public NetworkManager()
         {
-            HttpClient.BaseAddress = new Uri(AppSettings.backendUrl);
+            HttpClient.BaseAddress = new Uri(AppSettings.BackendUrl);
             _productsService = RestService.For<IProductsService>(HttpClient);
         }
 

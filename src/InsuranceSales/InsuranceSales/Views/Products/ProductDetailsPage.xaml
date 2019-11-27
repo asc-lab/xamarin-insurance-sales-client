@@ -15,7 +15,6 @@
     <views:ContentPageBase.BindingContext>
         <vm:ProductDetailsViewModel />
     </views:ContentPageBase.BindingContext>
-
     <views:ContentPageBase.Content>
         <StackLayout>
             <Label Text="Welcome to Xamarin.Forms!"

@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using InsuranceSales.Models;
-using InsuranceSales.Views;
+﻿using InsuranceSales.Models;
+using InsuranceSales.Views.Login;
 using MvvmHelpers;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace InsuranceSales.ViewModels
