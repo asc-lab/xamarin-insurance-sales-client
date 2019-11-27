@@ -3,18 +3,19 @@ using InsuranceSales.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InsuranceSales.Models.Product;
 
 namespace InsuranceSales.Services
 {
     public class MockProductsService : IProductsService
     {
-        public async Task<IEnumerable<Product>> Fetch()
+        public async Task<IEnumerable<ProductModel>> Fetch()
         {
             await Task.Delay(1000);
 
-            var products = new List<Product>
+            var products = new List<ProductModel>
             {
-                new Product
+                new ProductModel
                 {
                     Name = "Super uber product",
                     Description = "Super uber description",
@@ -23,7 +24,7 @@ namespace InsuranceSales.Services
                     MaxNumberOfInsured = 1,
                     Covers = new[]
                     {
-                        new Cover
+                        new CoverModel
                         {
                             Code = "TEST",
                             Name = "Test cover",
@@ -32,7 +33,7 @@ namespace InsuranceSales.Services
                         }
                     }
                 },
-                new Product
+                new ProductModel
                 {
                     Name = "Super uber product",
                     Description = "Super uber description",
@@ -41,7 +42,7 @@ namespace InsuranceSales.Services
                     MaxNumberOfInsured = 1,
                     Covers = new[]
                     {
-                        new Cover
+                        new CoverModel
                         {
                             Code = "TEST",
                             Name = "Test cover",

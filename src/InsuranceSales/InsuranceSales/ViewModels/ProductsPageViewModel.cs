@@ -1,4 +1,4 @@
-﻿using InsuranceSales.Models;
+﻿using InsuranceSales.Models.Product;
 using InsuranceSales.Views.Login;
 using MvvmHelpers;
 using System.Linq;
@@ -9,15 +9,15 @@ namespace InsuranceSales.ViewModels
 {
     public class ProductsPageViewModel : ViewModelBase
     {
-        public ObservableRangeCollection<Product> Products { get; } = new ObservableRangeCollection<Product>();
+        public ObservableRangeCollection<ProductModel> Products { get; } = new ObservableRangeCollection<ProductModel>();
 
         public ProductsPageViewModel()
         {
             if (DesignMode.IsDesignModeEnabled)
             {
-                Products = new ObservableRangeCollection<Product>
+                Products = new ObservableRangeCollection<ProductModel>
                 {
-                    new Product
+                    new ProductModel
                     {
                         Name = "Super uber product",
                         Description = "Super uber description",
@@ -26,7 +26,7 @@ namespace InsuranceSales.ViewModels
                         MaxNumberOfInsured = 1,
                         Covers = new[]
                         {
-                            new Cover
+                            new CoverModel
                             {
                                 Code = "TEST",
                                 Name = "Test cover",
@@ -35,7 +35,7 @@ namespace InsuranceSales.ViewModels
                             }
                         }
                     },
-                    new Product
+                    new ProductModel
                     {
                         Name = "Super uber product",
                         Description = "Super uber description",
@@ -44,7 +44,7 @@ namespace InsuranceSales.ViewModels
                         MaxNumberOfInsured = 1,
                         Covers = new[]
                         {
-                            new Cover
+                            new CoverModel
                             {
                                 Code = "TEST",
                                 Name = "Test cover",
@@ -73,10 +73,10 @@ namespace InsuranceSales.ViewModels
             var products = await App.NetworkManager.GetProducts().ConfigureAwait(false);
             if (products.Any())
             {
-                IsBusy = false;
                 Products.Clear();
                 Products.AddRange(products);
             }
+            IsBusy = false;
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿using System;
+﻿using HttpTracer;
+using InsuranceSales.Interfaces;
+using InsuranceSales.Models.Product;
+using Refit;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using HttpTracer;
-using InsuranceSales.Interfaces;
-using InsuranceSales.Models;
-using Refit;
 
 namespace InsuranceSales.Services
 {
@@ -20,7 +20,7 @@ namespace InsuranceSales.Services
             _productsService = RestService.For<IProductsService>(HttpClient);
         }
 
-        public Task<IEnumerable<Product>> GetProducts()
+        public Task<IEnumerable<ProductModel>> GetProducts()
         {
             return _productsService.Fetch();
         }

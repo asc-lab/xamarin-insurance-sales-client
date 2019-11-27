@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using InsuranceSales.Models;
+using InsuranceSales.Models.Product;
 using Refit;
 
 namespace InsuranceSales.Interfaces
@@ -8,6 +9,6 @@ namespace InsuranceSales.Interfaces
     public interface IProductsService
     {
         [Get("/products")]
-        Task<IEnumerable<Product>> Fetch();
+        Task<IEnumerable<ProductModel>> Fetch();
     }
 }
