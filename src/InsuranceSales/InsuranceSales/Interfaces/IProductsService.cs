@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using InsuranceSales.Models;
-using InsuranceSales.Models.Product;
+﻿using InsuranceSales.Models.Product;
 using Refit;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace InsuranceSales.Interfaces
 {
@@ -10,5 +10,8 @@ namespace InsuranceSales.Interfaces
     {
         [Get("/products")]
         Task<IEnumerable<ProductModel>> Fetch();
+
+        [Get("/products/{productId}")]
+        Task<ProductModel> GetById(Guid productId);
     }
 }

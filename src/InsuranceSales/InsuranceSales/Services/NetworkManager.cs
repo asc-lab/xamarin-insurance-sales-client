@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace InsuranceSales.Services
 {
@@ -17,12 +18,18 @@ namespace InsuranceSales.Services
         public NetworkManager()
         {
             HttpClient.BaseAddress = new Uri(AppSettings.BackendUrl);
-            _productsService = RestService.For<IProductsService>(HttpClient);
+            //_productsService = RestService.For<IProductsService>(HttpClient);
+            _productsService = DependencyService.Resolve<IProductsService>();
         }
 
         public Task<IEnumerable<ProductModel>> GetProducts()
         {
             return _productsService.Fetch();
+        }   
+        
+        public Task<ProductModel> GetProductByIdAsync(Guid productId)
+        {
+            return _productsService.GetById(productId);
         }
     }
 }

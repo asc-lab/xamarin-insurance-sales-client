@@ -1,11 +1,15 @@
 ﻿using InsuranceSales.Models.Policy;
 using InsuranceSales.Serialization;
 using Newtonsoft.Json;
+using System;
 
 namespace InsuranceSales.Models.Product
 {
     public class ProductModel
     {
+        [JsonProperty("id")]
+        public Guid Id { get; set; }
+
         [JsonProperty("code")]
         public string Code { get; set; }
 
