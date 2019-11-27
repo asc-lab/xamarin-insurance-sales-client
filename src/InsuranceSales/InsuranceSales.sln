@@ -14,7 +14,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsuranceSales.UnitTests", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{93501DF4-47D6-454D-890D-C08909753782}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsuranceSales.i18n", "InsuranceSales.i18n\InsuranceSales.i18n.csproj", "{1FE08718-0A57-4280-856C-544E16E57D19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsuranceSales.i18n", "InsuranceSales.i18n\InsuranceSales.i18n.csproj", "{1FE08718-0A57-4280-856C-544E16E57D19}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{780C362E-7536-42CD-BB32-528E7A971335}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
