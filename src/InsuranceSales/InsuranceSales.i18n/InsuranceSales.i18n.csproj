@@ -24,11 +24,11 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Exceptions.resx">
-      <LastGenOutput>Labels.Designer.cs</LastGenOutput>
+      <LastGenOutput>Exceptions.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Messages.resx">
-      <LastGenOutput>Labels.Designer.cs</LastGenOutput>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Labels.resx">

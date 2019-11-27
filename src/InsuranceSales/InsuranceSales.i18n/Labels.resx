@@ -132,4 +132,7 @@
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Logowanie</value>
+  </data>
 </root>

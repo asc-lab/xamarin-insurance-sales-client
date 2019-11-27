@@ -104,5 +104,14 @@ namespace InsuranceSales.i18n {
                 return ResourceManager.GetString("Ok", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logowanie.
+        /// </summary>
+        public static string SignIn {
+            get {
+                return ResourceManager.GetString("SignIn", resourceCulture);
+            }
+        }
     }
 }
