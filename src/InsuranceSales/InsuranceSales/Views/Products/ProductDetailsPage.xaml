@@ -17,9 +17,30 @@
     </views:ContentPageBase.BindingContext>
     <views:ContentPageBase.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
+
+            <Image Source="{Binding Image}"
+                   Aspect="AspectFill" />
+
+            <Button Text="Buy now!"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand" />
+
+            <Label Text="{Binding Name}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+
+            <Label Text="{Binding Description}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <Label Text="{Binding Code}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <Label Text="{Binding MaxNumberOfInsured}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
         </StackLayout>
     </views:ContentPageBase.Content>
 </views:ContentPageBase>

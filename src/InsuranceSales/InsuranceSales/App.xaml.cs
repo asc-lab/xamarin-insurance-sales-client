@@ -17,8 +17,6 @@ namespace InsuranceSales
             {
                 InitializeComponent();
 
-                MainPage = new AppShell();
-
                 // TODO: Connect to API
                 if (AppSettings.UseMockAuthentication)
                     DependencyService.Register<IAuthenticationService, MockAuthenticationService>();
@@ -27,6 +25,8 @@ namespace InsuranceSales
                     DependencyService.Register<IProductsService, MockProductsService>();
 
                 DependencyService.Register<IDialogService, DialogService>();
+
+                MainPage = new AppShell();
             }
             catch (Exception ex)
             {

@@ -11,7 +11,7 @@ namespace InsuranceSales.ViewModels
     public class ProductDetailsViewModel : ViewModelBase
     {
         #region SERVICES
-        private readonly NetworkManager _networkManager;
+        //private readonly NetworkManager _networkManager;
         #endregion
 
         #region PROPS
@@ -40,40 +40,43 @@ namespace InsuranceSales.ViewModels
 
         private ImageSource _image;
         public ImageSource Image { get => _image; set => SetProperty(ref _image, value); }
-
         #endregion
 
         /// <summary>
         /// TESTING ONLY
         /// </summary>
         public ProductDetailsViewModel(
-            IAuthenticationService authenticationService,
-            NetworkManager networkManager)
-            : base(authenticationService)
+            IAuthenticationService authenticationService
+            //NetworkManager networkManager
+            ) : base(authenticationService)
         {
-            _networkManager = networkManager;
+            //_networkManager = networkManager;
         }
 
         public ProductDetailsViewModel()
             : base(DependencyService.Resolve<IAuthenticationService>())
         {
-            _networkManager = App.NetworkManager;
+            //_networkManager = App.NetworkManager;
         }
 
-        public override async Task InitializeAsync()
+        public override Task InitializeAsync()
         {
-            _productModel = await _networkManager.GetProductByIdAsync(ProductId);
+            MessagingCenter.Subscribe<ProductListViewModel, ProductModel>(this, "PRODUCT_DETAILS", OnMessageReceived);
 
-            // ASSIGN PROPS
-            Code = _productModel.Code;
-            Name = _productModel.Name;
-            Description = _productModel.Description;
-            //Image = ImageSource.FromUri(new Uri(AppSettings.BackendUrl + _productModel.Image));
-            Covers = _productModel.Covers;
-            MaxNumberOfInsured = _productModel.MaxNumberOfInsured;
-            Questions = _productModel.Questions;
+            return base.InitializeAsync();
+        }
 
-            await base.InitializeAsync();
+        private void OnMessageReceived(ProductListViewModel _, ProductModel product)
+        {
+            _productModel = product;
+
+            Name = product.Name;
+            Description = product.Description;
+            Code = product.Code;
+            MaxNumberOfInsured = product.MaxNumberOfInsured;
+            //Image = ImageSource.FromUri(new Uri(AppSettings.BackendUrl + product.Image));
+            Covers = product.Covers;
+            Questions = product.Questions;
         }
     }
 }

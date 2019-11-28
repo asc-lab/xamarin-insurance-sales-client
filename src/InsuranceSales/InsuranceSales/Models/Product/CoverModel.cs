@@ -1,10 +1,13 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace InsuranceSales.Models.Product
 {
-
     public class CoverModel
     {
+        [JsonProperty("id")]
+        public Guid Id { get; set; }
+
         [JsonProperty("code")]
         public string Code { get; set; }
 

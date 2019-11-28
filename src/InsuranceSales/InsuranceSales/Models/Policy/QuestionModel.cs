@@ -1,4 +1,5 @@
-﻿using InsuranceSales.Models.Product;
+﻿using System;
+using InsuranceSales.Models.Product;
 using Newtonsoft.Json;
 
 namespace InsuranceSales.Models.Policy
@@ -10,6 +11,9 @@ namespace InsuranceSales.Models.Policy
 
     public class QuestionModel
     {
+        [JsonProperty("id")]
+        public Guid Id { get; set; }
+
         [JsonProperty("type")]
         public QuestionTypeEnum Type { get; set; }
 

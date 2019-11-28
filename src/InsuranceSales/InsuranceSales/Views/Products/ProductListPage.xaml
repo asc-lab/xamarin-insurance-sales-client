@@ -35,7 +35,7 @@
                            IsRunning="{Binding IsBusy}" />
 
         <ListView Grid.Row="2" Footer=""
-                  IsVisible="{Binding IsBusy}"
+                  IsVisible="{Binding IsNotBusy}"
                   HorizontalOptions="FillAndExpand"
                   VerticalOptions="FillAndExpand"
                   ItemsSource="{Binding Products}" 

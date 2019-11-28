@@ -14,11 +14,11 @@ namespace InsuranceSales.Views.Products
             if (e.SelectedItem == null)
                 return;
 
-            var productId = (e.SelectedItem as ProductModel)?.Id;
+            var product = (e.SelectedItem as ProductModel);
             if (BindingContext is ProductListViewModel viewModel &&
-                productId.GetValueOrDefault() != Guid.Empty &&
-                viewModel.ListItemClickedCommand.CanExecute(productId))
-                viewModel.ListItemClickedCommand.Execute(productId);
+                product != null &&
+                viewModel.ListItemClickedCommand.CanExecute(product))
+                viewModel.ListItemClickedCommand.Execute(product);
 
             ((ListView)sender).SelectedItem = null;
         }

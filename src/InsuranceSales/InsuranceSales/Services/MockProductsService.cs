@@ -1,4 +1,5 @@
 ﻿using InsuranceSales.Interfaces;
+using InsuranceSales.Models.Policy;
 using InsuranceSales.Models.Product;
 using System;
 using System.Collections.Generic;
@@ -21,11 +22,41 @@ namespace InsuranceSales.Services
                     Description = "Super uber description",
                     Code = "SUP",
                     Image = "homeInsurance.jpg",
-                    MaxNumberOfInsured = 1,
+                    MaxNumberOfInsured = 500L,
+                    Questions = new[]
+                    {
+                        new QuestionModel
+                        {
+                            Id = Guid.NewGuid(),
+                            Code = "",
+                            Index = 100L,
+                            Text = $"QUESTION + {new Random().Next()}" ,
+                            Type = QuestionTypeEnum.Choice,
+                            Choices = new[]
+                            {
+                                new Choice
+                                {
+                                    Label = "label",
+                                    Code = "code"
+                                },
+                                new Choice
+                                {
+                                    Label = "label",
+                                    Code = "code"
+                                },
+                                new Choice
+                                {
+                                    Label = "label",
+                                    Code = "code"
+                                },
+                            },
+                        },
+                    },
                     Covers = new[]
                     {
                         new CoverModel
                         {
+                            Id = Guid.NewGuid(),
                             Code = "TEST",
                             Name = "Test cover",
                             Optional = false,
@@ -45,15 +76,44 @@ namespace InsuranceSales.Services
                     {
                         new CoverModel
                         {
+                            Id = Guid.NewGuid(),
                             Code = "TEST",
                             Name = "Test cover",
                             Optional = false,
                             SumInsured = 1000L
                         }
-                    }
+                    },
+                    Questions = new[]
+                    {
+                        new QuestionModel
+                        {
+                            Id = Guid.NewGuid(),
+                            Code = "",
+                            Index = 100L,
+                            Text = $"QUESTION + {new Random().Next()}" ,
+                            Type = QuestionTypeEnum.Choice,
+                            Choices = new[]
+                            {
+                                new Choice
+                                {
+                                    Label = "label",
+                                    Code = "code"
+                                },
+                                new Choice
+                                {
+                                    Label = "label",
+                                    Code = "code"
+                                },
+                                new Choice
+                                {
+                                    Label = "label",
+                                    Code = "code"
+                                },
+                            },
+                        },
+                    },
                 }
             };
-
             return products.AsEnumerable();
         }
 
@@ -77,7 +137,36 @@ namespace InsuranceSales.Services
                         Optional = false,
                         SumInsured = 1000L
                     }
-                }
+                },
+                Questions = new[]
+                {
+                    new QuestionModel
+                    {
+                        Id = Guid.NewGuid(),
+                        Code = "code21213",
+                        Index = 100L,
+                        Text = $"QUESTION + {new Random().Next()}" ,
+                        Type = QuestionTypeEnum.Choice,
+                        Choices = new[]
+                        {
+                            new Choice
+                            {
+                                Label = "label",
+                                Code = "code"
+                            },
+                            new Choice
+                            {
+                                Label = "label",
+                                Code = "code"
+                            },
+                            new Choice
+                            {
+                                Label = "label",
+                                Code = "code"
+                            },
+                        },
+                    },
+                },
             };
             return productModel;
         }
