@@ -64,6 +64,9 @@
     <None Update="Views\Policy\PolicyDetailsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
+    <None Update="Views\Policy\PolicyOfferFormPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
     <None Update="Views\Products\ProductDetailsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
