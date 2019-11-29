@@ -16,6 +16,12 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 
+#if DEBUG 
+[assembly: Application(Debuggable = true, UsesCleartextTraffic = true)]
+#else
+[assembly: Application(Debuggable = false, UsesCleartextTraffic = true)] 
+#endif
+
 // Version information for an assembly consists of the following four values:
 //
 //      Major Version
