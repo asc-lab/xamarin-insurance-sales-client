@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InsuranceSales.Resources.Styles">
+             x:Class="InsuranceSales.Resources.StylesDictionary">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="./Colors.xaml" />
+        <ResourceDictionary Source="./ColorsDictionary.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="Label">
-        <Setter Property="TextColor" Value="{StaticResource ContentTextColor}" />
+        <Setter Property="TextColor" Value="{StaticResource CompanyHeaderColor}" />
     </Style>
 
     <Style TargetType="Button">
@@ -19,6 +19,10 @@
         <Setter Property="PlaceholderColor" Value="{StaticResource PlaceholderTextColor}" />
     </Style>
 
+    <Style Triggers="ActivityIndicator">
+        <Setter Property="Color" Value="{StaticResource CompanyLogoColor}" />
+    </Style>
+
     <Style x:Key="CompanyHeaderStyle" TargetType="Label">
         <Setter Property="VerticalTextAlignment" Value="Center" />
         <Setter Property="FontSize" Value="Large" />
@@ -27,9 +31,11 @@
 
     <Style x:Key="TitleStyle" TargetType="Label">
         <Setter Property="FontSize" Value="{OnPlatform iOS=Header, Android=Medium}" />
+        <Setter Property="TextColor" Value="White" />
     </Style>
 
     <Style x:Key="DescriptionStyle" TargetType="Label">
         <Setter Property="FontSize" Value="Large" />
+        <Setter Property="TextColor" Value="White" />
     </Style>
 </ResourceDictionary>

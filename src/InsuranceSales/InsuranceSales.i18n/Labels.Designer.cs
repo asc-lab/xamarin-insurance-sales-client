@@ -61,7 +61,16 @@ namespace InsuranceSales.i18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anuluj.
+        ///   Looks up a localized string similar to Buy now!.
+        /// </summary>
+        public static string BuyNow {
+            get {
+                return ResourceManager.GetString("BuyNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
             get {
@@ -70,7 +79,7 @@ namespace InsuranceSales.i18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Potwierdź.
+        ///   Looks up a localized string similar to Confirm.
         /// </summary>
         public static string Confirm {
             get {
@@ -79,7 +88,7 @@ namespace InsuranceSales.i18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Błąd.
+        ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string Error {
             get {
@@ -88,7 +97,7 @@ namespace InsuranceSales.i18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Informacja.
+        ///   Looks up a localized string similar to Info.
         /// </summary>
         public static string Info {
             get {
@@ -106,7 +115,7 @@ namespace InsuranceSales.i18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logowanie.
+        ///   Looks up a localized string similar to Sign in.
         /// </summary>
         public static string SignIn {
             get {

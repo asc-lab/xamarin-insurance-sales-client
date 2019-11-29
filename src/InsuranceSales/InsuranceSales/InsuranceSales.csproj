@@ -36,10 +36,16 @@
     <ProjectReference Include="..\InsuranceSales.i18n\InsuranceSales.i18n.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Resources\ColorsDictionary.xaml.cs">
+      <DependentUpon>ColorsDictionary.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Resources\MessageKeys.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>MessageKeys.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\StylesDictionary.xaml.cs">
+      <DependentUpon>StylesDictionary.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Products\ProductListPage.xaml.cs">
       <DependentUpon>ProductListPage.xaml</DependentUpon>

@@ -34,17 +34,17 @@ namespace InsuranceSales.Services
                             Type = QuestionTypeEnum.Choice,
                             Choices = new[]
                             {
-                                new Choice
+                                new ChoiceModel
                                 {
                                     Label = "label",
                                     Code = "code"
                                 },
-                                new Choice
+                                new ChoiceModel
                                 {
                                     Label = "label",
                                     Code = "code"
                                 },
-                                new Choice
+                                new ChoiceModel
                                 {
                                     Label = "label",
                                     Code = "code"
@@ -67,17 +67,17 @@ namespace InsuranceSales.Services
                 new ProductModel
                 {
                     Id = Guid.NewGuid(),
-                    Name = "Super uber product",
-                    Description = "Super uber description",
-                    Code = "SUP",
-                    Image = "homeInsurance.jpg",
+                    Name = "Happy farm",
+                    Description = " Farm insurance",
+                    Code = "HF",
+                    Image = "http://mn.lab.software.altkom.pl/static/farm.jpg",
                     MaxNumberOfInsured = 1,
                     Covers = new[]
                     {
                         new CoverModel
                         {
                             Id = Guid.NewGuid(),
-                            Code = "TEST",
+                            Code = "NO",
                             Name = "Test cover",
                             Optional = false,
                             SumInsured = 1000L
@@ -88,23 +88,23 @@ namespace InsuranceSales.Services
                         new QuestionModel
                         {
                             Id = Guid.NewGuid(),
-                            Code = "",
+                            Code = "NO",
                             Index = 100L,
                             Text = $"QUESTION + {new Random().Next()}" ,
                             Type = QuestionTypeEnum.Choice,
                             Choices = new[]
                             {
-                                new Choice
+                                new ChoiceModel
                                 {
                                     Label = "label",
                                     Code = "code"
                                 },
-                                new Choice
+                                new ChoiceModel
                                 {
                                     Label = "label",
                                     Code = "code"
                                 },
-                                new Choice
+                                new ChoiceModel
                                 {
                                     Label = "label",
                                     Code = "code"
@@ -123,10 +123,10 @@ namespace InsuranceSales.Services
             var productModel = new ProductModel
             {
                 Id = productId,
-                Name = "Super uber product",
-                Description = "Super uber description",
-                Code = "SUP",
-                Image = "homeInsurance.jpg",
+                Name = "Happy Driver",
+                Description = " Car insurance",
+                Code = "HD",
+                Image = "http://mn.lab.software.altkom.pl/static/car.jpg",
                 MaxNumberOfInsured = new Random().Next(),
                 Covers = new[]
                 {
@@ -143,23 +143,23 @@ namespace InsuranceSales.Services
                     new QuestionModel
                     {
                         Id = Guid.NewGuid(),
-                        Code = "code21213",
+                        Code = "NO",
                         Index = 100L,
                         Text = $"QUESTION + {new Random().Next()}" ,
                         Type = QuestionTypeEnum.Choice,
                         Choices = new[]
                         {
-                            new Choice
+                            new ChoiceModel
                             {
                                 Label = "label",
                                 Code = "code"
                             },
-                            new Choice
+                            new ChoiceModel
                             {
                                 Label = "label",
                                 Code = "code"
                             },
-                            new Choice
+                            new ChoiceModel
                             {
                                 Label = "label",
                                 Code = "code"

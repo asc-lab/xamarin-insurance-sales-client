@@ -3,7 +3,7 @@
 namespace InsuranceSales.Models.Product
 {
 
-    public class Choice
+    public class ChoiceModel
     {
         [JsonProperty("code")]
         public string Code { get; set; }

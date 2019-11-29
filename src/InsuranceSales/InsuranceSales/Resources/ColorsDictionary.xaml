@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                    x:Class="InsuranceSales.Resources.Colors">
+                    x:Class="InsuranceSales.Resources.ColorsDictionary">
     <Color x:Key="CompanyHeaderColor">#325F80</Color>
     <Color x:Key="CompanyLogoColor">Orange</Color>
-    <Color x:Key="ContentTextColor">#FFFFFF</Color>
+    <Color x:Key="ContentTextColor">Black</Color>
     <Color x:Key="SeparatorLineColor">#586F80</Color>
     <Color x:Key="ButtonBackgroundColor">#63BEFF</Color>
     <Color x:Key="PlaceholderTextColor">#8DB2CC</Color>

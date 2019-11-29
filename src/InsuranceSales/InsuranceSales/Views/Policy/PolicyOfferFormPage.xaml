@@ -12,13 +12,6 @@
         x:Class="InsuranceSales.Views.Policy.PolicyOfferFormPage"
         mc:Ignorable="d"
         Visual="Material">
-    <views:ContentPageBase.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../../Resources/Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </views:ContentPageBase.Resources>
     <views:ContentPageBase.Content>
         <StackLayout>
             <Label Text="Welcome to Xamarin.Forms!"

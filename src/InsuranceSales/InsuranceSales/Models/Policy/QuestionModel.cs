@@ -27,7 +27,7 @@ namespace InsuranceSales.Models.Policy
         public string Text { get; set; }
 
         [JsonProperty("choices", NullValueHandling = NullValueHandling.Ignore)]
-        public Choice[] Choices { get; set; }
+        public ChoiceModel[] Choices { get; set; }
     }
 
 }
