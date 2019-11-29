@@ -49,7 +49,7 @@
                            HorizontalOptions="CenterAndExpand"
                            Grid.Row="3" />
 
-                    <CollectionView ItemsSource="{Binding Covers}" Grid.Row="4" Footer="">
+                    <CollectionView ItemsSource="{Binding Covers}" Grid.Row="4">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout Padding="10" Orientation="Horizontal">

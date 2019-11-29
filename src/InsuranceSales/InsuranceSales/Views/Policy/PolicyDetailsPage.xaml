@@ -17,7 +17,27 @@
     </views:ContentPageBase.BindingContext>
     <views:ContentPageBase.Content>
         <StackLayout>
-            
+            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="" />
+
+                <Label Text="" />
+
+                <Label Text="" />
+
+                <Label Text="" />
+
+                <Label Text="" />
+
+            </Grid>
         </StackLayout>
     </views:ContentPageBase.Content>
 </views:ContentPageBase>

@@ -47,6 +47,15 @@ namespace InsuranceSales.Services
                                     Code = "code"
                                 },
                             },
+                        }, 
+                        new QuestionModel
+                        {
+                            Id = Guid.NewGuid(),
+                            Code = "QUESTION",
+                            Index = 100L,
+                            Text = $"QUESTION {new Random().Next()}" ,
+                            Type = QuestionTypeEnum.Numeric,
+                            Choices = Array.Empty<ChoiceModel>()
                         },
                     },
                     Covers = new[]

@@ -9,14 +9,32 @@
         xmlns:controls="clr-namespace:InsuranceSales.Controls"
         xmlns:d="http://xamarin.com/schemas/2014/forms/design"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:resources="clr-namespace:InsuranceSales.i18n;assembly=InsuranceSales.i18n"
         x:Class="InsuranceSales.Views.Policy.PolicyOfferFormPage"
         mc:Ignorable="d"
         Visual="Material">
     <views:ContentPageBase.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
+          
+            <Grid IsVisible="{Binding IsNotBusy}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="{Binding Name}" FontSize="Header" 
+                       Grid.Row="0" />
+
+                <controls:DynamicEntriesView BindingContext="{Binding Questions}"
+                                           Grid.Row="1" /> 
+
+                <Button Text="{x:Static resources:Labels.Order}" Grid.Row="2" />
+            </Grid>
         </StackLayout>
     </views:ContentPageBase.Content>
 </views:ContentPageBase>

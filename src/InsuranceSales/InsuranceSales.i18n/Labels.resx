@@ -141,4 +141,7 @@
   <data name="MaxNumberOfInsured" xml:space="preserve">
     <value>Max number of insured</value>
   </data>
+  <data name="Order" xml:space="preserve">
+    <value>Order</value>
+  </data>
 </root>

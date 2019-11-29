@@ -30,12 +30,12 @@
     <PackageReference Include="HttpTracer" Version="2.1.1" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controls\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\InsuranceSales.i18n\InsuranceSales.i18n.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Controls\DynamicEntriesView.xaml.cs">
+      <DependentUpon>DynamicEntriesView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Resources\ColorsDictionary.xaml.cs">
       <DependentUpon>ColorsDictionary.xaml</DependentUpon>
     </Compile>
@@ -52,6 +52,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Controls\DynamicEntriesView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\DynamicEntryView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\MessageKeys.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MessageKeys.Designer.cs</LastGenOutput>

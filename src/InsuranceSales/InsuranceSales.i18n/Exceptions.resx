@@ -120,4 +120,7 @@
   <data name="CannotUnmarshalTypeEnum" xml:space="preserve">
     <value>Cannot marshal type TypeEnum</value>
   </data>
+  <data name="InvalidQuestionModel" xml:space="preserve">
+    <value>Invalid question model</value>
+  </data>
 </root>

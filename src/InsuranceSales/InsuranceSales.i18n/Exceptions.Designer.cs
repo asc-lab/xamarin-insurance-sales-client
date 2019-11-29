@@ -68,5 +68,14 @@ namespace InsuranceSales.i18n {
                 return ResourceManager.GetString("CannotUnmarshalTypeEnum", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid question model.
+        /// </summary>
+        public static string InvalidQuestionModel {
+            get {
+                return ResourceManager.GetString("InvalidQuestionModel", resourceCulture);
+            }
+        }
     }
 }
