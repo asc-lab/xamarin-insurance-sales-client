@@ -19,7 +19,7 @@ namespace InsuranceSales.Services
 
         public NetworkManager()
         {
-            HttpClient.BaseAddress = new Uri(AppSettings.BackendUrl);
+            HttpClient.BaseAddress = AppSettings.BackendUrl;
             _productsService = AppSettings.UseMockDataService 
                 ? DependencyService.Resolve<IProductsService>() 
                 : RestService.For<IProductsService>(HttpClient);

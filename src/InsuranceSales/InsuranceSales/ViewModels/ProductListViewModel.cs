@@ -4,7 +4,6 @@ using InsuranceSales.Resources;
 using MvvmHelpers;
 using System;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -17,7 +16,7 @@ namespace InsuranceSales.ViewModels
 
         #region COMMANDS
         private ICommand _listItemClickedCommand;
-        public ICommand ListItemClickedCommand => _listItemClickedCommand ??= new Command<ProductModel>( async product => await ShowProductDetails(product));
+        public ICommand ListItemClickedCommand => _listItemClickedCommand ??= new Command<ProductModel>(async product => await ShowProductDetails(product.Id));
 
         #endregion
 
@@ -26,18 +25,21 @@ namespace InsuranceSales.ViewModels
         /// </summary>
         public ProductListViewModel(IAuthenticationService authenticationService)
             : base(authenticationService)
-        { }
+        {
+            MessagingCenter.Subscribe<LoginPageViewModel>(this, MessageKeys.AUTH_MSG, async _ => await LoadData());
+            MessagingCenter.Subscribe<AppShell>(this, MessageKeys.AUTH_MSG, async _ => await LoadData());
+        }
 
         public ProductListViewModel()
             : base(DependencyService.Resolve<IAuthenticationService>())
-        { }
+        {
+            MessagingCenter.Subscribe<LoginPageViewModel>(this, MessageKeys.AUTH_MSG, async _ => await LoadData());
+            MessagingCenter.Subscribe<AppShell>(this, MessageKeys.AUTH_MSG, async _ => await LoadData());
+        }
 
         public override Task InitializeAsync()
         {
             Header = "Available products";
-
-            MessagingCenter.Subscribe<LoginPageViewModel>(this, MessageKeys.AUTH_MSG, async sender => await LoadData());
-            MessagingCenter.Subscribe<AppShell>(this, MessageKeys.AUTH_MSG, async sender => await LoadData());
 
             return base.InitializeAsync();
         }
@@ -54,10 +56,9 @@ namespace InsuranceSales.ViewModels
             }
         }
 
-        public async Task ShowProductDetails(ProductModel product)
+        public static async Task ShowProductDetails(Guid productId)
         {
-            await Shell.Current.GoToAsync("/Product/Details");
-            MessagingCenter.Send(this, "PRODUCT_DETAILS", product);
+            await Shell.Current.GoToAsync($"/Product/Details?productId={productId}");
         }
     }
 }

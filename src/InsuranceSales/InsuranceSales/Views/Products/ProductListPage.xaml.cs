@@ -1,6 +1,5 @@
 ﻿using InsuranceSales.Models.Product;
 using InsuranceSales.ViewModels;
-using System;
 using Xamarin.Forms;
 
 namespace InsuranceSales.Views.Products
@@ -15,8 +14,7 @@ namespace InsuranceSales.Views.Products
                 return;
 
             var product = (e.SelectedItem as ProductModel);
-            if (BindingContext is ProductListViewModel viewModel &&
-                product != null &&
+            if (BindingContext is ProductListViewModel viewModel && product != null &&
                 viewModel.ListItemClickedCommand.CanExecute(product))
                 viewModel.ListItemClickedCommand.Execute(product);
 

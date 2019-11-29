@@ -4,6 +4,7 @@ using InsuranceSales.Models.Product;
 using InsuranceSales.Services;
 using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace InsuranceSales.ViewModels
@@ -11,7 +12,20 @@ namespace InsuranceSales.ViewModels
     public class ProductDetailsViewModel : ViewModelBase
     {
         #region SERVICES
-        //private readonly NetworkManager _networkManager;
+        private readonly NetworkManager _networkManager;
+        #endregion
+
+        #region COMMANDS
+
+        private ICommand _createOfferCommand;
+        public ICommand CreateOfferCommand => _createOfferCommand ??= new Command(async () => await CreateOfferWizard());
+
+        private async Task CreateOfferWizard()
+        {
+            if (_productModel != null && _productModel.Id != Guid.Empty)
+                await Shell.Current.GoToAsync($"/Policy/CreateOffer?productId={_productModel.Id}");
+        }
+
         #endregion
 
         #region PROPS
@@ -46,27 +60,32 @@ namespace InsuranceSales.ViewModels
         /// TESTING ONLY
         /// </summary>
         public ProductDetailsViewModel(
-            IAuthenticationService authenticationService
-            //NetworkManager networkManager
+            IAuthenticationService authenticationService,
+            NetworkManager networkManager
             ) : base(authenticationService)
         {
-            //_networkManager = networkManager;
+            _networkManager = networkManager;
         }
 
-        public ProductDetailsViewModel()
-            : base(DependencyService.Resolve<IAuthenticationService>())
+        public ProductDetailsViewModel(
+            ) : base(DependencyService.Resolve<IAuthenticationService>())
         {
-            //_networkManager = App.NetworkManager;
+            _networkManager = App.NetworkManager;
         }
 
-        public override Task InitializeAsync()
+        public override async Task InitializeAsync()
         {
-            MessagingCenter.Subscribe<ProductListViewModel, ProductModel>(this, "PRODUCT_DETAILS", OnMessageReceived);
+            IsBusy = true;
 
-            return base.InitializeAsync();
+            var product = await _networkManager.GetProductByIdAsync(ProductId);
+            SetupProperties(product);
+
+            IsBusy = false;
+
+            await base.InitializeAsync();
         }
 
-        private void OnMessageReceived(ProductListViewModel _, ProductModel product)
+        private void SetupProperties(ProductModel product)
         {
             _productModel = product;
 
@@ -74,7 +93,7 @@ namespace InsuranceSales.ViewModels
             Description = product.Description;
             Code = product.Code;
             MaxNumberOfInsured = product.MaxNumberOfInsured;
-            //Image = ImageSource.FromUri(new Uri(AppSettings.BackendUrl + product.Image));
+            Image = product.Image;
             Covers = product.Covers;
             Questions = product.Questions;
         }

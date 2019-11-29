@@ -10,18 +10,15 @@ namespace InsuranceSales.Services
 {
     public class MockProductsService : IProductsService
     {
-        public async Task<IEnumerable<ProductModel>> FetchAsync()
-        {
-            await Task.Delay(1000);
-            var products = new List<ProductModel>
+        private readonly IList<ProductModel> _products = new List<ProductModel>
             {
                 new ProductModel
                 {
                     Id = Guid.NewGuid(),
-                    Name = "Super uber product",
-                    Description = "Super uber description",
-                    Code = "SUP",
-                    Image = "homeInsurance.jpg",
+                    Name = "Happy Driver",
+                    Description = "Car insurance",
+                    Code = "HD",
+                    Image = "http://mn.lab.software.altkom.pl/static/car.jpg",
                     MaxNumberOfInsured = 500L,
                     Questions = new[]
                     {
@@ -30,7 +27,7 @@ namespace InsuranceSales.Services
                             Id = Guid.NewGuid(),
                             Code = "",
                             Index = 100L,
-                            Text = $"QUESTION + {new Random().Next()}" ,
+                            Text = $"QUESTION {new Random().Next()}" ,
                             Type = QuestionTypeEnum.Choice,
                             Choices = new[]
                             {
@@ -58,10 +55,34 @@ namespace InsuranceSales.Services
                         {
                             Id = Guid.NewGuid(),
                             Code = "TEST",
-                            Name = "Test cover",
+                            Name = $"Cover {new Random().Next()}",
                             Optional = false,
-                            SumInsured = 1000L
-                        }
+                            SumInsured = new Random().Next()
+                        },
+                        new CoverModel
+                        {
+                            Id = Guid.NewGuid(),
+                            Code = "TEST",
+                            Name = $"Cover {new Random().Next()}",
+                            Optional = false,
+                            SumInsured = new Random().Next()
+                        },
+                        new CoverModel
+                        {
+                            Id = Guid.NewGuid(),
+                            Code = "TEST",
+                            Name = $"Cover {new Random().Next()}",
+                            Optional = false,
+                            SumInsured = new Random().Next()
+                        },
+                        new CoverModel
+                        {
+                            Id = Guid.NewGuid(),
+                            Code = "TEST",
+                            Name = $"Cover {new Random().Next()}",
+                            Optional = false,
+                            SumInsured = new Random().Next()
+                        },
                     }
                 },
                 new ProductModel
@@ -90,84 +111,41 @@ namespace InsuranceSales.Services
                             Id = Guid.NewGuid(),
                             Code = "NO",
                             Index = 100L,
-                            Text = $"QUESTION + {new Random().Next()}" ,
+                            Text = $"QUESTION {new Random().Next()}",
                             Type = QuestionTypeEnum.Choice,
                             Choices = new[]
                             {
                                 new ChoiceModel
                                 {
-                                    Label = "label",
-                                    Code = "code"
+                                    Label = "Choice 1",
+                                    Code = "C1"
                                 },
                                 new ChoiceModel
                                 {
-                                    Label = "label",
-                                    Code = "code"
+                                    Label = "Choice 2",
+                                    Code = "C2"
                                 },
                                 new ChoiceModel
                                 {
-                                    Label = "label",
-                                    Code = "code"
+                                    Label = "Choice 3",
+                                    Code = "C3"
                                 },
                             },
                         },
                     },
                 }
             };
-            return products.AsEnumerable();
+        public async Task<IEnumerable<ProductModel>> FetchAsync()
+        {
+            await Task.Delay(1000);
+
+            return _products.AsEnumerable();
         }
 
         public async Task<ProductModel> GetByIdAsync(Guid productId)
         {
             await Task.Delay(500);
-            var productModel = new ProductModel
-            {
-                Id = productId,
-                Name = "Happy Driver",
-                Description = " Car insurance",
-                Code = "HD",
-                Image = "http://mn.lab.software.altkom.pl/static/car.jpg",
-                MaxNumberOfInsured = new Random().Next(),
-                Covers = new[]
-                {
-                    new CoverModel
-                    {
-                        Code = "TEST",
-                        Name = "Test cover",
-                        Optional = false,
-                        SumInsured = 1000L
-                    }
-                },
-                Questions = new[]
-                {
-                    new QuestionModel
-                    {
-                        Id = Guid.NewGuid(),
-                        Code = "NO",
-                        Index = 100L,
-                        Text = $"QUESTION + {new Random().Next()}" ,
-                        Type = QuestionTypeEnum.Choice,
-                        Choices = new[]
-                        {
-                            new ChoiceModel
-                            {
-                                Label = "label",
-                                Code = "code"
-                            },
-                            new ChoiceModel
-                            {
-                                Label = "label",
-                                Code = "code"
-                            },
-                            new ChoiceModel
-                            {
-                                Label = "label",
-                                Code = "code"
-                            },
-                        },
-                    },
-                },
-            };
+            var productModel = _products.FirstOrDefault(p => p.Id == productId);
             return productModel;
         }
     }

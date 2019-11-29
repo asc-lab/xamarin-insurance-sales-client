@@ -2,45 +2,70 @@
 <views:ContentPageBase
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:design="clr-namespace:InsuranceSales"
     xmlns:vm="clr-namespace:InsuranceSales.ViewModels"
     xmlns:views="clr-namespace:InsuranceSales.Views"
     xmlns:controls="clr-namespace:InsuranceSales.Controls"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="clr-namespace:InsuranceSales.i18n;assembly=InsuranceSales.i18n"
+    xmlns:product="clr-namespace:InsuranceSales.Models.Product;assembly=InsuranceSales"
     x:Class="InsuranceSales.Views.Products.ProductDetailsPage"
     x:TypeArguments="vm:ProductDetailsViewModel"
     mc:Ignorable="d"
-    Visual="Material">
+    Title="{Binding Name}">
     <views:ContentPageBase.BindingContext>
         <vm:ProductDetailsViewModel />
     </views:ContentPageBase.BindingContext>
     <views:ContentPageBase.Content>
         <StackLayout>
+            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
 
-            <Image Source="{Binding Image}"
-                   Aspect="AspectFill" />
+            <ScrollView>
+                <Grid IsVisible="{Binding IsNotBusy}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-            <Button Text="Buy now!"
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand" />
+                    <Image Source="{Binding Image}" Aspect="AspectFill"
+                           Grid.Row="0" />
 
-            <Label Text="{Binding Name}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                    <Button Text="{x:Static resources:Labels.BuyNow}"
+                            Command="{Binding CreateOfferCommand}"
+                            Grid.Row="1" />
 
-            <Label Text="{Binding Description}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                    <Label Text="{Binding Name}" FontSize="Title"
+                           HorizontalOptions="CenterAndExpand"
+                           Padding="0, 5, 0, 0"
+                           Grid.Row="2" />
 
-            <Label Text="{Binding Code}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                    <Label Text="{Binding Description}" FontSize="Subtitle"
+                           HorizontalOptions="CenterAndExpand"
+                           Grid.Row="3" />
 
-            <Label Text="{Binding MaxNumberOfInsured}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                    <CollectionView ItemsSource="{Binding Covers}" Grid.Row="4" Footer="">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Padding="10" Orientation="Horizontal">
 
+                                    <Label Text="{Binding Name}" Padding="10, 0" />
+
+                                    <Label Text="{Binding SumInsured}" />
+
+                                </StackLayout>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </Grid>
+            </ScrollView>
         </StackLayout>
     </views:ContentPageBase.Content>
 </views:ContentPageBase>

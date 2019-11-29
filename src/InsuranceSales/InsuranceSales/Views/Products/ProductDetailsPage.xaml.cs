@@ -5,22 +5,21 @@ using Xamarin.Forms.Xaml;
 
 namespace InsuranceSales.Views.Products
 {
-    //[QueryProperty("ProductId", "productId")]
+    [QueryProperty(nameof(ProductDetailsViewModel.ProductId), "productId")]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProductDetailsPage
     {
-        //public string ProductId { get => throw new NotImplementedException(); set => SetProductId(value); }
+        public string ProductId { set => SetProductId(Guid.Parse(value)); }
 
         public ProductDetailsPage() => InitializeComponent();
 
-        private void SetProductId(string value)
+        private void SetProductId(Guid productId)
         {
-            if (string.IsNullOrWhiteSpace(value))
-                throw new ArgumentNullException(nameof(value));
+            if (productId == Guid.Empty)
+                throw new ArgumentNullException(nameof(productId));
 
-            var productId = Uri.UnescapeDataString(value);
-            var vm = new ProductDetailsViewModel { ProductId = Guid.Parse(productId) };
-            BindingContext = vm;
+            if (BindingContext is ProductDetailsViewModel vm)
+                vm.ProductId = productId;
         }
     }
 }

@@ -4,6 +4,9 @@ using InsuranceSales.Models;
 
 namespace InsuranceSales.Services
 {
+    /// <summary>
+    /// TODO: Implement Akavache's SecureStorage
+    /// </summary>
     public class MockAuthenticationService : IAuthenticationService
     {
         private bool _isAuthenticated;
@@ -14,7 +17,7 @@ namespace InsuranceSales.Services
             if (userCredentials?.Username == "admin" && userCredentials.Password == "admin")
                 _isAuthenticated = true;
 
-            return Task.FromResult(true);
+            return Task.FromResult(_isAuthenticated);
         }
 
         public bool IsAuthenticated()

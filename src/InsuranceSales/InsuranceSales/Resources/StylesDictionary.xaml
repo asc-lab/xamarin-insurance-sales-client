@@ -6,6 +6,13 @@
         <ResourceDictionary Source="./ColorsDictionary.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
+    <Style TargetType="Shell">
+        <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}" />
+        <Setter Property="ForegroundColor" Value="{StaticResource CompanyHeaderColor}" />
+        <Setter Property="TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+        <Setter Property="TabBarForegroundColor" Value="{StaticResource CompanyHeaderColor}" />
+    </Style>
+
     <Style TargetType="Label">
         <Setter Property="TextColor" Value="{StaticResource CompanyHeaderColor}" />
     </Style>
@@ -19,8 +26,10 @@
         <Setter Property="PlaceholderColor" Value="{StaticResource PlaceholderTextColor}" />
     </Style>
 
-    <Style Triggers="ActivityIndicator">
+    <Style TargetType="ActivityIndicator">
         <Setter Property="Color" Value="{StaticResource CompanyLogoColor}" />
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
     </Style>
 
     <Style x:Key="CompanyHeaderStyle" TargetType="Label">

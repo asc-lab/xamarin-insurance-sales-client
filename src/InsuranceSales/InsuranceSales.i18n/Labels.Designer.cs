@@ -106,6 +106,15 @@ namespace InsuranceSales.i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Max number of insured.
+        /// </summary>
+        public static string MaxNumberOfInsured {
+            get {
+                return ResourceManager.GetString("MaxNumberOfInsured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
         public static string Ok {

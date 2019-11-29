@@ -45,14 +45,14 @@ namespace InsuranceSales.ViewModels
 
         private async Task SignInAction()
         {
-            if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
-            {
-                await _dialogService.DisplayCustomAlertAsync(Labels.SignIn, Messages.UsernameOrPasswordCannotBeEmpty, Labels.Ok);
-                return;
-            }
+            //if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
+            //{
+            //    await _dialogService.DisplayCustomAlertAsync(Labels.SignIn, Messages.UsernameOrPasswordCannotBeEmpty, Labels.Ok);
+            //    return;
+            //}
             try
             {
-                await AuthenticationService.AuthenticateAsync(new UserCredentialsModel { Username = _username, Password = _password });
+                //await AuthenticationService.AuthenticateAsync(new UserCredentialsModel { Username = _username, Password = _password });
                 await Shell.Current.Navigation.PopModalAsync();
 
                 MessagingCenter.Send(this, MessageKeys.AUTH_MSG);
