@@ -11,14 +11,16 @@
     {
         public string QuestionCode { get; set; }
         public abstract QuestionTypeEnum QuestionType { get; }
+        public abstract object GetAnswer();
+
 
     }
 
     public abstract class QuestionAnswer<T> : QuestionAnswer
     {
         public T Answer { get; set; }
-
-    }
+        public override object GetAnswer() => Answer;
+        }
 
     public class TextQuestionAnswer : QuestionAnswer<string>
     {

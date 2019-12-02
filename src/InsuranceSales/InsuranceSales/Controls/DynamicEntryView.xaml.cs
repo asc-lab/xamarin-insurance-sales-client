@@ -10,9 +10,7 @@ namespace InsuranceSales.Controls
     public partial class DynamicEntryView
     {
         #region PROPS
-        public string Placeholder { get; private set; }
-
-        public IList<ChoiceModel> Choices { get; private set; }
+        public IList<ChoiceModel> Choices { get; protected set; }
 
         public ChoiceModel SelectedChoice { get; protected set; }
         #endregion
@@ -24,7 +22,6 @@ namespace InsuranceSales.Controls
             if (!(BindingContext is QuestionModel questionModel))
                 return;
 
-            Placeholder = questionModel.Text;
             Choices = questionModel.Choices;
 
             View view;
@@ -32,16 +29,16 @@ namespace InsuranceSales.Controls
             {
                 case QuestionTypeEnum.Choice:
                     view = new Picker();
-                    view.SetDynamicResource(Picker.TitleProperty, Placeholder);
+                    view.SetDynamicResource(Picker.TitleProperty, questionModel.Text);
                     view.SetDynamicResource(Picker.ItemsSourceProperty, nameof(Choices));
                     EntryLayout.Children.Add(view);
                     break;
                 case QuestionTypeEnum.Numeric:
                     view = new Slider(0, ulong.MaxValue, 0);
                     var numericEntry = new Entry();
-                    view.SetBinding(Entry.TextProperty, "Value", BindingMode.TwoWay); //? TODO: TEST
-                    EntryLayout.Children.Add(view);
+                    view.SetBinding(Entry.TextProperty, "Value", BindingMode.TwoWay); // TODO: TEST BINDING
                     EntryLayout.Children.Add(numericEntry);
+                    EntryLayout.Children.Add(view);
                     break;
                 case QuestionTypeEnum.Text:
                     var textEntry = new Entry();

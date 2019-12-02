@@ -2,13 +2,12 @@
 <views:ContentPageBase
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:vm="clr-namespace:InsuranceSales.ViewModels"
     xmlns:views="clr-namespace:InsuranceSales.Views"
     xmlns:controls="clr-namespace:InsuranceSales.Controls"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="clr-namespace:InsuranceSales.i18n;assembly=InsuranceSales.i18n"
-    xmlns:product="clr-namespace:InsuranceSales.Models.Product;assembly=InsuranceSales"
+    xmlns:vm="clr-namespace:InsuranceSales.ViewModels.Product;assembly=InsuranceSales"
     x:Class="InsuranceSales.Views.Products.ProductDetailsPage"
     x:TypeArguments="vm:ProductDetailsViewModel"
     mc:Ignorable="d"
@@ -49,7 +48,7 @@
                            HorizontalOptions="CenterAndExpand"
                            Grid.Row="3" />
 
-                    <CollectionView ItemsSource="{Binding Covers}" Grid.Row="4">
+                    <CollectionView ItemsSource="{Binding Covers}" Grid.Row="4"> <!-- TODO: Redo -->
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout Padding="10" Orientation="Horizontal">
