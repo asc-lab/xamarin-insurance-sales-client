@@ -27,15 +27,15 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Label Text="" />
+                <Label Text="{Binding Title}" />
 
-                <Label Text="" />
+                <Label Text="{Binding Title}" />
 
-                <Label Text="" />
+                <Label Text="{Binding Title}" />
 
-                <Label Text="" />
+                <Label Text="{Binding Title}" />
 
-                <Label Text="" />
+                <Label Text="{Binding Title}" />
 
             </Grid>
         </StackLayout>

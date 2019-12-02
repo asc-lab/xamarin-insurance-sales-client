@@ -1,4 +1,4 @@
-﻿using InsuranceSales.ViewModels;
+﻿using InsuranceSales.ViewModels.Login;
 using Xunit;
 
 namespace InsuranceSales.UnitTests

@@ -4,11 +4,6 @@ using Newtonsoft.Json;
 
 namespace InsuranceSales.Models.Policy
 {
-    public enum QuestionTypeEnum
-    {
-        Choice, Numeric
-    };
-
     public class QuestionModel
     {
         [JsonProperty("id")]

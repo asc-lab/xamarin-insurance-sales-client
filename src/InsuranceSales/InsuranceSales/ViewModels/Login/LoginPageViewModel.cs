@@ -8,7 +8,7 @@ using System.Windows.Input;
 using InsuranceSales.Resources;
 using Xamarin.Forms;
 
-namespace InsuranceSales.ViewModels
+namespace InsuranceSales.ViewModels.Login
 {
     public class LoginPageViewModel : ViewModelBase
     {

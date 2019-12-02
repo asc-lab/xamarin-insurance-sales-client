@@ -1,4 +1,4 @@
-﻿using InsuranceSales.ViewModels;
+﻿using InsuranceSales.ViewModels.Product;
 
 namespace InsuranceSales
 {

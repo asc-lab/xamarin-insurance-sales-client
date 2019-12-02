@@ -14,7 +14,7 @@ namespace InsuranceSales.Controls
 
         public IList<ChoiceModel> Choices { get; private set; }
 
-        public ChoiceModel Choice { get; private set; }
+        public ChoiceModel SelectedChoice { get; protected set; }
         #endregion
 
         public DynamicEntryView() => InitializeComponent();
@@ -38,20 +38,19 @@ namespace InsuranceSales.Controls
                     break;
                 case QuestionTypeEnum.Numeric:
                     view = new Slider(0, ulong.MaxValue, 0);
-                    var entry = new Entry();
+                    var numericEntry = new Entry();
                     view.SetBinding(Entry.TextProperty, "Value", BindingMode.TwoWay); //? TODO: TEST
-                    EntryLayout.Children.Add(entry);
                     EntryLayout.Children.Add(view);
+                    EntryLayout.Children.Add(numericEntry);
+                    break;
+                case QuestionTypeEnum.Text:
+                    var textEntry = new Entry();
+                    EntryLayout.Children.Add(textEntry);
                     break;
                 default:
                     return;
             }
             base.OnBindingContextChanged();
-        }
-
-        public void OnChoiceSelected(ChoiceModel choice)
-        {
-            MessagingCenter.Send(this, "OFFER_CHOICE", Choice);
         }
     }
 }

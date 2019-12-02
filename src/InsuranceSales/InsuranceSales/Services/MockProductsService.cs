@@ -18,7 +18,7 @@ namespace InsuranceSales.Services
                     Name = "Happy Driver",
                     Description = "Car insurance",
                     Code = "HD",
-                    Image = "http://mn.lab.software.altkom.pl/static/car.jpg",
+                    Image = "https://www.rabbiavishafran.com/wp-content/uploads/2018/08/uber-driver-2-624x416.jpg",
                     MaxNumberOfInsured = 500L,
                     Questions = new[]
                     {
@@ -55,6 +55,15 @@ namespace InsuranceSales.Services
                             Index = 100L,
                             Text = $"QUESTION {new Random().Next()}" ,
                             Type = QuestionTypeEnum.Numeric,
+                            Choices = Array.Empty<ChoiceModel>()
+                        },                
+                        new QuestionModel
+                        {
+                            Id = Guid.NewGuid(),
+                            Code = "QUESTION",
+                            Index = 100L,
+                            Text = $"QUESTION {new Random().Next()}" ,
+                            Type = QuestionTypeEnum.Text,
                             Choices = Array.Empty<ChoiceModel>()
                         },
                     },
@@ -100,7 +109,7 @@ namespace InsuranceSales.Services
                     Name = "Happy farm",
                     Description = " Farm insurance",
                     Code = "HF",
-                    Image = "http://mn.lab.software.altkom.pl/static/farm.jpg",
+                    Image = "https://d279m997dpfwgl.cloudfront.net/wp/2015/05/0522_farmers.jpg",
                     MaxNumberOfInsured = 1,
                     Covers = new[]
                     {
@@ -144,6 +153,7 @@ namespace InsuranceSales.Services
                     },
                 }
             };
+
         public async Task<IEnumerable<ProductModel>> FetchAsync()
         {
             await Task.Delay(1000);

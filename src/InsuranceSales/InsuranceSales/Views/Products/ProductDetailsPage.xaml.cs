@@ -1,4 +1,4 @@
-﻿using InsuranceSales.ViewModels;
+﻿using InsuranceSales.ViewModels.Product;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -9,17 +9,17 @@ namespace InsuranceSales.Views.Products
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProductDetailsPage
     {
-        public string ProductId { set => SetProductId(Guid.Parse(value)); }
+        public string ProductId
+        {
+            get => null;
+            set
+            {
+                var productId = Guid.Parse(value);
+                if (productId == Guid.Empty && BindingContext is ProductDetailsViewModel vm)
+                    vm.ProductId = productId;
+            }
+        }
 
         public ProductDetailsPage() => InitializeComponent();
-
-        private void SetProductId(Guid productId)
-        {
-            if (productId == Guid.Empty)
-                throw new ArgumentNullException(nameof(productId));
-
-            if (BindingContext is ProductDetailsViewModel vm)
-                vm.ProductId = productId;
-        }
     }
 }

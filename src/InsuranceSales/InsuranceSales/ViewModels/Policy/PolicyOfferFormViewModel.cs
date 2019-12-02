@@ -1,11 +1,10 @@
 ﻿using InsuranceSales.Interfaces;
 using InsuranceSales.Models.Policy;
-using InsuranceSales.Models.Product;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace InsuranceSales.ViewModels
+namespace InsuranceSales.ViewModels.Policy
 {
     //! TODO: Look up how to create a policy offer
     //! TODO: Obtain data from DynamicEntriesView
@@ -19,11 +18,23 @@ namespace InsuranceSales.ViewModels
         #endregion
 
         #region PROPS
-        public ObservableCollection<KeyValuePair<QuestionModel, ChoiceModel>> PolicyChoices { get; } = new ObservableCollection<KeyValuePair<QuestionModel, ChoiceModel>>();
+
+        public ObservableCollection<QuestionAnswer> QuestionAnswers { get; set; } = new ObservableCollection<QuestionAnswer>();
+
+        public AddressModel Address { get; set; }
+
+        public PersonModel Person { get; set; }
         #endregion
 
         public PolicyOfferFormViewModel()
             : base(DependencyService.Resolve<IAuthenticationService>())
         { }
+
+        public override Task InitializeAsync()
+        {
+
+
+            return base.InitializeAsync();
+        }
     }
 }

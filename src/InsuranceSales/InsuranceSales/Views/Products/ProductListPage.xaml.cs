@@ -1,5 +1,5 @@
 ﻿using InsuranceSales.Models.Product;
-using InsuranceSales.ViewModels;
+using InsuranceSales.ViewModels.Product;
 using Xamarin.Forms;
 
 namespace InsuranceSales.Views.Products

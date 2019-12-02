@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using InsuranceSales.ViewModels;
+using InsuranceSales.ViewModels.Product;
 using Xunit;
 
 namespace InsuranceSales.UnitTests

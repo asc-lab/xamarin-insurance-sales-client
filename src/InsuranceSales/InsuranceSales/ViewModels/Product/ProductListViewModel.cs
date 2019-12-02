@@ -1,6 +1,7 @@
 ﻿using InsuranceSales.Interfaces;
 using InsuranceSales.Models.Product;
 using InsuranceSales.Resources;
+using InsuranceSales.ViewModels.Login;
 using MvvmHelpers;
 using System;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace InsuranceSales.ViewModels
+namespace InsuranceSales.ViewModels.Product
 {
     public class ProductListViewModel : ViewModelBase
     {
@@ -25,21 +26,16 @@ namespace InsuranceSales.ViewModels
         /// </summary>
         public ProductListViewModel(IAuthenticationService authenticationService)
             : base(authenticationService)
-        {
-            MessagingCenter.Subscribe<LoginPageViewModel>(this, MessageKeys.AUTH_MSG, async _ => await LoadData());
-            MessagingCenter.Subscribe<AppShell>(this, MessageKeys.AUTH_MSG, async _ => await LoadData());
-        }
+        { }
 
         public ProductListViewModel()
             : base(DependencyService.Resolve<IAuthenticationService>())
-        {
-            MessagingCenter.Subscribe<LoginPageViewModel>(this, MessageKeys.AUTH_MSG, async _ => await LoadData());
-            MessagingCenter.Subscribe<AppShell>(this, MessageKeys.AUTH_MSG, async _ => await LoadData());
-        }
+        { }
 
         public override Task InitializeAsync()
         {
             Header = "Available products";
+            MessagingCenter.Subscribe<LoginPageViewModel>(this, MessageKeys.AUTH_MSG, async _ => await LoadData());
 
             return base.InitializeAsync();
         }

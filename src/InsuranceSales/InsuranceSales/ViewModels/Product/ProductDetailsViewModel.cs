@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace InsuranceSales.ViewModels
+namespace InsuranceSales.ViewModels.Product
 {
     public class ProductDetailsViewModel : ViewModelBase
     {
@@ -19,12 +19,6 @@ namespace InsuranceSales.ViewModels
 
         private ICommand _createOfferCommand;
         public ICommand CreateOfferCommand => _createOfferCommand ??= new Command(async () => await CreateOfferWizard());
-
-        private async Task CreateOfferWizard()
-        {
-            if (_productModel != null && _productModel.Id != Guid.Empty)
-                await Shell.Current.GoToAsync($"/Policy/CreateOffer?productId={_productModel.Id}");
-        }
 
         #endregion
 
@@ -97,5 +91,12 @@ namespace InsuranceSales.ViewModels
             Covers = product.Covers;
             Questions = product.Questions;
         }
+
+        private async Task CreateOfferWizard()
+        {
+            if (_productModel != null && _productModel.Id != Guid.Empty)
+                await Shell.Current.GoToAsync($"/Policy/CreateOffer?productId={_productModel.Id}");
+        }
+
     }
 }
