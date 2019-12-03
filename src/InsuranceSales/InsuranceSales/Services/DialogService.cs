@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using InsuranceSales.i18n;
 using InsuranceSales.Interfaces;
+using System.Threading.Tasks;
 using Xamarin.Forms;
-using InsuranceSales.i18n;
 
 namespace InsuranceSales.Services
 {

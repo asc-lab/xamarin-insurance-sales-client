@@ -1,4 +1,5 @@
 ﻿using InsuranceSales.Interfaces;
+using InsuranceSales.Models.Offer;
 using InsuranceSales.Models.Offer.Dto;
 using InsuranceSales.Models.Policy;
 using InsuranceSales.Services;
@@ -14,7 +15,7 @@ namespace InsuranceSales.ViewModels.Policy
     //! TODO: Look up how to create a policy offer
     //! TODO: Obtain data from DynamicEntriesView
     //! TODO: Create entries for client name/surname/tax ID
-    [QueryProperty(nameof(ProductId), "productId")]
+    [QueryProperty(nameof(ProductCode), "productCode")]
     public class PolicyOfferFormViewModel : ViewModelBase
     {
         #region SERVICES
@@ -67,7 +68,7 @@ namespace InsuranceSales.ViewModels.Policy
 
         public override async Task InitializeAsync()
         {
-            var product = await _networkManager.GetProductByIdAsync(ProductId);
+            var product = await _networkManager.GetProductByCodeAsync(ProductCode);
             var answers = product.Questions.Select(MapQuestionsToAnswers);
             QuestionAnswers = new ObservableCollection<QuestionAnswer>(answers);
 

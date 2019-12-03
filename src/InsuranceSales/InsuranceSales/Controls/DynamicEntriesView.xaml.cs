@@ -1,4 +1,5 @@
-﻿using InsuranceSales.Models.Policy;
+﻿using InsuranceSales.Models.Offer;
+using System.Collections.Generic;
 using Xamarin.Forms.Xaml;
 
 namespace InsuranceSales.Controls
@@ -10,7 +11,7 @@ namespace InsuranceSales.Controls
 
         protected override void OnBindingContextChanged()
         {
-            if (BindingContext is QuestionModel[] questions)
+            if (BindingContext is IEnumerable<QuestionAnswer> questions)
                 foreach (var question in questions)
                 {
                     var entry = new DynamicEntryView { BindingContext = question };

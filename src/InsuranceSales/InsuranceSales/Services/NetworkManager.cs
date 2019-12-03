@@ -20,13 +20,13 @@ namespace InsuranceSales.Services
         public NetworkManager()
         {
             HttpClient.BaseAddress = AppSettings.BackendUrl;
-            _productsService = AppSettings.UseMockDataService 
-                ? DependencyService.Resolve<IProductsService>() 
+            _productsService = AppSettings.UseMockDataService
+                ? DependencyService.Resolve<IProductsService>()
                 : RestService.For<IProductsService>(HttpClient);
         }
 
         public Task<IEnumerable<ProductModel>> GetProductsAsync() => _productsService.FetchAsync();
 
-        public Task<ProductModel> GetProductByIdAsync(Guid productId) => _productsService.GetByIdAsync(productId);
+        public Task<ProductModel> GetProductByCodeAsync(string productId) => _productsService.GetByCodeAsync(productId);
     }
 }

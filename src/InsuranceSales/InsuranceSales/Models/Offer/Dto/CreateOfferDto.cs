@@ -1,5 +1,4 @@
-﻿using InsuranceSales.Models.Policy;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace InsuranceSales.Models.Offer.Dto

@@ -5,7 +5,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="InsuranceSales.Controls.DynamicEntryView">
-  <ContentView.Content>
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/StylesDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
         <StackLayout x:Name="EntryLayout" />
-  </ContentView.Content>
+    </ContentView.Content>
 </ContentView>

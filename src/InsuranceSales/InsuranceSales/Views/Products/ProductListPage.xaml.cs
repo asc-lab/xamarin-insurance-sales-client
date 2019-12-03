@@ -14,9 +14,10 @@ namespace InsuranceSales.Views.Products
                 return;
 
             var product = (e.SelectedItem as ProductModel);
-            if (BindingContext is ProductListViewModel viewModel && product != null &&
-                viewModel.ListItemClickedCommand.CanExecute(product))
-                viewModel.ListItemClickedCommand.Execute(product);
+            if (BindingContext is ProductListViewModel viewModel &&
+                !string.IsNullOrWhiteSpace(product?.Code) &&
+                viewModel.ListItemClickedCommand.CanExecute(product.Code))
+                viewModel.ListItemClickedCommand.Execute(product.Code);
 
             ((ListView)sender).SelectedItem = null;
         }

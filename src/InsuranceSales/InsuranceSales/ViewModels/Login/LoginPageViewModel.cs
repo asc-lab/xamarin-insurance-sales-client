@@ -1,11 +1,9 @@
-using InsuranceSales.i18n;
 using InsuranceSales.Interfaces;
-using InsuranceSales.Models;
+using InsuranceSales.Resources;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using InsuranceSales.Resources;
 using Xamarin.Forms;
 
 namespace InsuranceSales.ViewModels.Login

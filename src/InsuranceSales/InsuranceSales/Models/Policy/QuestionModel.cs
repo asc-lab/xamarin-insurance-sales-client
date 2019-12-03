@@ -1,6 +1,7 @@
-﻿using System;
+﻿using InsuranceSales.Models.Offer;
 using InsuranceSales.Models.Product;
 using Newtonsoft.Json;
+using System;
 
 namespace InsuranceSales.Models.Policy
 {

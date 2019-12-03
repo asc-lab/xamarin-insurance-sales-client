@@ -15,71 +15,79 @@
     <views:ContentPageBase.BindingContext>
         <vm:ProductListViewModel />
     </views:ContentPageBase.BindingContext>
+    <views:ContentPageBase.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Resources/StylesDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </views:ContentPageBase.Resources>
+    <views:ContentPageBase.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+            <controls:CompanyHeader Grid.Row="0" />
 
-        <controls:CompanyHeader Grid.Row="0" />
-
-        <BoxView Grid.Row="1" 
+            <BoxView Grid.Row="1" 
                  HeightRequest="1" 
                  Color="{StaticResource Key=SeparatorLineColor}" />
 
-        <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Grid.Row="2" />
+            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" Grid.Row="2" />
 
-        <ListView Grid.Row="2" Footer=""
-                  IsVisible="{Binding IsNotBusy}"
-                  HorizontalOptions="FillAndExpand"
-                  VerticalOptions="FillAndExpand"
-                  ItemsSource="{Binding Products}" 
-                  ItemSelected="ListView_OnItemSelected"
-                  HasUnevenRows="True"
-                  SeparatorVisibility="None">
+            <ListView Grid.Row="2" Footer=""
+                      IsVisible="{Binding IsNotBusy}"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      ItemsSource="{Binding Products}" 
+                      ItemSelected="ListView_OnItemSelected"
+                      HasUnevenRows="True"
+                      SeparatorVisibility="None">
 
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Frame Margin="10" HasShadow="True">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="120" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Margin="10" HasShadow="True">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="120" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
 
-                                <!-- IMAGE -->
-                                <Image Source="{Binding Image}" Aspect="AspectFill"
-                                       Grid.Row="0" 
-                                       Grid.Column="0" />
+                                    <!-- IMAGE -->
+                                    <Image Source="{Binding Image}" Aspect="AspectFill"
+                                           Grid.Row="0" 
+                                           Grid.Column="0" />
 
-                                <BoxView Grid.Row="0"
-                                         Grid.Column="0"
-                                         Color="{StaticResource CompanyLogoColor}" 
-                                         Opacity=".75" />
-                                <!-- END IMAGE -->
+                                    <BoxView Grid.Row="0"
+                                             Grid.Column="0"
+                                             Color="{StaticResource SeparatorLineColor}" 
+                                             Opacity=".75" />
+                                    <!-- END IMAGE -->
 
-                                <StackLayout Grid.Row="0"
+                                    <StackLayout Grid.Row="0"
                                              Grid.Column="0"
                                              Margin="20"
                                              VerticalOptions="EndAndExpand">
 
-                                    <Label Style="{StaticResource TitleStyle}"
-                                           Text="{Binding Name}" />
+                                        <Label Style="{StaticResource TitleStyle}"
+                                               Text="{Binding Name}" />
 
-                                    <Label Style="{StaticResource DescriptionStyle}"
-                                           Text="{Binding Description}" />
+                                        <Label Style="{StaticResource DescriptionStyle}"
+                                               Text="{Binding Description}" />
 
-                                </StackLayout>
-                            </Grid>
-                        </Frame>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </Grid>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </views:ContentPageBase.Content>
 </views:ContentPageBase>

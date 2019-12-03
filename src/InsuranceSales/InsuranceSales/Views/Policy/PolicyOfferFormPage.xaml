@@ -3,7 +3,6 @@
         x:TypeArguments="vm:PolicyOfferFormViewModel" 
         xmlns="http://xamarin.com/schemas/2014/forms"
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-        xmlns:design="clr-namespace:InsuranceSales"
         xmlns:vm="clr-namespace:InsuranceSales.ViewModels.Policy;assembly=InsuranceSales"
         xmlns:views="clr-namespace:InsuranceSales.Views"
         xmlns:controls="clr-namespace:InsuranceSales.Controls"
@@ -13,10 +12,13 @@
         x:Class="InsuranceSales.Views.Policy.PolicyOfferFormPage"
         mc:Ignorable="d"
         Visual="Material">
+    <views:ContentPageBase.BindingContext>
+        <vm:PolicyOfferFormViewModel />
+    </views:ContentPageBase.BindingContext>
     <views:ContentPageBase.Content>
         <StackLayout>
             <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
-          
+
             <Grid IsVisible="{Binding IsNotBusy}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -27,13 +29,14 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Label Text="{Binding Name}" FontSize="Header" 
-                       Grid.Row="0" />
+                <Label Text="{Binding Name}" FontSize="Header" Grid.Row="0" />
 
-                <controls:DynamicEntriesView BindingContext="{Binding Questions}"
-                                           Grid.Row="1" /> 
+                <StackLayout x:Name="PolicyEntries" Grid.Row="1" />
+
+                <controls:DynamicEntriesView BindingContext="{Binding QuestionAnswers}" Grid.Row="1" />
 
                 <Button Text="{x:Static resources:Labels.Order}" Grid.Row="2" />
+
             </Grid>
         </StackLayout>
     </views:ContentPageBase.Content>

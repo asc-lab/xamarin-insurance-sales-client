@@ -10,7 +10,7 @@
     xmlns:vm="clr-namespace:InsuranceSales.ViewModels.Product;assembly=InsuranceSales"
     x:Class="InsuranceSales.Views.Products.ProductDetailsPage"
     x:TypeArguments="vm:ProductDetailsViewModel"
-    mc:Ignorable="d"
+    mc:Ignorable="d" Shell.NavBarIsVisible="False"
     Title="{Binding Name}">
     <views:ContentPageBase.BindingContext>
         <vm:ProductDetailsViewModel />
@@ -48,21 +48,21 @@
                            HorizontalOptions="CenterAndExpand"
                            Grid.Row="3" />
 
-                    <CollectionView ItemsSource="{Binding Covers}" Grid.Row="4"> <!-- TODO: Redo -->
+                    <CollectionView ItemsSource="{Binding Covers}" Grid.Row="4">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout Padding="10" Orientation="Horizontal">
 
                                     <Label Text="{Binding Name}" Padding="10, 0" />
 
+                                    <BoxView WidthRequest="1" Color="{StaticResource CompanyHeaderColor}" />
+
                                     <Label Text="{Binding SumInsured}" />
 
                                 </StackLayout>
-
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-
                 </Grid>
             </ScrollView>
         </StackLayout>

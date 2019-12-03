@@ -1,4 +1,6 @@
 ﻿using InsuranceSales.ViewModels;
+using System;
+using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace InsuranceSales.Views
@@ -11,13 +13,21 @@ namespace InsuranceSales.Views
 
         protected override async void OnAppearing()
         {
-            base.OnAppearing();
+            try
+            {
+                base.OnAppearing();
 
-            if (_isInitialized)
-                return;
+                if (_isInitialized)
+                    return;
 
-            await ViewModel.InitializeAsync();
-            _isInitialized = true;
+                await ViewModel.InitializeAsync();
+                _isInitialized = true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                throw;
+            }
         }
     }
 }

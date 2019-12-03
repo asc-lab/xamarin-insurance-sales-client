@@ -6,6 +6,6 @@ namespace InsuranceSales
     {
         private static ProductListViewModel _productsViewModel;
 
-        public static ProductListViewModel ProductsViewModel => _productsViewModel ??= new ProductListViewModel();   
+        public static ProductListViewModel ProductsViewModel => _productsViewModel ??= new ProductListViewModel();
     }
 }

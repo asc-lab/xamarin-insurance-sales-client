@@ -1,5 +1,5 @@
 ﻿using InsuranceSales.i18n;
-using InsuranceSales.Models.Policy;
+using InsuranceSales.Models.Offer;
 using Newtonsoft.Json;
 using System;
 

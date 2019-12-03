@@ -1,4 +1,5 @@
 ﻿using InsuranceSales.Interfaces;
+using InsuranceSales.Models.Offer;
 using InsuranceSales.Models.Policy;
 using InsuranceSales.Models.Product;
 using System;
@@ -47,7 +48,7 @@ namespace InsuranceSales.Services
                                     Code = "code"
                                 },
                             },
-                        }, 
+                        },
                         new QuestionModel
                         {
                             Id = Guid.NewGuid(),
@@ -56,7 +57,7 @@ namespace InsuranceSales.Services
                             Text = $"QUESTION {new Random().Next()}" ,
                             Type = QuestionTypeEnum.Numeric,
                             Choices = Array.Empty<ChoiceModel>()
-                        },                
+                        },
                         new QuestionModel
                         {
                             Id = Guid.NewGuid(),
@@ -156,15 +157,15 @@ namespace InsuranceSales.Services
 
         public async Task<IEnumerable<ProductModel>> FetchAsync()
         {
-            await Task.Delay(1000);
+            await Task.Delay(500);
 
             return _products.AsEnumerable();
         }
 
-        public async Task<ProductModel> GetByIdAsync(Guid productId)
+        public async Task<ProductModel> GetByCodeAsync(string productCode)
         {
             await Task.Delay(500);
-            var productModel = _products.FirstOrDefault(p => p.Id == productId);
+            var productModel = _products.FirstOrDefault(p => p.Code == productCode);
             return productModel;
         }
     }

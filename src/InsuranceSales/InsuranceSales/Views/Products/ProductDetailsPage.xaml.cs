@@ -1,23 +1,17 @@
 ﻿using InsuranceSales.ViewModels.Product;
-using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace InsuranceSales.Views.Products
 {
-    [QueryProperty(nameof(ProductDetailsViewModel.ProductId), "productId")]
+    [QueryProperty(nameof(ProductCode), "productCode")]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProductDetailsPage
     {
-        public string ProductId
+        public string ProductCode
         {
-            get => null;
-            set
-            {
-                var productId = Guid.Parse(value);
-                if (productId == Guid.Empty && BindingContext is ProductDetailsViewModel vm)
-                    vm.ProductId = productId;
-            }
+            get => (BindingContext as ProductDetailsViewModel).ProductCode;
+            set => (BindingContext as ProductDetailsViewModel).ProductCode = value;
         }
 
         public ProductDetailsPage() => InitializeComponent();

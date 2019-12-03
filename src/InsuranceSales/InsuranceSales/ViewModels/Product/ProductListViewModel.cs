@@ -3,7 +3,6 @@ using InsuranceSales.Models.Product;
 using InsuranceSales.Resources;
 using InsuranceSales.ViewModels.Login;
 using MvvmHelpers;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -17,7 +16,7 @@ namespace InsuranceSales.ViewModels.Product
 
         #region COMMANDS
         private ICommand _listItemClickedCommand;
-        public ICommand ListItemClickedCommand => _listItemClickedCommand ??= new Command<ProductModel>(async product => await ShowProductDetails(product.Id));
+        public ICommand ListItemClickedCommand => _listItemClickedCommand ??= new Command<string>(async productCode => await ShowProductDetails(productCode));
 
         #endregion
 
@@ -52,9 +51,9 @@ namespace InsuranceSales.ViewModels.Product
             }
         }
 
-        public static async Task ShowProductDetails(Guid productId)
+        public static async Task ShowProductDetails(string productCode)
         {
-            await Shell.Current.GoToAsync($"/Product/Details?productId={productId}");
+            await Shell.Current.GoToAsync($"/Product/Details?productCode={productCode}");
         }
     }
 }

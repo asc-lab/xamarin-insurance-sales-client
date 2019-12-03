@@ -11,7 +11,7 @@ namespace InsuranceSales.Interfaces
         [Get("/products")]
         Task<IEnumerable<ProductModel>> FetchAsync();
 
-        [Get("/products/{productId}")]
-        Task<ProductModel> GetByIdAsync(Guid productId);
+        [Get("/products/{productCode}")]
+        Task<ProductModel> GetByCodeAsync(string productCode);
     }
 }

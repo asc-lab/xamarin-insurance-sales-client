@@ -30,7 +30,7 @@ namespace InsuranceSales
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex);
+                Debug.WriteLine(ex.StackTrace);
                 throw;
             }
         }

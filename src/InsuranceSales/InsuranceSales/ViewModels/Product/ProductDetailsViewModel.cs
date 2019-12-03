@@ -28,8 +28,8 @@ namespace InsuranceSales.ViewModels.Product
         private Guid _productId;
         public Guid ProductId { get => _productId; set => SetProperty(ref _productId, value); }
 
-        private string _code;
-        public string Code { get => _code; set => SetProperty(ref _code, value); }
+        private string _productCode;
+        public string ProductCode { get => _productCode; set => SetProperty(ref _productCode, value); }
 
         private CoverModel[] _covers;
         public CoverModel[] Covers { get => _covers; set => SetProperty(ref _covers, value); }
@@ -54,24 +54,24 @@ namespace InsuranceSales.ViewModels.Product
         /// TESTING ONLY
         /// </summary>
         public ProductDetailsViewModel(
-            IAuthenticationService authenticationService,
-            NetworkManager networkManager
+            NetworkManager networkManager,
+            IAuthenticationService authenticationService
             ) : base(authenticationService)
         {
             _networkManager = networkManager;
         }
 
-        public ProductDetailsViewModel(
-            ) : base(DependencyService.Resolve<IAuthenticationService>())
-        {
-            _networkManager = App.NetworkManager;
-        }
+        public ProductDetailsViewModel() : this(
+            App.NetworkManager,
+            DependencyService.Resolve<IAuthenticationService>()
+            )
+        { }
 
         public override async Task InitializeAsync()
         {
             IsBusy = true;
 
-            var product = await _networkManager.GetProductByIdAsync(ProductId);
+            var product = await _networkManager.GetProductByCodeAsync(ProductCode);
             SetupProperties(product);
 
             IsBusy = false;
@@ -85,7 +85,7 @@ namespace InsuranceSales.ViewModels.Product
 
             Name = product.Name;
             Description = product.Description;
-            Code = product.Code;
+            ProductCode = product.Code;
             MaxNumberOfInsured = product.MaxNumberOfInsured;
             Image = product.Image;
             Covers = product.Covers;
@@ -95,7 +95,7 @@ namespace InsuranceSales.ViewModels.Product
         private async Task CreateOfferWizard()
         {
             if (_productModel != null && _productModel.Id != Guid.Empty)
-                await Shell.Current.GoToAsync($"/Policy/CreateOffer?productId={_productModel.Id}");
+                await Shell.Current.GoToAsync($"/Policy/CreateOffer?productCode={_productModel.Code}");
         }
 
     }

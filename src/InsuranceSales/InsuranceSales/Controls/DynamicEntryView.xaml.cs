@@ -1,4 +1,5 @@
-﻿using InsuranceSales.Models.Policy;
+﻿using InsuranceSales.Models.Offer;
+using InsuranceSales.Models.Policy;
 using InsuranceSales.Models.Product;
 using System.Collections.Generic;
 using Xamarin.Forms;

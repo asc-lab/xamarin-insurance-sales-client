@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
-using InsuranceSales.Interfaces;
+﻿using InsuranceSales.Interfaces;
 using InsuranceSales.Models;
+using System.Threading.Tasks;
 
 namespace InsuranceSales.Services
 {
