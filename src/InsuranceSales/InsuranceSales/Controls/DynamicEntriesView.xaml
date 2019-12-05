@@ -3,20 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="InsuranceSales.Controls.DynamicEntriesView">
-    <ContentView.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Resources/StylesDictionary.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentView.Resources>
+             x:Class="InsuranceSales.Controls.DynamicEntriesView"
+             mc:Ignorable="d">
     <ContentView.Content>
-        <StackLayout>
-            <ScrollView>
-                <StackLayout x:Name="Entries" />
-            </ScrollView>
-        </StackLayout>
+        <StackLayout x:Name="EntriesLayout" Spacing="10" />
     </ContentView.Content>
 </ContentView>

@@ -59,7 +59,7 @@ namespace InsuranceSales.ViewModels.Policy
         public PolicyOfferFormViewModel() : this(
             App.NetworkManager,
             DependencyService.Resolve<IAuthenticationService>()
-            )
+        )
         { }
 
         public override async Task InitializeAsync()
@@ -71,16 +71,25 @@ namespace InsuranceSales.ViewModels.Policy
             await base.InitializeAsync();
         }
 
-        private static QuestionAnswerModel MapQuestionsToAnswers(QuestionModel question) => question.Type switch
+        private static QuestionAnswerModel MapQuestionsToAnswers(QuestionModel question)
         {
-            QuestionTypeEnum.Text => (QuestionAnswerModel)new TextQuestionAnswerModel { QuestionCode = question.Code, Answer = question.Text },
-            QuestionTypeEnum.Numeric => new NumericQuestionAnswerModel { QuestionCode = question.Code, Answer = decimal.Parse(question.Text, CultureInfo.InvariantCulture) },
-            QuestionTypeEnum.Choice => new ChoiceQuestionAnswerModel { QuestionCode = question.Code, Answer = question.Text },
-            _ => throw new ApplicationException($"Unexpected question type {Enum.GetName(typeof(QuestionTypeEnum), question)}")
-        };
+            switch (question.Type)
+            {
+                case QuestionTypeEnum.Text:
+                    return new TextQuestionAnswerModel { QuestionCode = question.Code, Answer = question.Text };
+                case QuestionTypeEnum.Numeric:
+                    return new NumericQuestionAnswerModel { QuestionCode = question.Code, Answer = decimal.Parse(question.Text, CultureInfo.InvariantCulture) };
+                case QuestionTypeEnum.Choice:
+                    return new ChoiceQuestionAnswerModel { QuestionCode = question.Code, Answer = question.Text };
+                default:
+                    throw new ApplicationException($"Unexpected question type {Enum.GetName(typeof(QuestionTypeEnum), question)}");
+            }
+        }
 
         private void SendNewOffer()
         {
+            IsBusy = true;
+
             var answers = Questions.Select(MapQuestionsToAnswers);
             var covers = new List<string>();
             var newOffer = new CreateOfferDto
@@ -92,6 +101,8 @@ namespace InsuranceSales.ViewModels.Policy
                 Answers = answers.ToList(),
             };
             _networkManager.SendOffer(newOffer);
+
+            IsBusy = false;
         }
     }
 }

@@ -37,12 +37,12 @@
 
                         <DatePicker x:Name="PolicyToPicker" DateSelected="PolicyToPicker_OnDateSelected" />
 
-                        <controls:DynamicEntriesView BindingContext="{Binding Questions}" />
+                        <controls:DynamicEntriesView x:Name="DynamicEntries" BindingContext="{Binding Questions}" />
 
                     </StackLayout>
                 </ScrollView>
 
-                <Button Text="{x:Static resources:Labels.Order}" Grid.Row="2" />
+                <Button Text="{x:Static resources:Labels.Order}" IsEnabled="{Binding IsNotBusy}" Grid.Row="2" />
 
             </Grid>
         </StackLayout>

@@ -28,7 +28,7 @@ namespace InsuranceSales.ViewModels.Product
         { }
 
         public ProductListViewModel()
-            : base(DependencyService.Resolve<IAuthenticationService>())
+            : this(DependencyService.Resolve<IAuthenticationService>())
         { }
 
         public override Task InitializeAsync()
