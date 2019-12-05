@@ -37,7 +37,7 @@
 
                         <DatePicker x:Name="PolicyToPicker" DateSelected="PolicyToPicker_OnDateSelected" />
 
-                        <controls:DynamicEntriesView x:Name="DynamicEntries" BindingContext="{Binding Questions}" />
+                        <controls:DynamicEntriesView x:Name="DynamicEntries" BindingContext="{Binding DynamicEntriesViewModel}" />
 
                     </StackLayout>
                 </ScrollView>

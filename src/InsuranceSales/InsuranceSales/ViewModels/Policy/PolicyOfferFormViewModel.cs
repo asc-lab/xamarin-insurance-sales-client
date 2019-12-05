@@ -3,6 +3,7 @@ using InsuranceSales.Models.Offer;
 using InsuranceSales.Models.Offer.Dto;
 using InsuranceSales.Models.Policy;
 using InsuranceSales.Services;
+using InsuranceSales.ViewModels.Controls;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -43,6 +44,9 @@ namespace InsuranceSales.ViewModels.Policy
 
         private PersonModel _person;
         public PersonModel Person { get => _person; set => SetProperty(ref _person, value); }
+
+        private DynamicEntriesViewModel _dynamicEntriesViewModel;
+        public DynamicEntriesViewModel DynamicEntriesViewModel { get => _dynamicEntriesViewModel; set => SetProperty(ref _dynamicEntriesViewModel, value); }
         #endregion
 
         /// <summary>
@@ -67,6 +71,7 @@ namespace InsuranceSales.ViewModels.Policy
             var product = await _networkManager.GetProductByCodeAsync(ProductCode);
             ProductName = product.Name;
             Questions = product.Questions;
+            DynamicEntriesViewModel = new DynamicEntriesViewModel { Questions = Questions };
 
             await base.InitializeAsync();
         }
@@ -78,7 +83,7 @@ namespace InsuranceSales.ViewModels.Policy
                 case QuestionTypeEnum.Text:
                     return new TextQuestionAnswerModel { QuestionCode = question.Code, Answer = question.Text };
                 case QuestionTypeEnum.Numeric:
-                    return new NumericQuestionAnswerModel { QuestionCode = question.Code, Answer = decimal.Parse(question.Text, CultureInfo.InvariantCulture) };
+                    return new NumericQuestionAnswerModel { QuestionCode = question.Code, Answer = decimal.Parse(question.Text, CultureInfo.CurrentCulture) };
                 case QuestionTypeEnum.Choice:
                     return new ChoiceQuestionAnswerModel { QuestionCode = question.Code, Answer = question.Text };
                 default:
@@ -91,13 +96,12 @@ namespace InsuranceSales.ViewModels.Policy
             IsBusy = true;
 
             var answers = Questions.Select(MapQuestionsToAnswers);
-            var covers = new List<string>();
             var newOffer = new CreateOfferDto
             {
                 ProductCode = ProductCode,
                 PolicyFrom = ProductFrom,
                 PolicyTo = ProductTo,
-                SelectedCovers = covers, //! TODO
+                SelectedCovers = new List<string>(), //! TODO
                 Answers = answers.ToList(),
             };
             _networkManager.SendOffer(newOffer);

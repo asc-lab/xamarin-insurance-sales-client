@@ -22,10 +22,12 @@ namespace InsuranceSales.Controls
 
         public DynamicEntryView() => InitializeComponent();
 
-        protected override void OnBindingContextChanged()
+        protected override async void OnBindingContextChanged()
         {
             if (!(BindingContext is DynamicEntryViewModel vm))
                 return;
+
+            await vm.InitializeAsync();
 
             EntryLayout.Children.Clear();
             switch (vm.Type)
