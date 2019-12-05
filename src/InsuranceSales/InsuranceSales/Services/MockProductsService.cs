@@ -27,7 +27,7 @@ namespace InsuranceSales.Services
                         {
                             Id = Guid.NewGuid(),
                             Code = "",
-                            Index = 100L,
+                            Index = 1,
                             Text = $"QUESTION {new Random().Next()}" ,
                             Type = QuestionTypeEnum.Choice,
                             Choices = new[]
@@ -53,7 +53,7 @@ namespace InsuranceSales.Services
                         {
                             Id = Guid.NewGuid(),
                             Code = "QUESTION",
-                            Index = 100L,
+                            Index = 2,
                             Text = $"QUESTION {new Random().Next()}" ,
                             Type = QuestionTypeEnum.Numeric,
                             Choices = Array.Empty<ChoiceModel>()
@@ -62,7 +62,7 @@ namespace InsuranceSales.Services
                         {
                             Id = Guid.NewGuid(),
                             Code = "QUESTION",
-                            Index = 100L,
+                            Index = 3,
                             Text = $"QUESTION {new Random().Next()}" ,
                             Type = QuestionTypeEnum.Text,
                             Choices = Array.Empty<ChoiceModel>()
@@ -74,7 +74,7 @@ namespace InsuranceSales.Services
                         {
                             Id = Guid.NewGuid(),
                             Code = "TEST",
-                            Name = $"Cover {new Random().Next()}",
+                            Name = "Fire",
                             Optional = false,
                             SumInsured = new Random().Next()
                         },
@@ -82,23 +82,7 @@ namespace InsuranceSales.Services
                         {
                             Id = Guid.NewGuid(),
                             Code = "TEST",
-                            Name = $"Cover {new Random().Next()}",
-                            Optional = false,
-                            SumInsured = new Random().Next()
-                        },
-                        new CoverModel
-                        {
-                            Id = Guid.NewGuid(),
-                            Code = "TEST",
-                            Name = $"Cover {new Random().Next()}",
-                            Optional = false,
-                            SumInsured = new Random().Next()
-                        },
-                        new CoverModel
-                        {
-                            Id = Guid.NewGuid(),
-                            Code = "TEST",
-                            Name = $"Cover {new Random().Next()}",
+                            Name = "Flood",
                             Optional = false,
                             SumInsured = new Random().Next()
                         },
@@ -117,11 +101,67 @@ namespace InsuranceSales.Services
                         new CoverModel
                         {
                             Id = Guid.NewGuid(),
-                            Code = "NO",
-                            Name = "Test cover",
+                            Code = "TEST",
+                            Name = "Fire",
                             Optional = false,
-                            SumInsured = 1000L
-                        }
+                            SumInsured = new Random().Next()
+                        },
+                        new CoverModel
+                        {
+                            Id = Guid.NewGuid(),
+                            Code = "TEST",
+                            Name = "Flood",
+                            Optional = false,
+                            SumInsured = new Random().Next()
+                        },
+                        new CoverModel
+                        {
+                            Id = Guid.NewGuid(),
+                            Code = "TEST",
+                            Name = "Fire",
+                            Optional = false,
+                            SumInsured = new Random().Next()
+                        },
+                        new CoverModel
+                        {
+                            Id = Guid.NewGuid(),
+                            Code = "TEST",
+                            Name = "Flood",
+                            Optional = false,
+                            SumInsured = new Random().Next()
+                        },
+                        new CoverModel
+                        {
+                            Id = Guid.NewGuid(),
+                            Code = "TEST",
+                            Name = "Fire",
+                            Optional = false,
+                            SumInsured = new Random().Next()
+                        },
+                        new CoverModel
+                        {
+                            Id = Guid.NewGuid(),
+                            Code = "TEST",
+                            Name = "Flood",
+                            Optional = false,
+                            SumInsured = new Random().Next()
+                        },
+                        new CoverModel
+                        {
+                            Id = Guid.NewGuid(),
+                            Code = "TEST",
+                            Name = "Fire",
+                            Optional = false,
+                            SumInsured = new Random().Next()
+                        },
+                        new CoverModel
+                        {
+                            Id = Guid.NewGuid(),
+                            Code = "TEST",
+                            Name = "Flood",
+                            Optional = false,
+                            SumInsured = new Random().Next()
+                        },
                     },
                     Questions = new[]
                     {
@@ -129,7 +169,7 @@ namespace InsuranceSales.Services
                         {
                             Id = Guid.NewGuid(),
                             Code = "NO",
-                            Index = 100L,
+                            Index = 1,
                             Text = $"QUESTION {new Random().Next()}",
                             Type = QuestionTypeEnum.Choice,
                             Choices = new[]

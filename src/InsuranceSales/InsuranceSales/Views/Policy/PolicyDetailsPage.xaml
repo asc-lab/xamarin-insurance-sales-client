@@ -26,6 +26,18 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
+                <Label Text="{Binding PolicyNumber}" />
+
+                <Label Text="{Binding PolicyHolder}" />
+
+                <Label Text="{Binding ProductCode}" />
+
+                <Label Text="{Binding PremiumAmount}" />
+
+                <Label Text="{Binding PolicyStartDate}" />
+
+                <Label Text="{Binding PolicyEndDate}" />
+
             </Grid>
         </StackLayout>
     </views:ContentPageBase.Content>

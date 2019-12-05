@@ -13,6 +13,6 @@ namespace InsuranceSales.Models.Offer.Dto
 
         public IList<string> SelectedCovers { get; set; }
 
-        public IList<QuestionAnswer> Answers { get; set; }
+        public IList<QuestionAnswerModel> Answers { get; set; }
     }
 }

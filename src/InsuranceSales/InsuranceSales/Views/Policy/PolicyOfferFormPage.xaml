@@ -11,7 +11,8 @@
         xmlns:resources="clr-namespace:InsuranceSales.i18n;assembly=InsuranceSales.i18n"
         x:Class="InsuranceSales.Views.Policy.PolicyOfferFormPage"
         mc:Ignorable="d"
-        Visual="Material">
+        Visual="Material"
+        Title="{Binding ProductName}">
     <views:ContentPageBase.BindingContext>
         <vm:PolicyOfferFormViewModel />
     </views:ContentPageBase.BindingContext>
@@ -22,18 +23,24 @@
             <Grid IsVisible="{Binding IsNotBusy}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Label Text="{Binding Name}" FontSize="Header" Grid.Row="0" />
+                <ScrollView Grid.Row="1">
+                    <StackLayout x:Name="AnswerEntries">
 
-                <StackLayout x:Name="PolicyEntries" Grid.Row="1" />
+                        <DatePicker x:Name="PolicyFromPicker" DateSelected="PolicyFromPicker_OnDateSelected" />
 
-                <controls:DynamicEntriesView BindingContext="{Binding QuestionAnswers}" Grid.Row="1" />
+                        <DatePicker x:Name="PolicyToPicker" DateSelected="PolicyToPicker_OnDateSelected" />
+
+                        <controls:DynamicEntriesView BindingContext="{Binding Questions}" />
+
+                    </StackLayout>
+                </ScrollView>
 
                 <Button Text="{x:Static resources:Labels.Order}" Grid.Row="2" />
 

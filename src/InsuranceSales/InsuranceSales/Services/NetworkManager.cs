@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using InsuranceSales.Models.Offer.Dto;
 using Xamarin.Forms;
 
 namespace InsuranceSales.Services
@@ -28,5 +29,10 @@ namespace InsuranceSales.Services
         public Task<IEnumerable<ProductModel>> GetProductsAsync() => _productsService.FetchAsync();
 
         public Task<ProductModel> GetProductByCodeAsync(string productId) => _productsService.GetByCodeAsync(productId);
+
+        public Task<object> SendOffer(CreateOfferDto newOffer)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
