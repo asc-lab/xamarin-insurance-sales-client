@@ -1,4 +1,5 @@
-﻿using InsuranceSales.ViewModels.Controls;
+﻿using InsuranceSales.Models.Policy;
+using InsuranceSales.ViewModels.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,28 +21,22 @@ namespace InsuranceSales.Controls
             if (!(BindingContext is DynamicEntriesViewModel vm))
                 return;
 
-            EntriesLayout.Children.Clear();
+            _entryViews?.Clear();
+            EntriesLayout.Children?.Clear();
             foreach (var question in vm.Questions.OrderBy(q => q.Index))
             {
                 var entryViewModel = new DynamicEntryViewModel { Question = question };
-                var entry = new DynamicEntryView { BindingContext = entryViewModel };
-                _entryViews.Add(entry);
+                var entryView = new DynamicEntryView { BindingContext = entryViewModel };
+                _entryViews?.Add(entryView);
+                EntriesLayout.Children?.Add(entryView);
             }
-            foreach (var view in _entryViews)
-                EntriesLayout.Children.Add(view);
-
             base.OnBindingContextChanged();
         }
 
-        public IReadOnlyDictionary<string, object> GetAnswers()
+        public IEnumerable<Tuple<QuestionModel, object>> GetAnswers()
         {
-            var dict = new Dictionary<string, object>();
-            foreach (var entry in _entryViews)
-            {
-                var (code, answer) = entry.GetAnswer();
-                dict.Add(code, answer);
-            }
-            return dict;
+            var answers = _entryViews?.Select(ev => ev.GetAnswer());
+            return answers;
         }
     }
 }

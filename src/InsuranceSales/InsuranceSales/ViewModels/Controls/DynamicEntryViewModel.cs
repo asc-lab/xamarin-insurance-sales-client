@@ -1,8 +1,9 @@
 ﻿using InsuranceSales.Interfaces;
 using InsuranceSales.Models.Offer;
 using InsuranceSales.Models.Policy;
-using InsuranceSales.Models.Product;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -20,11 +21,8 @@ namespace InsuranceSales.ViewModels.Controls
         private QuestionTypeEnum _type;
         public QuestionTypeEnum Type { get => _type; set => SetProperty(ref _type, value); }
 
-        private IList<ChoiceModel> _choices;
-        public IList<ChoiceModel> Choices { get => _choices; set => SetProperty(ref _choices, value); }
-
-        private ChoiceModel _selectedChoice;
-        public ChoiceModel SelectedChoice { get => _selectedChoice; set => SetProperty(ref _selectedChoice, value); }
+        private IList<string> _choices = Array.Empty<string>();
+        public IList<string> Choices { get => _choices; set => SetProperty(ref _choices, value); }
 
         private string _placeholder = string.Empty;
         public string Placeholder { get => _placeholder; set => SetProperty(ref _placeholder, value); }
@@ -50,7 +48,7 @@ namespace InsuranceSales.ViewModels.Controls
         {
             Code = Question.Code;
             Type = Question.Type;
-            Choices = Question.Choices;
+            Choices = Question.Choices?.Select(c => c.Label).ToList();
             Placeholder = Question.Text;
 
             return base.InitializeAsync();

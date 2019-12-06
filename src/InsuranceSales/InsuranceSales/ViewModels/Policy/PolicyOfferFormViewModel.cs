@@ -1,4 +1,5 @@
-﻿using InsuranceSales.Interfaces;
+﻿using InsuranceSales.Controls;
+using InsuranceSales.Interfaces;
 using InsuranceSales.Models.Offer;
 using InsuranceSales.Models.Offer.Dto;
 using InsuranceSales.Models.Policy;
@@ -47,6 +48,9 @@ namespace InsuranceSales.ViewModels.Policy
 
         private DynamicEntriesViewModel _dynamicEntriesViewModel;
         public DynamicEntriesViewModel DynamicEntriesViewModel { get => _dynamicEntriesViewModel; set => SetProperty(ref _dynamicEntriesViewModel, value); }
+
+        private DynamicEntriesView _dynamicEntriesView;
+        public DynamicEntriesView DynamicEntriesView { get => _dynamicEntriesView; set => SetProperty(ref _dynamicEntriesView, value); }
         #endregion
 
         /// <summary>
@@ -76,33 +80,32 @@ namespace InsuranceSales.ViewModels.Policy
             await base.InitializeAsync();
         }
 
-        private static QuestionAnswerModel MapQuestionsToAnswers(QuestionModel question)
+        private static QuestionAnswerModel MapQuestionsToAnswers(Tuple<QuestionModel, object> tuple)
         {
-            switch (question.Type)
+            var (question, answer) = tuple;
+            var answerModel = question.Type switch
             {
-                case QuestionTypeEnum.Text:
-                    return new TextQuestionAnswerModel { QuestionCode = question.Code, Answer = question.Text };
-                case QuestionTypeEnum.Numeric:
-                    return new NumericQuestionAnswerModel { QuestionCode = question.Code, Answer = decimal.Parse(question.Text, CultureInfo.CurrentCulture) };
-                case QuestionTypeEnum.Choice:
-                    return new ChoiceQuestionAnswerModel { QuestionCode = question.Code, Answer = question.Text };
-                default:
-                    throw new ApplicationException($"Unexpected question type {Enum.GetName(typeof(QuestionTypeEnum), question)}");
-            }
+                QuestionTypeEnum.Text => (QuestionAnswerModel)new TextQuestionAnswerModel { QuestionCode = question.Code, Answer = (string)answer },
+                QuestionTypeEnum.Numeric => new NumericQuestionAnswerModel { QuestionCode = question.Code, Answer = decimal.Parse(answer.ToString(), CultureInfo.CurrentCulture) },
+                QuestionTypeEnum.Choice => new ChoiceQuestionAnswerModel { QuestionCode = question.Code, Answer = (string)answer },
+                _ => throw new ApplicationException($"Unexpected question type {Enum.GetName(typeof(QuestionTypeEnum), question)}")
+            };
+            return answerModel;
         }
 
         private void SendNewOffer()
         {
             IsBusy = true;
-
-            var answers = Questions.Select(MapQuestionsToAnswers);
+            // TODO: Obtain reference to DynamicEntriesView somehow
+            var entryAnswers = DynamicEntriesView?.GetAnswers();
+            var answers = entryAnswers?.Select(MapQuestionsToAnswers);
             var newOffer = new CreateOfferDto
             {
                 ProductCode = ProductCode,
                 PolicyFrom = ProductFrom,
                 PolicyTo = ProductTo,
                 SelectedCovers = new List<string>(), //! TODO
-                Answers = answers.ToList(),
+                Answers = answers?.ToList(),
             };
             _networkManager.SendOffer(newOffer);
 
