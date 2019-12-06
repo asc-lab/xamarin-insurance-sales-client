@@ -48,7 +48,6 @@
                            HorizontalOptions="CenterAndExpand"
                            Grid.Row="3" />
 
-
                     <controls:CoverTableView BindingContext="{Binding Covers}" Grid.Row="4" />
                 </Grid>
             </ScrollView>
