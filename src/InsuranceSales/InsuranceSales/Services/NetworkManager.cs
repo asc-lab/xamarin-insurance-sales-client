@@ -1,12 +1,11 @@
 ﻿using HttpTracer;
 using InsuranceSales.Interfaces;
+using InsuranceSales.Models.Offer.Dto;
 using InsuranceSales.Models.Product;
 using Refit;
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using InsuranceSales.Models.Offer.Dto;
 using Xamarin.Forms;
 
 namespace InsuranceSales.Services
@@ -15,24 +14,26 @@ namespace InsuranceSales.Services
     {
         #region SERVICES
         private static readonly HttpClient HttpClient = new HttpClient(new HttpTracerHandler());
-        private readonly IProductsService _productsService;
+        private readonly IOfferService _offerService;
+        private readonly IProductService _productService;
         #endregion
 
         public NetworkManager()
         {
             HttpClient.BaseAddress = AppSettings.BackendUrl;
-            _productsService = AppSettings.UseMockDataService
-                ? DependencyService.Resolve<IProductsService>()
-                : RestService.For<IProductsService>(HttpClient);
+            _productService = AppSettings.UseMockDataService
+                ? DependencyService.Resolve<IProductService>()
+                : RestService.For<IProductService>(HttpClient);
+
+            _offerService = AppSettings.UseMockDataService
+                ? DependencyService.Resolve<IOfferService>()
+                : RestService.For<IOfferService>(HttpClient);
         }
 
-        public Task<IEnumerable<ProductModel>> GetProductsAsync() => _productsService.FetchAsync();
+        public Task<IEnumerable<ProductModel>> GetProductsAsync() => _productService.FetchAsync();
 
-        public Task<ProductModel> GetProductByCodeAsync(string productId) => _productsService.GetByCodeAsync(productId);
+        public Task<ProductModel> GetProductByCodeAsync(string productId) => _productService.GetByCodeAsync(productId);
 
-        public Task<object> SendOffer(CreateOfferDto newOffer)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<CreateOfferResult> GetPolicyPricesAsync(CreateOfferRequest newOffer) => _offerService.GetPolicyPricesAsync(newOffer);
     }
 }

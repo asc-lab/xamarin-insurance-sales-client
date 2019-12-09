@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace InsuranceSales.Services
 {
-    public class MockProductsService : IProductsService
+    public class MockProductService : IProductService
     {
         private readonly IList<ProductModel> _products = new List<ProductModel>
         {

@@ -1,12 +1,11 @@
 ﻿using InsuranceSales.Models.Product;
 using Refit;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace InsuranceSales.Interfaces
 {
-    public interface IProductsService
+    public interface IProductService
     {
         [Get("/products")]
         Task<IEnumerable<ProductModel>> FetchAsync();

@@ -1,4 +1,6 @@
 ﻿using InsuranceSales.ViewModels.Policy;
+using System;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,16 +11,21 @@ namespace InsuranceSales.Views.Policy
     {
         public PolicyOfferFormPage() => InitializeComponent();
 
-        private void PolicyFromPicker_OnDateSelected(object sender, DateChangedEventArgs e)
+        private void PolicyFromPicker_OnDateSelected(object sender, DateChangedEventArgs e) => ViewModel.ProductFrom = e.NewDate;
+
+        private void PolicyToPicker_OnDateSelected(object sender, DateChangedEventArgs e) => ViewModel.ProductTo = e.NewDate;
+
+        private void Order_OnClicked(object sender, EventArgs e)
         {
-            if (BindingContext is PolicyOfferFormViewModel vm)
-                vm.ProductFrom = e.NewDate;
+            var entryAnswers = DynamicEntries?.GetAnswers();
+            ViewModel?.SendNewOffer(entryAnswers);
         }
 
-        private void PolicyToPicker_OnDateSelected(object sender, DateChangedEventArgs e)
+        // HIDE DYNAMIC ENTRIES
+        // SHOW CONTACT DATA ENTRIES
+        private void BuyNow_OnClicked(object sender, EventArgs e)
         {
-            if (BindingContext is PolicyOfferFormViewModel vm)
-                vm.ProductTo = e.NewDate;
+            throw new NotImplementedException();
         }
     }
 }

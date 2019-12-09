@@ -144,4 +144,16 @@
   <data name="Order" xml:space="preserve">
     <value>Order</value>
   </data>
+  <data name="ChangeParameters" xml:space="preserve">
+    <value>Change parameters</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="SumInsured" xml:space="preserve">
+    <value>Sum insured</value>
+  </data>
 </root>

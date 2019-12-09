@@ -79,6 +79,15 @@ namespace InsuranceSales.i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change parameters.
+        /// </summary>
+        public static string ChangeParameters {
+            get {
+                return ResourceManager.GetString("ChangeParameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm.
         /// </summary>
         public static string Confirm {
@@ -97,6 +106,15 @@ namespace InsuranceSales.i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to #.
+        /// </summary>
+        public static string Index {
+            get {
+                return ResourceManager.GetString("Index", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Info.
         /// </summary>
         public static string Info {
@@ -111,6 +129,15 @@ namespace InsuranceSales.i18n {
         public static string MaxNumberOfInsured {
             get {
                 return ResourceManager.GetString("MaxNumberOfInsured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         
@@ -138,6 +165,15 @@ namespace InsuranceSales.i18n {
         public static string SignIn {
             get {
                 return ResourceManager.GetString("SignIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sum insured.
+        /// </summary>
+        public static string SumInsured {
+            get {
+                return ResourceManager.GetString("SumInsured", resourceCulture);
             }
         }
     }

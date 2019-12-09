@@ -22,8 +22,10 @@ namespace InsuranceSales
                     DependencyService.Register<IAuthenticationService, MockAuthenticationService>();
 
                 if (AppSettings.UseMockDataService)
-                    DependencyService.Register<IProductsService, MockProductsService>();
-
+                {
+                    DependencyService.Register<IProductService, MockProductService>();
+                    DependencyService.Register<IOfferService, MockOfferService>();
+                }
                 DependencyService.Register<IDialogService, DialogService>();
 
                 MainPage = new AppShell();
