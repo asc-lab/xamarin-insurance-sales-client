@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="clr-namespace:InsuranceSales.i18n;assembly=InsuranceSales.i18n"
     xmlns:vm="clr-namespace:InsuranceSales.ViewModels.Product;assembly=InsuranceSales"
+    x:DataType="vm:ProductDetailsViewModel"
     x:Class="InsuranceSales.Views.Products.ProductDetailsPage"
     x:TypeArguments="vm:ProductDetailsViewModel"
     mc:Ignorable="d" 

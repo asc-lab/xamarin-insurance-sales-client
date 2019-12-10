@@ -8,6 +8,7 @@
     xmlns:controls="clr-namespace:InsuranceSales.Controls"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:DataType="vm:ProductListViewModel"
     x:Class="InsuranceSales.Views.Products.ProductListPage"
     x:TypeArguments="vm:ProductListViewModel"
     mc:Ignorable="d"
@@ -60,7 +61,8 @@
                                     </Grid.ColumnDefinitions>
 
                                     <!-- IMAGE -->
-                                    <Image Source="{Binding Image}" Aspect="AspectFill"
+                                    <Image Source="{Binding Image}" x:DataType="{x:Null}"
+                                           Aspect="AspectFill"
                                            Grid.Row="0" 
                                            Grid.Column="0" />
 
@@ -76,10 +78,10 @@
                                              VerticalOptions="EndAndExpand">
 
                                         <Label Style="{StaticResource TitleStyle}"
-                                               Text="{Binding Name}" />
+                                               Text="{Binding Name}" x:DataType="{x:Null}" />
 
                                         <Label Style="{StaticResource DescriptionStyle}"
-                                               Text="{Binding Description}" />
+                                               Text="{Binding Description}"  x:DataType="{x:Null}" />
 
                                     </StackLayout>
                                 </Grid>

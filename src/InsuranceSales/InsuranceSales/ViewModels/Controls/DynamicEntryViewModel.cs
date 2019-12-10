@@ -50,7 +50,7 @@ namespace InsuranceSales.ViewModels.Controls
         public override Task InitializeAsync()
         {
             Code = Question?.Code;
-            Type = Question.Type;
+            Type = Question?.Type ?? throw new ArgumentNullException(nameof(Question.Type));
             Choices = Question?.Choices?.Select(c => c.Label).ToList();
             Placeholder = Question?.Text;
 

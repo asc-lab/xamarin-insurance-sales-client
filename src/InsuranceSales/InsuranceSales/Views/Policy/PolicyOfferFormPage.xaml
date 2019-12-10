@@ -9,13 +9,19 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="clr-namespace:InsuranceSales.i18n;assembly=InsuranceSales.i18n"
+    xmlns:converters="clr-namespace:InsuranceSales.Extensions;assembly=InsuranceSales"
+    x:DataType="vm:PolicyOfferFormViewModel"
     x:Class="InsuranceSales.Views.Policy.PolicyOfferFormPage"
-    mc:Ignorable="d"
-    Visual="Material"
+    mc:Ignorable="d" Visual="Material"
     Title="{Binding ProductName}">
     <views:ContentPageBase.BindingContext>
+
         <vm:PolicyOfferFormViewModel />
+
     </views:ContentPageBase.BindingContext>
+    <views:ContentPageBase.Resources>
+
+    </views:ContentPageBase.Resources>
     <views:ContentPageBase.Content>
         <StackLayout>
             <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
@@ -31,33 +37,33 @@
 
                 <ScrollView Grid.Row="0">
                     <StackLayout>
-                        <StackLayout x:Name="AnswerEntries">
+                        <StackLayout>
 
                             <Label Text="{Static resources:Labels.From}" FontSize="Small" />
                             <DatePicker x:Name="PolicyFromPicker" DateSelected="PolicyFromPicker_OnDateSelected"
-                                        IsEnabled="{Binding IsNotBuying}" />
+                                        IsEnabled="{Binding IsOnStepThree, Converter={converters:NegativeBooleanConverter}}" />
 
                             <Label Text="{Static resources:Labels.To}" FontSize="Small" />
                             <DatePicker x:Name="PolicyToPicker" DateSelected="PolicyToPicker_OnDateSelected"
-                                        IsEnabled="{Binding IsNotBuying}" />
+                                        IsEnabled="{Binding IsOnStepThree, Converter={converters:NegativeBooleanConverter}}" />
 
-                            <controls:DynamicEntriesView x:Name="DynamicEntries" 
+                            <controls:DynamicEntriesView x:Name="DynamicEntries" x:DataType="{x:Null}"
                                                          BindingContext="{Binding DynamicEntriesViewModel}" 
                                                          IsEnabled="{Binding IsEditable}" />
 
                         </StackLayout>
 
                         <!-- PERSON INFO -->
-                        <StackLayout IsVisible="{Binding IsNotBuying}">
+                        <StackLayout IsVisible="{Binding IsOnStepThree, Converter={converters:NegativeBooleanConverter}}">
 
                             <Entry x:Name="PersonName" Text="{Binding FirstName}" 
-                                   IsEnabled="{Binding IsOffering}" />
+                                   IsEnabled="{Binding IsOnStepTwo}" />
 
                             <Entry x:Name="PersonSurname" Text="{Binding LastName}" 
-                                   IsEnabled="{Binding IsOffering}" />
+                                   IsEnabled="{Binding IsOnStepTwo}" />
 
                             <Entry x:Name="TaxId" Text="{Binding TaxId}"
-                                   IsEnabled="{Binding IsOffering}" />
+                                   IsEnabled="{Binding IsOnStepTwo}" />
 
                         </StackLayout>
                         <!-- END PERSON INFO -->
@@ -68,10 +74,10 @@
                 <StackLayout Grid.Row="1" HorizontalOptions="CenterAndExpand">
 
                     <BoxView Color="{StaticResource CompanyLogoColor}"
-                             IsVisible="{Binding IsOffering}" 
-                             HeightRequest="5" HorizontalOptions="CenterAndExpand" />
+                             IsVisible="{Binding IsOnStepTwo}" 
+                             HeightRequest="5" HorizontalOptions="FillAndExpand" />
 
-                    <StackLayout IsVisible="{Binding IsOffering}">
+                    <StackLayout IsVisible="{Binding IsOnStepTwo}">
 
                         <Label Text="{Static resources:Labels.TotalPrice}" FontSize="Subtitle" />
 
@@ -80,17 +86,17 @@
                     </StackLayout>
 
                     <Button Text="{Static resources:Labels.Order}" Clicked="Order_OnClicked"
-                            IsEnabled="{Binding IsNotOffering}" 
+                            IsEnabled="{Binding IsOnStepTwo, Converter={converters:NegativeBooleanConverter}}" 
                             HorizontalOptions="FillAndExpand" />
 
                     <Button Text="{Static resources:Labels.ChangeParameters}" Command="{Binding ChangeParametersCommand}"
-                            IsEnabled="{Binding IsOffering}" 
-                            IsVisible="{Binding IsOffering}" 
+                            IsEnabled="{Binding IsOnStepTwo}" 
+                            IsVisible="{Binding IsOnStepTwo}" 
                             HorizontalOptions="FillAndExpand" />
 
                     <Button Text="{Static resources:Labels.BuyNow}" Command="{Binding BuyNowCommand}"
-                            IsEnabled="{Binding IsOffering}"
-                            IsVisible="{Binding IsOffering}"
+                            IsEnabled="{Binding IsOnStepTwo}"
+                            IsVisible="{Binding IsOnStepTwo}"
                             HorizontalOptions="FillAndExpand" />
 
                 </StackLayout>

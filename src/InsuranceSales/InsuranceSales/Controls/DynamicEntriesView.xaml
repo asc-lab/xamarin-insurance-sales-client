@@ -4,6 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              x:Class="InsuranceSales.Controls.DynamicEntriesView"
+             xmlns:vm="clr-namespace:InsuranceSales.ViewModels.Controls;assembly=InsuranceSales"
+             x:DataType="vm:DynamicEntriesViewModel"
              mc:Ignorable="d" Visual="Material">
     <ContentView.Content>
         <StackLayout x:Name="EntriesLayout" Spacing="10" IsEnabled="{Binding IsEditable}" />

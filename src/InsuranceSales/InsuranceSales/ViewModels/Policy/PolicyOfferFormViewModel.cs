@@ -16,9 +16,6 @@ using Xamarin.Forms;
 
 namespace InsuranceSales.ViewModels.Policy
 {
-    //! TODO: Look up how to create a policy offer
-    //! TODO: Obtain data from DynamicEntriesView
-    //! TODO: Create entries for client name/surname/tax ID
     [QueryProperty(nameof(ProductCode), "productCode")]
     public class PolicyOfferFormViewModel : ViewModelBase
     {
@@ -32,11 +29,11 @@ namespace InsuranceSales.ViewModels.Policy
         public ICommand SendNewOfferCommand => _sendNewOfferCommand ??= new Command<IDictionary<QuestionModel, object>>(
             async answers => await SendNewOfferAsync(answers));
 
-        private ICommand _buyNowCommand;
-        public ICommand BuyNowCommand => _buyNowCommand ??= new Command(async () => await BuyNowAsync());
-
         private ICommand _changeParametersCommand;
         public ICommand ChangeParametersCommand => _changeParametersCommand ??= new Command(async () => await ChangeParametersAsync());
+
+        private ICommand _buyNowCommand;
+        public ICommand BuyNowCommand => _buyNowCommand ??= new Command(async () => await BuyNowAsync());
         #endregion
 
         #region PROPS
@@ -63,17 +60,15 @@ namespace InsuranceSales.ViewModels.Policy
         public IList<CoverModel> Covers { get => _covers; set => SetProperty(ref _covers, value); }
 
         //! STEP 2
-        private bool _isOffering;
-        public bool IsOffering { get => _isOffering; set => SetProperty(ref _isOffering, value); }
-        public bool IsNotOffering => !_isOffering;
+        private bool _isOnStepTwo;
+        public bool IsOnStepTwo { get => _isOnStepTwo; set => SetProperty(ref _isOnStepTwo, value); }
 
         private CreateOfferResult _offer;
         public CreateOfferResult Offer { get => _offer; set => SetProperty(ref _offer, value); }
 
         //! STEP 3
-        private bool _isBuying;
-        public bool IsBuying { get => _isBuying; set => SetProperty(ref _isBuying, value); }
-        public bool IsNotBuying => !_isBuying;
+        private bool _isOnStepThree;
+        public bool IsOnStepThree { get => _isOnStepThree; set => SetProperty(ref _isOnStepThree, value); }
 
         // Person
         private string _firstName = string.Empty;
@@ -86,17 +81,17 @@ namespace InsuranceSales.ViewModels.Policy
         public string TaxId { get => _taxId; set => SetProperty(ref _taxId, value); }
 
         // Address
-        private string _country = string.Empty;
-        public string Country { get => _country; set => SetProperty(ref _country, value); }
+        //private string _country = string.Empty;
+        //public string Country { get => _country; set => SetProperty(ref _country, value); }
 
-        private string _zipCode = string.Empty;
-        public string ZipCode { get => _zipCode; set => SetProperty(ref _zipCode, value); }
+        //private string _zipCode = string.Empty;
+        //public string ZipCode { get => _zipCode; set => SetProperty(ref _zipCode, value); }
 
-        private string _city = string.Empty;
-        public string City { get => _city; set => SetProperty(ref _city, value); }
+        //private string _city = string.Empty;
+        //public string City { get => _city; set => SetProperty(ref _city, value); }
 
-        private string _street = string.Empty;
-        public string Street { get => _street; set => SetProperty(ref _street, value); }
+        //private string _street = string.Empty;
+        //public string Street { get => _street; set => SetProperty(ref _street, value); }
         #endregion
 
         /// <summary>
@@ -160,7 +155,7 @@ namespace InsuranceSales.ViewModels.Policy
             if (offer != null)
             {
                 Offer = offer;
-                IsOffering = true;
+                IsOnStepTwo = true;
             }
             IsBusy = false;
 
@@ -171,25 +166,31 @@ namespace InsuranceSales.ViewModels.Policy
         {
             IsBusy = true;
 
+            IsOnStepThree = false;
+            IsOnStepTwo = false;
             DynamicEntriesViewModel.IsEditable = true;
-
-            IsOffering = false;
-            IsBuying = false;
 
             IsBusy = false;
 
             await Task.CompletedTask;
         }
 
-        // HIDE DYNAMIC ENTRIES
-        // SHOW CONTACT DATA ENTRIES
         private async Task BuyNowAsync()
         {
             IsBusy = true;
 
-            IsBuying = true;
-            IsOffering = false;
+            // HIDE DYNAMIC ENTRIES
+            // SHOW CONTACT DATA ENTRIES
+            IsOnStepThree = true;
+            IsOnStepTwo = false;
             DynamicEntriesViewModel.IsEditable = false;
+
+            var person = new PersonModel
+            {
+                FirstName = FirstName,
+                LastName = LastName,
+                TaxId = TaxId,
+            };
 
             var request = new { };
             var result = await _networkManager.SendOfferAsync(request);
