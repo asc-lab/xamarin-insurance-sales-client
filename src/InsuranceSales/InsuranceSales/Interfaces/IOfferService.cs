@@ -8,5 +8,8 @@ namespace InsuranceSales.Interfaces
     {
         [Post("/offers")]
         Task<CreateOfferResult> GetPolicyPricesAsync([Body]CreateOfferRequest request);
+
+        [Post("/offers/{test}")]
+        Task<object> SendOffer([Body]object request);
     }
 }

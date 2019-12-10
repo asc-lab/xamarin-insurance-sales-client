@@ -1,6 +1,5 @@
 ﻿using InsuranceSales.Models.Policy;
 using InsuranceSales.ViewModels.Controls;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xamarin.Forms.Xaml;
@@ -33,9 +32,11 @@ namespace InsuranceSales.Controls
             base.OnBindingContextChanged();
         }
 
-        public IEnumerable<Tuple<QuestionModel, object>> GetAnswers()
+        public IDictionary<QuestionModel, object> GetAnswers()
         {
-            var answers = _entryViews?.Select(ev => ev.GetAnswer());
+            var answers = _entryViews?.Select(ev => ev?.GetAnswer())
+                .ToDictionary(k => k?.Item1, v => v?.Item2);
+
             return answers;
         }
     }

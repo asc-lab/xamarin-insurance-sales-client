@@ -156,4 +156,13 @@
   <data name="SumInsured" xml:space="preserve">
     <value>Sum insured</value>
   </data>
+  <data name="TotalPrice" xml:space="preserve">
+    <value>Total price</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
+  </data>
 </root>

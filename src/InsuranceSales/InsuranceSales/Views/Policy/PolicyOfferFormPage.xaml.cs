@@ -1,6 +1,4 @@
-﻿using InsuranceSales.ViewModels.Policy;
-using System;
-using System.Linq;
+﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,14 +16,8 @@ namespace InsuranceSales.Views.Policy
         private void Order_OnClicked(object sender, EventArgs e)
         {
             var entryAnswers = DynamicEntries?.GetAnswers();
-            ViewModel?.SendNewOffer(entryAnswers);
-        }
-
-        // HIDE DYNAMIC ENTRIES
-        // SHOW CONTACT DATA ENTRIES
-        private void BuyNow_OnClicked(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
+            if (ViewModel.SendNewOfferCommand.CanExecute(entryAnswers))
+                ViewModel?.SendNewOfferCommand?.Execute(entryAnswers);
         }
     }
 }

@@ -36,15 +36,18 @@ namespace InsuranceSales.Controls
                     var picker = new Picker();
                     picker.SetBinding(Picker.TitleProperty, nameof(vm.Placeholder));
                     picker.SetBinding(Picker.ItemsSourceProperty, nameof(vm.Choices));
+                    picker.SetBinding(IsEnabledProperty, nameof(vm.IsEditable));
                     EntryLayout.Children.Add(picker);
                     break;
                 case QuestionTypeEnum.Numeric:
                     var slider = new Slider(0, SliderMaxValue, 0);
                     slider.SetBinding(Slider.ValueProperty, nameof(vm.SelectedValue), BindingMode.TwoWay);
+                    slider.SetBinding(IsEnabledProperty, nameof(vm.IsEditable));
 
                     var numericEntry = new Entry { Keyboard = Keyboard.Numeric };
                     numericEntry.SetBinding(Entry.PlaceholderProperty, nameof(vm.Placeholder));
                     numericEntry.SetBinding(Entry.TextProperty, nameof(vm.SelectedValue), BindingMode.TwoWay, _stringToIntConverter);
+                    slider.SetBinding(IsEnabledProperty, nameof(vm.IsEditable));
 
                     EntryLayout.Children.Add(numericEntry);
                     EntryLayout.Children.Add(slider);
@@ -52,6 +55,8 @@ namespace InsuranceSales.Controls
                 case QuestionTypeEnum.Text:
                     var textEntry = new Entry();
                     textEntry.SetBinding(Entry.PlaceholderProperty, nameof(vm.Placeholder));
+                    textEntry.SetBinding(IsEnabledProperty, nameof(vm.IsEditable));
+
                     EntryLayout.Children.Add(textEntry);
                     break;
                 default:
@@ -60,19 +65,22 @@ namespace InsuranceSales.Controls
             base.OnBindingContextChanged();
         }
 
-        public Tuple<QuestionModel, object> GetAnswer()
+        public (QuestionModel, object)? GetAnswer()
         {
             if (!(BindingContext is DynamicEntryViewModel vm))
                 return null;
 
-            var answer = vm.Type switch
+            switch (vm.Type)
             {
-                QuestionTypeEnum.Text => Tuple.Create<QuestionModel, object>(vm.Question, vm.SelectedText),
-                QuestionTypeEnum.Numeric => Tuple.Create<QuestionModel, object>(vm.Question, vm.SelectedValue),
-                QuestionTypeEnum.Choice => Tuple.Create<QuestionModel, object>(vm.Question, vm.Question.Choices.Select(c => c.Label == vm.SelectedText)),
-                _ => throw new ArgumentOutOfRangeException()
-            };
-            return answer;
+                case QuestionTypeEnum.Text:
+                    return (vm.Question, vm.SelectedText);
+                case QuestionTypeEnum.Numeric:
+                    return (vm.Question, vm.SelectedValue);
+                case QuestionTypeEnum.Choice:
+                    return (vm.Question, vm.Question.Choices.SingleOrDefault(c => c.Label == vm.SelectedText));
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }

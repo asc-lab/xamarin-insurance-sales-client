@@ -11,8 +11,8 @@ namespace InsuranceSales.Models.Offer.Dto
 
         public DateTime PolicyTo { get; set; }
 
-        public IList<string> SelectedCovers { get; set; }
+        public IEnumerable<string> SelectedCovers { get; set; }
 
-        public IList<QuestionAnswerModel> Answers { get; set; }
+        public IEnumerable<QuestionAnswerModel> Answers { get; set; }
     }
 }

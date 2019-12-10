@@ -12,6 +12,9 @@ namespace InsuranceSales.ViewModels.Controls
     public class DynamicEntryViewModel : ViewModelBase
     {
         #region PROPS
+        private bool _isEditable = true;
+        public bool IsEditable { get => _isEditable; set => SetProperty(ref _isEditable, value); }
+
         private QuestionModel _question;
         public QuestionModel Question { get => _question; set => SetProperty(ref _question, value); }
 
@@ -46,10 +49,10 @@ namespace InsuranceSales.ViewModels.Controls
 
         public override Task InitializeAsync()
         {
-            Code = Question.Code;
+            Code = Question?.Code;
             Type = Question.Type;
-            Choices = Question.Choices?.Select(c => c.Label).ToList();
-            Placeholder = Question.Text;
+            Choices = Question?.Choices?.Select(c => c.Label).ToList();
+            Placeholder = Question?.Text;
 
             return base.InitializeAsync();
         }

@@ -7,9 +7,11 @@ using InsuranceSales.Services;
 using InsuranceSales.ViewModels.Controls;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace InsuranceSales.ViewModels.Policy
@@ -24,15 +26,28 @@ namespace InsuranceSales.ViewModels.Policy
         private readonly NetworkManager _networkManager;
         #endregion
 
+        #region COMMANDS
+
+        private ICommand _sendNewOfferCommand;
+        public ICommand SendNewOfferCommand => _sendNewOfferCommand ??= new Command<IDictionary<QuestionModel, object>>(
+            async answers => await SendNewOfferAsync(answers));
+
+        private ICommand _buyNowCommand;
+        public ICommand BuyNowCommand => _buyNowCommand ??= new Command(async () => await BuyNowAsync());
+
+        private ICommand _changeParametersCommand;
+        public ICommand ChangeParametersCommand => _changeParametersCommand ??= new Command(async () => await ChangeParametersAsync());
+        #endregion
+
         #region PROPS
         private DynamicEntriesViewModel _dynamicEntriesViewModel;
         public DynamicEntriesViewModel DynamicEntriesViewModel { get => _dynamicEntriesViewModel; set => SetProperty(ref _dynamicEntriesViewModel, value); }
 
-        /// STEP 1
-        private string _productCode;
+        //! STEP 1
+        private string _productCode = string.Empty;
         public string ProductCode { get => _productCode; set => SetProperty(ref _productCode, value); }
 
-        private string _productName;
+        private string _productName = string.Empty;
         public string ProductName { get => _productName; set => SetProperty(ref _productName, value); }
 
         private DateTime _productFrom;
@@ -47,7 +62,7 @@ namespace InsuranceSales.ViewModels.Policy
         private IList<CoverModel> _covers;
         public IList<CoverModel> Covers { get => _covers; set => SetProperty(ref _covers, value); }
 
-        /// STEP 2
+        //! STEP 2
         private bool _isOffering;
         public bool IsOffering { get => _isOffering; set => SetProperty(ref _isOffering, value); }
         public bool IsNotOffering => !_isOffering;
@@ -55,18 +70,33 @@ namespace InsuranceSales.ViewModels.Policy
         private CreateOfferResult _offer;
         public CreateOfferResult Offer { get => _offer; set => SetProperty(ref _offer, value); }
 
-        /// STEP 3
+        //! STEP 3
         private bool _isBuying;
         public bool IsBuying { get => _isBuying; set => SetProperty(ref _isBuying, value); }
         public bool IsNotBuying => !_isBuying;
 
-        private AddressModel _address;
-        public AddressModel Address { get => _address; set => SetProperty(ref _address, value); }
+        // Person
+        private string _firstName = string.Empty;
+        public string FirstName { get => _firstName; set => SetProperty(ref _firstName, value); }
 
-        private PersonModel _person;
-        public PersonModel Person { get => _person; set => SetProperty(ref _person, value); }
+        private string _lastName = string.Empty;
+        public string LastName { get => _lastName; set => SetProperty(ref _lastName, value); }
 
+        private string _taxId = string.Empty;
+        public string TaxId { get => _taxId; set => SetProperty(ref _taxId, value); }
 
+        // Address
+        private string _country = string.Empty;
+        public string Country { get => _country; set => SetProperty(ref _country, value); }
+
+        private string _zipCode = string.Empty;
+        public string ZipCode { get => _zipCode; set => SetProperty(ref _zipCode, value); }
+
+        private string _city = string.Empty;
+        public string City { get => _city; set => SetProperty(ref _city, value); }
+
+        private string _street = string.Empty;
+        public string Street { get => _street; set => SetProperty(ref _street, value); }
         #endregion
 
         /// <summary>
@@ -97,9 +127,9 @@ namespace InsuranceSales.ViewModels.Policy
             await base.InitializeAsync();
         }
 
-        public static QuestionAnswerModel MapQuestionsToAnswers(Tuple<QuestionModel, object> qaTuple)
+        public static QuestionAnswerModel MapQuestionsToAnswers(KeyValuePair<QuestionModel, object> qaPair)
         {
-            var (question, answer) = qaTuple;
+            var (question, answer) = qaPair;
             var answerModel = question.Type switch
             {
                 QuestionTypeEnum.Text => (QuestionAnswerModel)new TextQuestionAnswerModel { QuestionCode = question.Code, Answer = (string)answer },
@@ -110,12 +140,14 @@ namespace InsuranceSales.ViewModels.Policy
             return answerModel;
         }
 
-        public async void SendNewOffer(IEnumerable<Tuple<QuestionModel, object>> entryAnswers)
+        private async Task SendNewOfferAsync(IDictionary<QuestionModel, object> entryAnswers)
         {
             IsBusy = true;
 
-            var answers = entryAnswers?.Select(MapQuestionsToAnswers).ToList();
-            var covers = Covers?.Select(c => c.Code).ToList();
+            DynamicEntriesViewModel.IsEditable = false;
+
+            var answers = entryAnswers?.Select(MapQuestionsToAnswers);
+            var covers = Covers?.Select(c => c.Code);
             var offerDto = new CreateOfferRequest
             {
                 ProductCode = ProductCode,
@@ -131,6 +163,41 @@ namespace InsuranceSales.ViewModels.Policy
                 IsOffering = true;
             }
             IsBusy = false;
+
+            await Task.CompletedTask;
+        }
+
+        public async Task ChangeParametersAsync()
+        {
+            IsBusy = true;
+
+            DynamicEntriesViewModel.IsEditable = true;
+
+            IsOffering = false;
+            IsBuying = false;
+
+            IsBusy = false;
+
+            await Task.CompletedTask;
+        }
+
+        // HIDE DYNAMIC ENTRIES
+        // SHOW CONTACT DATA ENTRIES
+        private async Task BuyNowAsync()
+        {
+            IsBusy = true;
+
+            IsBuying = true;
+            IsOffering = false;
+            DynamicEntriesViewModel.IsEditable = false;
+
+            var request = new { };
+            var result = await _networkManager.SendOfferAsync(request);
+            Debug.WriteLine(result.ToString());
+
+            IsBusy = false;
+
+            await Task.CompletedTask;
         }
     }
 }

@@ -10,6 +10,9 @@ namespace InsuranceSales.ViewModels.Controls
         #region PROPS
         private IEnumerable<QuestionModel> _questions;
         public IEnumerable<QuestionModel> Questions { get => _questions; set => SetProperty(ref _questions, value); }
+
+        private bool _isEditable = true;
+        public bool IsEditable { get => _isEditable; set => SetProperty(ref _isEditable, value); }
         #endregion
 
         public DynamicEntriesViewModel(

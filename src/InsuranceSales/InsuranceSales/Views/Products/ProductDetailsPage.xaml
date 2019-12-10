@@ -10,7 +10,9 @@
     xmlns:vm="clr-namespace:InsuranceSales.ViewModels.Product;assembly=InsuranceSales"
     x:Class="InsuranceSales.Views.Products.ProductDetailsPage"
     x:TypeArguments="vm:ProductDetailsViewModel"
-    mc:Ignorable="d" Shell.NavBarIsVisible="False"
+    mc:Ignorable="d" 
+    Shell.NavBarIsVisible="False"
+    Visual="Material"
     Title="{Binding Name}">
     <views:ContentPageBase.BindingContext>
         <vm:ProductDetailsViewModel />

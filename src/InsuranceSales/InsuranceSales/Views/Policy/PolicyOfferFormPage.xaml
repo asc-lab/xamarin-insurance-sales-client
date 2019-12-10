@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <views:ContentPageBase
-        x:TypeArguments="vm:PolicyOfferFormViewModel" 
-        xmlns="http://xamarin.com/schemas/2014/forms"
-        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-        xmlns:vm="clr-namespace:InsuranceSales.ViewModels.Policy;assembly=InsuranceSales"
-        xmlns:views="clr-namespace:InsuranceSales.Views"
-        xmlns:controls="clr-namespace:InsuranceSales.Controls"
-        xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:resources="clr-namespace:InsuranceSales.i18n;assembly=InsuranceSales.i18n"
-        x:Class="InsuranceSales.Views.Policy.PolicyOfferFormPage"
-        mc:Ignorable="d"
-        Visual="Material"
-        Title="{Binding ProductName}">
+    x:TypeArguments="vm:PolicyOfferFormViewModel" 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:InsuranceSales.ViewModels.Policy;assembly=InsuranceSales"
+    xmlns:views="clr-namespace:InsuranceSales.Views"
+    xmlns:controls="clr-namespace:InsuranceSales.Controls"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="clr-namespace:InsuranceSales.i18n;assembly=InsuranceSales.i18n"
+    x:Class="InsuranceSales.Views.Policy.PolicyOfferFormPage"
+    mc:Ignorable="d"
+    Visual="Material"
+    Title="{Binding ProductName}">
     <views:ContentPageBase.BindingContext>
         <vm:PolicyOfferFormViewModel />
     </views:ContentPageBase.BindingContext>
@@ -24,50 +24,77 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <ScrollView Grid.Row="1">
-                    <StackLayout x:Name="AnswerEntries">
+                <ScrollView Grid.Row="0">
+                    <StackLayout>
+                        <StackLayout x:Name="AnswerEntries">
 
-                        <DatePicker x:Name="PolicyFromPicker" DateSelected="PolicyFromPicker_OnDateSelected" />
+                            <Label Text="{Static resources:Labels.From}" FontSize="Small" />
+                            <DatePicker x:Name="PolicyFromPicker" DateSelected="PolicyFromPicker_OnDateSelected"
+                                        IsEnabled="{Binding IsNotBuying}" />
 
-                        <DatePicker x:Name="PolicyToPicker" DateSelected="PolicyToPicker_OnDateSelected" />
+                            <Label Text="{Static resources:Labels.To}" FontSize="Small" />
+                            <DatePicker x:Name="PolicyToPicker" DateSelected="PolicyToPicker_OnDateSelected"
+                                        IsEnabled="{Binding IsNotBuying}" />
 
-                        <controls:DynamicEntriesView x:Name="DynamicEntries" BindingContext="{Binding DynamicEntriesViewModel}" 
-                                                     IsVisible="{Binding IsNotBuying}" />
+                            <controls:DynamicEntriesView x:Name="DynamicEntries" 
+                                                         BindingContext="{Binding DynamicEntriesViewModel}" 
+                                                         IsEnabled="{Binding IsEditable}" />
 
-                        <!-- ADDRESS/PERSON ENTRIES HERE -->
-                        <StackLayout IsVisible="{Binding IsBuying}">
-                            <Entry x:Name="PersonName" />
-                            <Entry x:Name="PersonSurname" />
                         </StackLayout>
 
+                        <!-- PERSON INFO -->
+                        <StackLayout IsVisible="{Binding IsNotBuying}">
+
+                            <Entry x:Name="PersonName" Text="{Binding FirstName}" 
+                                   IsEnabled="{Binding IsOffering}" />
+
+                            <Entry x:Name="PersonSurname" Text="{Binding LastName}" 
+                                   IsEnabled="{Binding IsOffering}" />
+
+                            <Entry x:Name="TaxId" Text="{Binding TaxId}"
+                                   IsEnabled="{Binding IsOffering}" />
+
+                        </StackLayout>
+                        <!-- END PERSON INFO -->
                     </StackLayout>
                 </ScrollView>
 
-                <StackLayout Grid.Row="2" HorizontalOptions="CenterAndExpand">
+                <!-- BUTTONS -->
+                <StackLayout Grid.Row="1" HorizontalOptions="CenterAndExpand">
 
-                    <BoxView Color="{StaticResource CompanyLogoColor}" Height="2" />
-                    <Label Text="{Binding Offer.TotalPrice}" FontSize="Subtitle" 
-                           IsVisible="{Binding IsOffering}" />
+                    <BoxView Color="{StaticResource CompanyLogoColor}"
+                             IsVisible="{Binding IsOffering}" 
+                             HeightRequest="5" HorizontalOptions="CenterAndExpand" />
 
-                    <Button Text="{x:Static resources:Labels.Order}" Clicked="Order_OnClicked"
-                            IsEnabled="{Binding IsNotBusy}" />
+                    <StackLayout IsVisible="{Binding IsOffering}">
 
-                    <Button Text="{x:Static resources:Labels.ChangeParameters}"
+                        <Label Text="{Static resources:Labels.TotalPrice}" FontSize="Subtitle" />
+
+                        <Label Text="{Binding Offer.TotalPrice}" FontSize="Subtitle" />
+
+                    </StackLayout>
+
+                    <Button Text="{Static resources:Labels.Order}" Clicked="Order_OnClicked"
+                            IsEnabled="{Binding IsNotOffering}" 
+                            HorizontalOptions="FillAndExpand" />
+
+                    <Button Text="{Static resources:Labels.ChangeParameters}" Command="{Binding ChangeParametersCommand}"
                             IsEnabled="{Binding IsOffering}" 
-                            IsVisible="{Binding IsOffering}" />
+                            IsVisible="{Binding IsOffering}" 
+                            HorizontalOptions="FillAndExpand" />
 
-                    <Button Text="{x:Static resources:Labels.BuyNow}" Clicked="BuyNow_OnClicked"
+                    <Button Text="{Static resources:Labels.BuyNow}" Command="{Binding BuyNowCommand}"
                             IsEnabled="{Binding IsOffering}"
-                            IsVisible="{Binding IsOffering}" />
+                            IsVisible="{Binding IsOffering}"
+                            HorizontalOptions="FillAndExpand" />
 
                 </StackLayout>
-
+                <!-- END BUTTONS -->
             </Grid>
         </StackLayout>
     </views:ContentPageBase.Content>

@@ -35,5 +35,7 @@ namespace InsuranceSales.Services
         public Task<ProductModel> GetProductByCodeAsync(string productId) => _productService.GetByCodeAsync(productId);
 
         public Task<CreateOfferResult> GetPolicyPricesAsync(CreateOfferRequest newOffer) => _offerService.GetPolicyPricesAsync(newOffer);
+
+        public Task<object> SendOfferAsync(object request) => _offerService.SendOffer(request);
     }
 }
