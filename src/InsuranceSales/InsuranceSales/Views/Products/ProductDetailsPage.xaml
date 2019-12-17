@@ -20,39 +20,43 @@
     </views:ContentPageBase.BindingContext>
     <views:ContentPageBase.Content>
         <StackLayout>
-            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
+            <ActivityIndicator IsVisible="{Binding IsBusy}"
+                               IsRunning="{Binding IsBusy}" />
 
             <ScrollView>
-                <Grid IsVisible="{Binding IsNotBusy}">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="200" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                <StackLayout>
+                    <Grid IsVisible="{Binding IsNotBusy}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="200" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-                    <Image Source="{Binding Image}" Aspect="AspectFill"
-                           Grid.Row="0" />
+                        <Image Source="{Binding Image}" Aspect="AspectFill"
+                               Grid.Row="0" />
+
+                        <Label Text="{Binding Name}" FontSize="Title"
+                               HorizontalOptions="CenterAndExpand"
+                               Padding="0, 5, 0, 0"
+                               Grid.Row="1" />
+
+                        <Label Text="{Binding Description}" FontSize="Subtitle"
+                               HorizontalOptions="CenterAndExpand"
+                               Grid.Row="2" />
+
+                        <controls:CoverTableView BindingContext="{Binding Covers}" 
+                                                 Grid.Row="3" />
+
+                    </Grid>
 
                     <Button Text="{x:Static resources:Labels.BuyNow}"
-                            Command="{Binding CreateOfferCommand}"
-                            Grid.Row="1" />
+                            Command="{Binding CreateOfferCommand}" />
 
-                    <Label Text="{Binding Name}" FontSize="Title"
-                           HorizontalOptions="CenterAndExpand"
-                           Padding="0, 5, 0, 0"
-                           Grid.Row="2" />
-
-                    <Label Text="{Binding Description}" FontSize="Subtitle"
-                           HorizontalOptions="CenterAndExpand"
-                           Grid.Row="3" />
-
-                    <controls:CoverTableView BindingContext="{Binding Covers}" Grid.Row="4" />
-                </Grid>
+                </StackLayout>
             </ScrollView>
         </StackLayout>
     </views:ContentPageBase.Content>

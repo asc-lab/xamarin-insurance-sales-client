@@ -166,8 +166,8 @@ namespace InsuranceSales.ViewModels.Policy
         {
             IsBusy = true;
 
-            IsOnStepThree = false;
             IsOnStepTwo = false;
+            IsOnStepThree = false;
             DynamicEntriesViewModel.IsEditable = true;
 
             IsBusy = false;
@@ -179,10 +179,8 @@ namespace InsuranceSales.ViewModels.Policy
         {
             IsBusy = true;
 
-            // HIDE DYNAMIC ENTRIES
-            // SHOW CONTACT DATA ENTRIES
-            IsOnStepThree = true;
             IsOnStepTwo = false;
+            IsOnStepThree = true;
             DynamicEntriesViewModel.IsEditable = false;
 
             var person = new PersonModel
@@ -192,13 +190,14 @@ namespace InsuranceSales.ViewModels.Policy
                 TaxId = TaxId,
             };
 
-            var request = new { };
+            var request = new { Person = person };
             var result = await _networkManager.SendOfferAsync(request);
             Debug.WriteLine(result.ToString());
 
-            IsBusy = false;
+            var policyId = Guid.NewGuid(); // TODO: get policyId from result
+            await Shell.Current.GoToAsync($"/Policy/Details?policyId={policyId}");
 
-            await Task.CompletedTask;
+            IsBusy = false;
         }
     }
 }

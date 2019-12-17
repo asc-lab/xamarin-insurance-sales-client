@@ -7,27 +7,31 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="Shell">
-        <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}" />
-        <Setter Property="ForegroundColor" Value="{StaticResource CompanyHeaderColor}" />
-        <Setter Property="TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
-        <Setter Property="TabBarForegroundColor" Value="{StaticResource CompanyHeaderColor}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryLight}" />
+        <Setter Property="ForegroundColor" Value="{StaticResource PrimaryText}" />
+        <Setter Property="TabBarBackgroundColor" Value="{StaticResource PrimaryLight}" />
+        <Setter Property="TabBarForegroundColor" Value="{StaticResource PrimaryText}" />
+    </Style>
+
+    <Style TargetType="NavigationPage">
+        <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryLight}" />
     </Style>
 
     <Style TargetType="Label">
-        <Setter Property="TextColor" Value="{StaticResource CompanyHeaderColor}" />
+        <Setter Property="TextColor" Value="{StaticResource PrimaryText}" />
     </Style>
 
     <Style TargetType="Button">
-        <Setter Property="BackgroundColor" Value="{StaticResource ButtonBackgroundColor}" />
-        <Setter Property="TextColor" Value="{StaticResource ContentTextColor}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+        <Setter Property="TextColor" Value="{StaticResource BackgroundColor}" />
     </Style>
 
     <Style TargetType="Entry">
-        <Setter Property="PlaceholderColor" Value="{StaticResource PlaceholderTextColor}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource Divider}" />
     </Style>
 
     <Style TargetType="ActivityIndicator">
-        <Setter Property="Color" Value="{StaticResource CompanyLogoColor}" />
+        <Setter Property="Color" Value="{StaticResource Primary}" />
         <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
         <Setter Property="VerticalOptions" Value="CenterAndExpand" />
     </Style>
@@ -35,16 +39,16 @@
     <Style x:Key="CompanyHeaderStyle" TargetType="Label">
         <Setter Property="VerticalTextAlignment" Value="Center" />
         <Setter Property="FontSize" Value="Large" />
-        <Setter Property="TextColor" Value="{StaticResource CompanyHeaderColor}" />
+        <Setter Property="TextColor" Value="{StaticResource SecondaryText}" />
     </Style>
 
     <Style x:Key="TitleStyle" TargetType="Label">
         <Setter Property="FontSize" Value="{OnPlatform iOS=Header, Android=Medium}" />
-        <Setter Property="TextColor" Value="White" />
+        <Setter Property="TextColor" Value="{StaticResource BackgroundColor}" />
     </Style>
 
     <Style x:Key="DescriptionStyle" TargetType="Label">
         <Setter Property="FontSize" Value="Large" />
-        <Setter Property="TextColor" Value="White" />
+        <Setter Property="TextColor" Value="{StaticResource BackgroundColor}" />
     </Style>
 </ResourceDictionary>

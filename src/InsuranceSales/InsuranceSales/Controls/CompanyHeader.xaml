@@ -7,11 +7,14 @@
                  HorizontalOptions="CenterAndExpand" 
                  Margin="0, 10, 0, 10">
         
-        <BoxView HeightRequest="40" WidthRequest="40" Color="{StaticResource CompanyLogoColor}" />
+        <BoxView HeightRequest="40" 
+                 WidthRequest="40" 
+                 Color="{StaticResource Primary}" />
         
-        <BoxView WidthRequest="1" Color="{StaticResource SeparatorLineColor}" />
+        <BoxView WidthRequest="1" Color="{StaticResource Divider}" />
         
-        <Label Text="An Insurance Company" Style="{StaticResource CompanyHeaderStyle}"/>
+        <Label Text="An Insurance Company" 
+               Style="{StaticResource CompanyHeaderStyle}"/>
         
     </StackLayout>
 </ContentView>

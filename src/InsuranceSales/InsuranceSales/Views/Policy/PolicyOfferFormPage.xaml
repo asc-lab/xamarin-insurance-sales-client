@@ -36,16 +36,19 @@
                 </Grid.ColumnDefinitions>
 
                 <ScrollView Grid.Row="0">
+                    <!-- STEP ONE: Input data for offer -->
+                    <!-- STEP TWO: Check the price, "Buy now" goes to step three, "Change Parameters" goes back to step one -->
+                    <!-- STEP THREE: Input the policy holder data -->
                     <StackLayout>
-                        <StackLayout>
+                        <StackLayout IsVisible="{Binding IsOnStepThree, Converter={converters:NegativeBooleanConverter}}">
 
                             <Label Text="{Static resources:Labels.From}" FontSize="Small" />
                             <DatePicker x:Name="PolicyFromPicker" DateSelected="PolicyFromPicker_OnDateSelected"
-                                        IsEnabled="{Binding IsOnStepThree, Converter={converters:NegativeBooleanConverter}}" />
+                                        IsEnabled="{Binding IsOnStepTwo, Converter={converters:NegativeBooleanConverter}}" />
 
                             <Label Text="{Static resources:Labels.To}" FontSize="Small" />
                             <DatePicker x:Name="PolicyToPicker" DateSelected="PolicyToPicker_OnDateSelected"
-                                        IsEnabled="{Binding IsOnStepThree, Converter={converters:NegativeBooleanConverter}}" />
+                                        IsEnabled="{Binding IsOnStepTwo, Converter={converters:NegativeBooleanConverter}}" />
 
                             <controls:DynamicEntriesView x:Name="DynamicEntries" x:DataType="{x:Null}"
                                                          BindingContext="{Binding DynamicEntriesViewModel}" 
@@ -54,16 +57,16 @@
                         </StackLayout>
 
                         <!-- PERSON INFO -->
-                        <StackLayout IsVisible="{Binding IsOnStepThree, Converter={converters:NegativeBooleanConverter}}">
+                        <StackLayout IsVisible="{Binding IsOnStepThree}">
 
                             <Entry x:Name="PersonName" Text="{Binding FirstName}" 
-                                   IsEnabled="{Binding IsOnStepTwo}" />
+                                   IsEnabled="{Binding IsOnStepThree}" />
 
                             <Entry x:Name="PersonSurname" Text="{Binding LastName}" 
-                                   IsEnabled="{Binding IsOnStepTwo}" />
+                                   IsEnabled="{Binding IsOnStepThree}" />
 
                             <Entry x:Name="TaxId" Text="{Binding TaxId}"
-                                   IsEnabled="{Binding IsOnStepTwo}" />
+                                   IsEnabled="{Binding IsOnStepThree}" />
 
                         </StackLayout>
                         <!-- END PERSON INFO -->
@@ -71,11 +74,11 @@
                 </ScrollView>
 
                 <!-- BUTTONS -->
-                <StackLayout Grid.Row="1" HorizontalOptions="CenterAndExpand">
+                <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand">
 
-                    <BoxView Color="{StaticResource CompanyLogoColor}"
+                    <BoxView Color="{StaticResource Divider}"
                              IsVisible="{Binding IsOnStepTwo}" 
-                             HeightRequest="5" HorizontalOptions="FillAndExpand" />
+                             HeightRequest="2" HorizontalOptions="FillAndExpand" />
 
                     <StackLayout IsVisible="{Binding IsOnStepTwo}">
 
