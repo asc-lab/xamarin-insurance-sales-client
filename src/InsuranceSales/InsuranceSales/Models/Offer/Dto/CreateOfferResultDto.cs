@@ -2,7 +2,7 @@
 
 namespace InsuranceSales.Models.Offer.Dto
 {
-    public class CreateOfferResult
+    public class CreateOfferResultDto
     {
         public string OfferNumber { get; set; }
         public decimal TotalPrice { get; set; }

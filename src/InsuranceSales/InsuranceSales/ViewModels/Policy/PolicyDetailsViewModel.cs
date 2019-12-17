@@ -2,7 +2,9 @@
 using InsuranceSales.Models.Policy;
 using InsuranceSales.Services;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using InsuranceSales.Models.Product;
 using Xamarin.Forms;
 
 namespace InsuranceSales.ViewModels.Policy
@@ -34,6 +36,12 @@ namespace InsuranceSales.ViewModels.Policy
 
         private decimal _premiumAmount;
         public decimal PremiumAmount { get => _premiumAmount; set => SetProperty(ref _premiumAmount, value); }
+
+        private IEnumerable<string> _covers;
+        public IEnumerable<string> Covers { get => _covers; set => SetProperty(ref _covers, value); }
+
+        private string _accountNumber;
+        public string AccountNumber { get => _accountNumber; set => SetProperty(ref _accountNumber, value); }
         #endregion
 
         /// <summary>
@@ -47,20 +55,26 @@ namespace InsuranceSales.ViewModels.Policy
             _networkManager = networkManager;
         }
 
-        public PolicyDetailsViewModel()
-        : this(
+        public PolicyDetailsViewModel() : this(
             DependencyService.Resolve<IAuthenticationService>(),
             App.NetworkManager)
         { }
 
-        public override Task InitializeAsync()
+        public override async Task InitializeAsync()
         {
-            var policy = _networkManager.GetPolicyByNumberAsync(PolicyNumber);
+            var policy = await _networkManager.GetPolicyByNumberAsync(PolicyNumber);
+
             Policy = policy;
             PolicyNumber = policy.Number;
+            Holder = policy.PolicyHolder;
+            AccountNumber = policy.AccountNumber;
+            Covers = policy.Covers;
+            StartDate = policy.DateFrom;
+            EndDate = policy.DateTo;
+            ProductCode = policy.ProductCode;
+            PremiumAmount = policy.TotalPremium;
 
-
-            return base.InitializeAsync();
+            await base.InitializeAsync();
         }
     }
 }

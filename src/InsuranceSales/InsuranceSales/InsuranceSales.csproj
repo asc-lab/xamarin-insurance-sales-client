@@ -89,7 +89,4 @@
       <Generator>MSBuild:Compile</Generator>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Policy\Dto\" />
-  </ItemGroup>
 </Project>

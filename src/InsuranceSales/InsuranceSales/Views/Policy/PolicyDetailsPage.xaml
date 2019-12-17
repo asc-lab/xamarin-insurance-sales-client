@@ -43,6 +43,8 @@
 
                         <Label Text="{Binding PremiumAmount}" />
 
+                        <controls:CoverTableView BindingContext="{Binding Covers}" />
+
                     </StackLayout>
                 </ScrollView>
             </Grid>

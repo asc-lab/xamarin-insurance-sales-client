@@ -2,12 +2,12 @@
 using InsuranceSales.Models.Offer;
 using InsuranceSales.Models.Offer.Dto;
 using InsuranceSales.Models.Policy;
+using InsuranceSales.Models.Policy.Dto;
 using InsuranceSales.Models.Product;
 using InsuranceSales.Services;
 using InsuranceSales.ViewModels.Controls;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
@@ -63,8 +63,8 @@ namespace InsuranceSales.ViewModels.Policy
         private bool _isOnStepTwo;
         public bool IsOnStepTwo { get => _isOnStepTwo; set => SetProperty(ref _isOnStepTwo, value); }
 
-        private CreateOfferResult _offer;
-        public CreateOfferResult Offer { get => _offer; set => SetProperty(ref _offer, value); }
+        private CreateOfferResultDto _offer;
+        public CreateOfferResultDto Offer { get => _offer; set => SetProperty(ref _offer, value); }
 
         //! STEP 3
         private bool _isOnStepThree;
@@ -81,17 +81,17 @@ namespace InsuranceSales.ViewModels.Policy
         public string TaxId { get => _taxId; set => SetProperty(ref _taxId, value); }
 
         // Address
-        //private string _country = string.Empty;
-        //public string Country { get => _country; set => SetProperty(ref _country, value); }
+        private string _country = string.Empty;
+        public string Country { get => _country; set => SetProperty(ref _country, value); }
 
-        //private string _zipCode = string.Empty;
-        //public string ZipCode { get => _zipCode; set => SetProperty(ref _zipCode, value); }
+        private string _zipCode = string.Empty;
+        public string ZipCode { get => _zipCode; set => SetProperty(ref _zipCode, value); }
 
-        //private string _city = string.Empty;
-        //public string City { get => _city; set => SetProperty(ref _city, value); }
+        private string _city = string.Empty;
+        public string City { get => _city; set => SetProperty(ref _city, value); }
 
-        //private string _street = string.Empty;
-        //public string Street { get => _street; set => SetProperty(ref _street, value); }
+        private string _street = string.Empty;
+        public string Street { get => _street; set => SetProperty(ref _street, value); }
         #endregion
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace InsuranceSales.ViewModels.Policy
 
             var answers = entryAnswers?.Select(MapQuestionsToAnswers);
             var covers = Covers?.Select(c => c.Code);
-            var offerDto = new CreateOfferRequest
+            var request = new CreateOfferRequestDto
             {
                 ProductCode = ProductCode,
                 PolicyFrom = ProductFrom,
@@ -151,10 +151,10 @@ namespace InsuranceSales.ViewModels.Policy
                 SelectedCovers = covers,
                 Answers = answers,
             };
-            var offer = await _networkManager.GetPolicyPricesAsync(offerDto);
-            if (offer != null)
+            var result = await _networkManager.CreateOfferAsync(request);
+            if (result != null)
             {
-                Offer = offer;
+                Offer = result;
                 IsOnStepTwo = true;
             }
             IsBusy = false;
@@ -183,19 +183,30 @@ namespace InsuranceSales.ViewModels.Policy
             IsOnStepThree = true;
             DynamicEntriesViewModel.IsEditable = false;
 
-            var person = new PersonModel
+            var policyHolder = new PersonModel
             {
                 FirstName = FirstName,
                 LastName = LastName,
                 TaxId = TaxId,
             };
+            var holderAddress = new AddressModel
+            {
+                City = City,
+                Country = Country,
+                Street = Street,
+                ZipCode = ZipCode,
+            };
 
-            var request = new { Person = person };
-            var result = await _networkManager.SendOfferAsync(request);
-            Debug.WriteLine(result.ToString());
+            var request = new CreatePolicyRequestDto
+            {
+                OfferNumber = Offer.OfferNumber,
+                PolicyHolder = policyHolder,
+                PolicyHolderAddress = holderAddress,
 
-            var policyNumber = Guid.NewGuid(); // TODO: get policyId from result
-            await Shell.Current.GoToAsync($"/Policy/Details?policyNumber={policyNumber}");
+            };
+            var result = await _networkManager.CreatePolicyAsync(request, ""); //! TODO
+
+            await Shell.Current.GoToAsync($"/Policy/Details?policyNumber={result.PolicyNumber}");
 
             IsBusy = false;
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace InsuranceSales.Models.Offer.Dto
 {
-    public class CreateOfferRequest
+    public class CreateOfferRequestDto
     {
         public string ProductCode { get; set; }
 

@@ -1,5 +1,6 @@
 ﻿using InsuranceSales.Models.Offer.Dto;
 using InsuranceSales.Models.Policy;
+using InsuranceSales.Models.Policy.Dto;
 using Refit;
 using System.Threading.Tasks;
 
@@ -7,13 +8,13 @@ namespace InsuranceSales.Interfaces
 {
     public interface IPolicyService
     {
-        [Post("/offers")]
-        Task<CreateOfferResult> GetPolicyPricesAsync([Body]CreateOfferRequest request);
+        [Post("/offer")]
+        Task<CreateOfferResultDto> CreateOfferAsync([Body]CreateOfferRequestDto request, [Header("AgentLogin")]string agentLogin);
 
-        [Post("/offers/{test}")]
-        Task<object> SendOffer([Body]object request);
+        [Post("/policy")]
+        Task<CreatePolicyResultDto> CreatePolicyAsync([Body]CreatePolicyRequestDto request, [Header("AgentLogin")]string agentLogin);
 
-        [Get("/policies/{policyNumber}")]
+        [Get("/policy/{policyNumber}")]
         Task<PolicyModel> GetPolicyByNumberAsync(string policyNumber);
     }
 }

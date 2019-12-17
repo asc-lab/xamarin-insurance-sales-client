@@ -1,6 +1,8 @@
 ﻿using HttpTracer;
 using InsuranceSales.Interfaces;
 using InsuranceSales.Models.Offer.Dto;
+using InsuranceSales.Models.Policy;
+using InsuranceSales.Models.Policy.Dto;
 using InsuranceSales.Models.Product;
 using Refit;
 using System.Collections.Generic;
@@ -21,6 +23,7 @@ namespace InsuranceSales.Services
         public NetworkManager()
         {
             HttpClient.BaseAddress = AppSettings.BackendUrl;
+
             _productService = AppSettings.UseMockDataService
                 ? DependencyService.Resolve<IProductService>()
                 : RestService.For<IProductService>(HttpClient);
@@ -32,12 +35,12 @@ namespace InsuranceSales.Services
 
         public Task<IEnumerable<ProductModel>> GetProductsAsync() => _productService.FetchAsync();
 
-        public Task<ProductModel> GetProductByCodeAsync(string productId) => _productService.GetByCodeAsync(productId);
+        public Task<ProductModel> GetProductByCodeAsync(string productCode) => _productService.GetByCodeAsync(productCode);
 
-        public Task<CreateOfferResult> GetPolicyByNumberAsync(string policyNumber) => _policyService.GetPolicyByNumberAsync(policyNumber);
+        public Task<PolicyModel> GetPolicyByNumberAsync(string policyNumber) => _policyService.GetPolicyByNumberAsync(policyNumber);
 
-        public Task<CreateOfferResult> GetPolicyPricesAsync(CreateOfferRequest newOffer) => _policyService.GetPolicyPricesAsync(newOffer);
+        public Task<CreateOfferResultDto> CreateOfferAsync(CreateOfferRequestDto request, string agentLogin) => _policyService.CreateOfferAsync(request, agentLogin);
 
-        public Task<object> SendOfferAsync(object request) => _policyService.SendOffer(request);
+        public Task<CreatePolicyResultDto> CreatePolicyAsync(CreatePolicyRequestDto request, string agentLogin) => _policyService.CreatePolicyAsync(request, agentLogin);
     }
 }
