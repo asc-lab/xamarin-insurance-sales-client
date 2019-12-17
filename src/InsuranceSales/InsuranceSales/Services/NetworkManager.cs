@@ -14,7 +14,7 @@ namespace InsuranceSales.Services
     {
         #region SERVICES
         private static readonly HttpClient HttpClient = new HttpClient(new HttpTracerHandler());
-        private readonly IOfferService _offerService;
+        private readonly IPolicyService _policyService;
         private readonly IProductService _productService;
         #endregion
 
@@ -25,17 +25,19 @@ namespace InsuranceSales.Services
                 ? DependencyService.Resolve<IProductService>()
                 : RestService.For<IProductService>(HttpClient);
 
-            _offerService = AppSettings.UseMockDataService
-                ? DependencyService.Resolve<IOfferService>()
-                : RestService.For<IOfferService>(HttpClient);
+            _policyService = AppSettings.UseMockDataService
+                ? DependencyService.Resolve<IPolicyService>()
+                : RestService.For<IPolicyService>(HttpClient);
         }
 
         public Task<IEnumerable<ProductModel>> GetProductsAsync() => _productService.FetchAsync();
 
         public Task<ProductModel> GetProductByCodeAsync(string productId) => _productService.GetByCodeAsync(productId);
 
-        public Task<CreateOfferResult> GetPolicyPricesAsync(CreateOfferRequest newOffer) => _offerService.GetPolicyPricesAsync(newOffer);
+        public Task<CreateOfferResult> GetPolicyByNumberAsync(string policyNumber) => _policyService.GetPolicyByNumberAsync(policyNumber);
 
-        public Task<object> SendOfferAsync(object request) => _offerService.SendOffer(request);
+        public Task<CreateOfferResult> GetPolicyPricesAsync(CreateOfferRequest newOffer) => _policyService.GetPolicyPricesAsync(newOffer);
+
+        public Task<object> SendOfferAsync(object request) => _policyService.SendOffer(request);
     }
 }

@@ -10,14 +10,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:DataType="vm:PolicyDetailsViewModel"
     x:Class="InsuranceSales.Views.Policy.PolicyDetailsPage"
-    mc:Ignorable="d"
-    Visual="Material">
+    mc:Ignorable="d" Visual="Material"
+    Title="{Binding PolicyNumber}">
     <views:ContentPageBase.BindingContext>
         <vm:PolicyDetailsViewModel />
     </views:ContentPageBase.BindingContext>
     <views:ContentPageBase.Content>
         <StackLayout>
-            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
+            <ActivityIndicator IsVisible="{Binding IsBusy}" 
+                               IsRunning="{Binding IsBusy}" />
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -27,18 +28,23 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Label Text="{Binding PolicyNumber}" />
+                <ScrollView>
+                    <StackLayout>
 
-                <Label Text="{Binding PolicyHolder}" />
+                        <Label Text="{Binding PolicyNumber}" />
 
-                <Label Text="{Binding ProductCode}" />
+                        <Label Text="{Binding ProductCode}" />
 
-                <Label Text="{Binding PremiumAmount}" />
+                        <Label Text="{Binding Holder}" />
 
-                <Label Text="{Binding PolicyStartDate}" />
+                        <Label Text="{Binding StartDate}" />
 
-                <Label Text="{Binding PolicyEndDate}" />
+                        <Label Text="{Binding EndDate}" />
 
+                        <Label Text="{Binding PremiumAmount}" />
+
+                    </StackLayout>
+                </ScrollView>
             </Grid>
         </StackLayout>
     </views:ContentPageBase.Content>

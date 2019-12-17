@@ -24,7 +24,7 @@ namespace InsuranceSales
                 if (AppSettings.UseMockDataService)
                 {
                     DependencyService.Register<IProductService, MockProductService>();
-                    DependencyService.Register<IOfferService, MockOfferService>();
+                    DependencyService.Register<IPolicyService, MockPolicyService>();
                 }
                 DependencyService.Register<IDialogService, DialogService>();
 

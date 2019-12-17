@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InsuranceSales.Services
 {
-    public class MockOfferService : IOfferService
+    public class MockPolicyService : IPolicyService
     {
         public Task<CreateOfferResult> GetPolicyPricesAsync(CreateOfferRequest request)
         {

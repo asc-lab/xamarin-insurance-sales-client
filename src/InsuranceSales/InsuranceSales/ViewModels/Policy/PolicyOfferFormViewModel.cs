@@ -194,8 +194,8 @@ namespace InsuranceSales.ViewModels.Policy
             var result = await _networkManager.SendOfferAsync(request);
             Debug.WriteLine(result.ToString());
 
-            var policyId = Guid.NewGuid(); // TODO: get policyId from result
-            await Shell.Current.GoToAsync($"/Policy/Details?policyId={policyId}");
+            var policyNumber = Guid.NewGuid(); // TODO: get policyId from result
+            await Shell.Current.GoToAsync($"/Policy/Details?policyNumber={policyNumber}");
 
             IsBusy = false;
         }
