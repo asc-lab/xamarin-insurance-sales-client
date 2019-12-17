@@ -23,12 +23,13 @@
 
     </views:ContentPageBase.Resources>
     <views:ContentPageBase.Content>
-        <StackLayout>
-            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+            <ActivityIndicator IsVisible="{Binding IsBusy}" 
+                               IsRunning="{Binding IsBusy}" />
 
             <Grid IsVisible="{Binding IsNotBusy}">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -74,7 +75,7 @@
                 </ScrollView>
 
                 <!-- BUTTONS -->
-                <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand">
+                <StackLayout Grid.Row="1">
 
                     <BoxView Color="{StaticResource Divider}"
                              IsVisible="{Binding IsOnStepTwo}" 
@@ -84,23 +85,26 @@
 
                         <Label Text="{Static resources:Labels.TotalPrice}" FontSize="Subtitle" />
 
-                        <Label Text="{Binding Offer.TotalPrice}" FontSize="Subtitle" />
+                        <Label Text="{Binding Offer.TotalPrice}" FontSize="Title" HorizontalTextAlignment="Center" />
 
                     </StackLayout>
 
                     <Button Text="{Static resources:Labels.Order}" Clicked="Order_OnClicked"
                             IsEnabled="{Binding IsOnStepTwo, Converter={converters:NegativeBooleanConverter}}" 
-                            HorizontalOptions="FillAndExpand" />
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="EndAndExpand" />
 
                     <Button Text="{Static resources:Labels.ChangeParameters}" Command="{Binding ChangeParametersCommand}"
                             IsEnabled="{Binding IsOnStepTwo}" 
                             IsVisible="{Binding IsOnStepTwo}" 
-                            HorizontalOptions="FillAndExpand" />
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="EndAndExpand" />
 
                     <Button Text="{Static resources:Labels.BuyNow}" Command="{Binding BuyNowCommand}"
                             IsEnabled="{Binding IsOnStepTwo}"
                             IsVisible="{Binding IsOnStepTwo}"
-                            HorizontalOptions="FillAndExpand" />
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="EndAndExpand" />
 
                 </StackLayout>
                 <!-- END BUTTONS -->

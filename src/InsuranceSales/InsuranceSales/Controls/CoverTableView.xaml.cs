@@ -10,7 +10,7 @@ namespace InsuranceSales.Controls
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CoverTableView
     {
-        private static readonly ColorsDictionary ColorsDictionary = new ColorsDictionary();
+        private readonly ColorsDictionary _colorsDictionary = new ColorsDictionary();
 
         public CoverTableView() => InitializeComponent();
 
@@ -19,8 +19,8 @@ namespace InsuranceSales.Controls
             if (!(BindingContext is IList<CoverModel> covers))
                 return;
 
-            var color1 = (Color)ColorsDictionary["BackgroundColor"];
-            var color2 = (Color)ColorsDictionary["PrimaryLight"];
+            var color1 = (Color)_colorsDictionary["BackgroundColor"];
+            var color2 = (Color)_colorsDictionary["PrimaryLight"];
             for (var i = 0; i < covers.Count; i++)
             {
                 var index = i + 1;

@@ -6,15 +6,16 @@
         <ResourceDictionary Source="./ColorsDictionary.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="Shell">
-        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryLight}" />
-        <Setter Property="ForegroundColor" Value="{StaticResource PrimaryText}" />
-        <Setter Property="TabBarBackgroundColor" Value="{StaticResource PrimaryLight}" />
-        <Setter Property="TabBarForegroundColor" Value="{StaticResource PrimaryText}" />
-    </Style>
-
-    <Style TargetType="NavigationPage">
-        <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryLight}" />
+    <Style TargetType="Shell" ApplyToDerivedTypes="True">
+        <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+        <Setter Property="ForegroundColor" Value="{StaticResource BackgroundColor}" />
+        <Setter Property="TabBarBackgroundColor" Value="{StaticResource Primary}" />
+        <Setter Property="TabBarForegroundColor" Value="{StaticResource BackgroundColor}" />
+        <Setter Property="TitleColor" Value="{StaticResource BackgroundColor}" />
+        <Setter Property="DisabledColor" Value="{StaticResource Divider}" />
+        <Setter Property="UnselectedColor" Value="{StaticResource SecondaryText}" />
+        <Setter Property="TabBarUnselectedColor" Value="{StaticResource PrimaryLight}"/>
+        <Setter Property="TabBarTitleColor" Value="{StaticResource PrimaryText}"/>
     </Style>
 
     <Style TargetType="Label">
@@ -27,7 +28,22 @@
     </Style>
 
     <Style TargetType="Entry">
-        <Setter Property="PlaceholderColor" Value="{StaticResource Divider}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource SecondaryText}" />
+        <Setter Property="TextColor" Value="{StaticResource PrimaryText}" />
+    </Style>
+
+    <Style TargetType="Picker">
+        <Setter Property="TitleColor" Value="{StaticResource PrimaryText}" />
+    </Style>
+
+    <Style TargetType="Slider">
+        <Setter Property="ThumbColor" Value="{StaticResource Primary}" />
+        <Setter Property="MinimumTrackColor" Value="{StaticResource Primary}" />
+        <Setter Property="MaximumTrackColor" Value="{StaticResource PrimaryLight}" />
+    </Style>
+
+    <Style TargetType="DatePicker">
+        <Setter Property="TextColor" Value="{StaticResource PrimaryText}" />
     </Style>
 
     <Style TargetType="ActivityIndicator">

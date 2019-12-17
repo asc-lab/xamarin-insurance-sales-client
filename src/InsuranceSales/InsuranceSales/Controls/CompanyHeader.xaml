@@ -9,7 +9,7 @@
         
         <BoxView HeightRequest="40" 
                  WidthRequest="40" 
-                 Color="{StaticResource Primary}" />
+                 Color="{StaticResource Accent}" />
         
         <BoxView WidthRequest="1" Color="{StaticResource Divider}" />
         

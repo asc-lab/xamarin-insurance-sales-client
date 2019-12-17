@@ -18,6 +18,9 @@ namespace InsuranceSales.ViewModels.Controls
         private QuestionModel _question;
         public QuestionModel Question { get => _question; set => SetProperty(ref _question, value); }
 
+        private double _sliderMaxValue = Math.Pow(2, 10);
+        public double SliderMaxValue { get => _sliderMaxValue; set => SetProperty(ref _sliderMaxValue, value); }
+
         private string _code = string.Empty;
         public string Code { get => _code; set => SetProperty(ref _code, value); }
 

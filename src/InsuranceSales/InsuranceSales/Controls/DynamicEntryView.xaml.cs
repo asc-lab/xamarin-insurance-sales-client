@@ -13,11 +13,7 @@ namespace InsuranceSales.Controls
     public partial class DynamicEntryView
     {
         #region SERVICES
-        private readonly IValueConverter _stringToIntConverter = new IntToStringConverter();
-        #endregion
-
-        #region PROPS
-        private static readonly double SliderMaxValue = Math.Pow(2, 20);
+        private readonly IValueConverter _intToStringConverter = new IntToStringConverter();
         #endregion
 
         public DynamicEntryView() => InitializeComponent();
@@ -37,17 +33,17 @@ namespace InsuranceSales.Controls
                     picker.SetBinding(Picker.TitleProperty, nameof(vm.Placeholder));
                     picker.SetBinding(Picker.ItemsSourceProperty, nameof(vm.Choices));
                     picker.SetBinding(IsEnabledProperty, nameof(vm.IsEditable));
+
                     EntryLayout.Children.Add(picker);
                     break;
                 case QuestionTypeEnum.Numeric:
-                    var slider = new Slider(0, SliderMaxValue, 0);
+                    var slider = new Slider(0, vm.SliderMaxValue, 0);
                     slider.SetBinding(Slider.ValueProperty, nameof(vm.SelectedValue), BindingMode.TwoWay);
                     slider.SetBinding(IsEnabledProperty, nameof(vm.IsEditable));
 
                     var numericEntry = new Entry { Keyboard = Keyboard.Numeric };
                     numericEntry.SetBinding(Entry.PlaceholderProperty, nameof(vm.Placeholder));
-                    numericEntry.SetBinding(Entry.TextProperty, nameof(vm.SelectedValue), BindingMode.TwoWay, _stringToIntConverter);
-                    slider.SetBinding(IsEnabledProperty, nameof(vm.IsEditable));
+                    numericEntry.SetBinding(Entry.TextProperty, nameof(vm.SelectedValue), BindingMode.TwoWay, _intToStringConverter);
 
                     EntryLayout.Children.Add(numericEntry);
                     EntryLayout.Children.Add(slider);
@@ -60,7 +56,7 @@ namespace InsuranceSales.Controls
                     EntryLayout.Children.Add(textEntry);
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(Type));
+                    throw new ArgumentOutOfRangeException(nameof(vm.Type));
             }
             base.OnBindingContextChanged();
         }

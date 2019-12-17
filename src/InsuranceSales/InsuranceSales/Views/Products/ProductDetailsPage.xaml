@@ -11,20 +11,17 @@
     x:DataType="vm:ProductDetailsViewModel"
     x:Class="InsuranceSales.Views.Products.ProductDetailsPage"
     x:TypeArguments="vm:ProductDetailsViewModel"
-    mc:Ignorable="d" 
-    Shell.NavBarIsVisible="False"
-    Visual="Material"
+    mc:Ignorable="d" Visual="Material"
     Title="{Binding Name}">
     <views:ContentPageBase.BindingContext>
         <vm:ProductDetailsViewModel />
     </views:ContentPageBase.BindingContext>
     <views:ContentPageBase.Content>
-        <StackLayout>
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
             <ActivityIndicator IsVisible="{Binding IsBusy}"
                                IsRunning="{Binding IsBusy}" />
 
             <ScrollView>
-                <StackLayout>
                     <Grid IsVisible="{Binding IsNotBusy}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="200" />
@@ -52,12 +49,13 @@
                                                  Grid.Row="3" />
 
                     </Grid>
-
-                    <Button Text="{x:Static resources:Labels.BuyNow}"
-                            Command="{Binding CreateOfferCommand}" />
-
-                </StackLayout>
             </ScrollView>
+            <StackLayout>
+
+            <Button Text="{x:Static resources:Labels.BuyNow}"
+                    Command="{Binding CreateOfferCommand}" />
+
+            </StackLayout>
         </StackLayout>
     </views:ContentPageBase.Content>
 </views:ContentPageBase>
