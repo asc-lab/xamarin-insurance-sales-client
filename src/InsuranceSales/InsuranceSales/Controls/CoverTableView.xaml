@@ -7,9 +7,9 @@
              x:Class="InsuranceSales.Controls.CoverTableView" 
              mc:Ignorable="d" Visual="Material">
     <ContentView.Content>
-        <Grid x:Name="CoverTableGrid" RowSpacing="5" ColumnSpacing="1">
+        <Grid x:Name="CoverTableGrid" RowSpacing="0" ColumnSpacing="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.1*" />
+                <ColumnDefinition Width="0.15*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>

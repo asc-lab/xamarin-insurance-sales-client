@@ -47,10 +47,10 @@ namespace InsuranceSales.ViewModels.Policy
         private string _productName = string.Empty;
         public string ProductName { get => _productName; set => SetProperty(ref _productName, value); }
 
-        private DateTime _productFrom;
+        private DateTime _productFrom = DateTime.Today;
         public DateTime ProductFrom { get => _productFrom; set => SetProperty(ref _productFrom, value); }
 
-        private DateTime _productTo;
+        private DateTime _productTo = DateTime.Today.AddDays(1);
         public DateTime ProductTo { get => _productTo; set => SetProperty(ref _productTo, value); }
 
         private IList<QuestionModel> _questions;
@@ -204,7 +204,7 @@ namespace InsuranceSales.ViewModels.Policy
                 PolicyHolderAddress = holderAddress,
 
             };
-            var result = await _networkManager.CreatePolicyAsync(request, ""); //! TODO
+            var result = await _networkManager.CreatePolicyAsync(request);
 
             await Shell.Current.GoToAsync($"/Policy/Details?policyNumber={result.PolicyNumber}");
 

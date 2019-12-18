@@ -6,6 +6,7 @@
     xmlns:vm="clr-namespace:InsuranceSales.ViewModels.Policy;assembly=InsuranceSales"
     xmlns:views="clr-namespace:InsuranceSales.Views"
     xmlns:controls="clr-namespace:InsuranceSales.Controls"
+    xmlns:resources="clr-namespace:InsuranceSales.i18n;assembly=InsuranceSales.i18n"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:DataType="vm:PolicyDetailsViewModel"
@@ -20,7 +21,7 @@
             <ActivityIndicator IsVisible="{Binding IsBusy}" 
                                IsRunning="{Binding IsBusy}" />
 
-            <Grid>
+            <Grid VerticalOptions="CenterAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
@@ -29,22 +30,72 @@
                 </Grid.ColumnDefinitions>
 
                 <ScrollView>
-                    <StackLayout>
+                    <StackLayout Padding="10" Spacing="20">
+                        <StackLayout>
 
-                        <Label Text="{Binding PolicyNumber}" />
+                            <Label Text="{Static resources:Labels.ProductCode}" FontSize="Subtitle" 
+                                   TextColor="{StaticResource Divider}" />
 
-                        <Label Text="{Binding ProductCode}" />
+                            <Label Text="{Binding ProductCode}" FontSize="Title" 
+                                   HorizontalTextAlignment="Center" />
 
-                        <Label Text="{Binding Holder}" />
+                        </StackLayout>
+                        <BoxView Color="{StaticResource Divider}" HeightRequest=".5" />
+                        <StackLayout>
 
-                        <Label Text="{Binding StartDate}" />
+                            <Label Text="{Static resources:Labels.PolicyHolder}" FontSize="Subtitle" 
+                                   TextColor="{StaticResource Divider}" />
 
-                        <Label Text="{Binding EndDate}" />
+                            <Label Text="{Binding Holder}" FontSize="Title" 
+                                   HorizontalTextAlignment="Center" />
 
-                        <Label Text="{Binding PremiumAmount}" />
+                        </StackLayout>
+                        <BoxView Color="{StaticResource Divider}" HeightRequest=".5" />
+                        <StackLayout>
 
-                        <controls:CoverTableView BindingContext="{Binding Covers}" />
+                            <Label Text="{x:Static resources:Labels.PolicyStartDate}" FontSize="Subtitle" 
+                                   TextColor="{StaticResource Divider}" />
 
+                            <Label Text="{Binding StartDate, StringFormat='{0:d.MM.yyyy}'}" FontSize="Title" 
+                                   HorizontalTextAlignment="Center" />
+
+                        </StackLayout>
+                        <BoxView Color="{StaticResource Divider}" HeightRequest=".5" />
+                        <StackLayout>
+
+                            <Label Text="{x:Static resources:Labels.PolicyEndDate}" FontSize="Subtitle" 
+                                   TextColor="{StaticResource Divider}" />
+
+                            <Label Text="{Binding EndDate, StringFormat='{0:d.MM.yyyy}'}" FontSize="Title"
+                                   HorizontalTextAlignment="Center" />
+
+                        </StackLayout>
+                        <BoxView Color="{StaticResource Divider}" HeightRequest=".5" />
+                        <StackLayout>
+
+                            <Label Text="{x:Static resources:Labels.PolicyPremiumAmount}" FontSize="Subtitle" 
+                                   TextColor="{StaticResource Divider}" />
+
+                            <Label Text="{Binding PremiumAmount}" FontSize="Title" 
+                                   HorizontalTextAlignment="Center" />
+
+                        </StackLayout>
+                        <BoxView Color="{StaticResource Divider}" HeightRequest=".5" />
+                        <StackLayout>
+
+                            <Label Text="{x:Static resources:Labels.PolicyCovers}" FontSize="Subtitle" 
+                                   TextColor="{StaticResource Divider}" />
+
+                            <CollectionView ItemsSource="{Binding Covers}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout>
+                                            <Label Text="{Binding .}" HorizontalTextAlignment="Center" />
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
                     </StackLayout>
                 </ScrollView>
             </Grid>

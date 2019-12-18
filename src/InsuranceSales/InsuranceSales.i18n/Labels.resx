@@ -165,4 +165,43 @@
   <data name="To" xml:space="preserve">
     <value>To</value>
   </data>
+  <data name="PolicyEndDate" xml:space="preserve">
+    <value>End date</value>
+  </data>
+  <data name="PolicyHolder" xml:space="preserve">
+    <value>Policy holder</value>
+  </data>
+  <data name="PolicyPremiumAmount" xml:space="preserve">
+    <value>Premium amount</value>
+  </data>
+  <data name="PolicyStartDate" xml:space="preserve">
+    <value>Start date</value>
+  </data>
+  <data name="ProductCode" xml:space="preserve">
+    <value>Product code</value>
+  </data>
+  <data name="PolicyCovers" xml:space="preserve">
+    <value>Policy covers</value>
+  </data>
+  <data name="PersonCity" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="PersonCountry" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="PersonFirstName" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="PersonLastName" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="PersonStreet" xml:space="preserve">
+    <value>Street</value>
+  </data>
+  <data name="PersonTaxId" xml:space="preserve">
+    <value>Tax ID</value>
+  </data>
+  <data name="PersonZipCode" xml:space="preserve">
+    <value>Zip code</value>
+  </data>
 </root>

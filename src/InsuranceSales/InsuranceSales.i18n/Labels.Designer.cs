@@ -169,6 +169,123 @@ namespace InsuranceSales.i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        public static string PersonCity {
+            get {
+                return ResourceManager.GetString("PersonCity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Country.
+        /// </summary>
+        public static string PersonCountry {
+            get {
+                return ResourceManager.GetString("PersonCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First name.
+        /// </summary>
+        public static string PersonFirstName {
+            get {
+                return ResourceManager.GetString("PersonFirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last name.
+        /// </summary>
+        public static string PersonLastName {
+            get {
+                return ResourceManager.GetString("PersonLastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Street.
+        /// </summary>
+        public static string PersonStreet {
+            get {
+                return ResourceManager.GetString("PersonStreet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax ID.
+        /// </summary>
+        public static string PersonTaxId {
+            get {
+                return ResourceManager.GetString("PersonTaxId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zip code.
+        /// </summary>
+        public static string PersonZipCode {
+            get {
+                return ResourceManager.GetString("PersonZipCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Policy covers.
+        /// </summary>
+        public static string PolicyCovers {
+            get {
+                return ResourceManager.GetString("PolicyCovers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End date.
+        /// </summary>
+        public static string PolicyEndDate {
+            get {
+                return ResourceManager.GetString("PolicyEndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Policy holder.
+        /// </summary>
+        public static string PolicyHolder {
+            get {
+                return ResourceManager.GetString("PolicyHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Premium amount.
+        /// </summary>
+        public static string PolicyPremiumAmount {
+            get {
+                return ResourceManager.GetString("PolicyPremiumAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start date.
+        /// </summary>
+        public static string PolicyStartDate {
+            get {
+                return ResourceManager.GetString("PolicyStartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product code.
+        /// </summary>
+        public static string ProductCode {
+            get {
+                return ResourceManager.GetString("ProductCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sign in.
         /// </summary>
         public static string SignIn {

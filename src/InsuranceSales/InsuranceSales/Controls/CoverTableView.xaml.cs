@@ -29,19 +29,20 @@ namespace InsuranceSales.Controls
                 var indexLabel = new Label
                 {
                     Text = index.ToString(CultureInfo.CurrentCulture),
-                    Padding = new Thickness(2),
-                    BackgroundColor = rowColor
+                    Padding = new Thickness(4, 2),
+                    BackgroundColor = rowColor, 
+                    HorizontalTextAlignment = TextAlignment.Center,
                 };
                 var nameLabel = new Label
                 {
                     Text = cover.Name,
-                    Padding = new Thickness(2),
+                    Padding = new Thickness(4, 2),
                     BackgroundColor = rowColor
                 };
                 var sumInsuredLabel = new Label
                 {
                     Text = cover.SumInsured.ToString(),
-                    Padding = new Thickness(2),
+                    Padding = new Thickness(4, 2),
                     BackgroundColor = rowColor
                 };
 

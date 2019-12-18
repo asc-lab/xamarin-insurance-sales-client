@@ -39,8 +39,10 @@ namespace InsuranceSales.Services
 
         public Task<PolicyModel> GetPolicyByNumberAsync(string policyNumber) => _policyService.GetPolicyByNumberAsync(policyNumber);
 
-        public Task<CreateOfferResultDto> CreateOfferAsync(CreateOfferRequestDto request, string agentLogin) => _policyService.CreateOfferAsync(request, agentLogin);
+        public Task<CreateOfferResultDto> CreateOfferAsync(CreateOfferRequestDto request, string agentLogin = AppSettings.AgentLogin) =>
+            _policyService.CreateOfferAsync(request, agentLogin);
 
-        public Task<CreatePolicyResultDto> CreatePolicyAsync(CreatePolicyRequestDto request, string agentLogin) => _policyService.CreatePolicyAsync(request, agentLogin);
+        public Task<CreatePolicyResultDto> CreatePolicyAsync(CreatePolicyRequestDto request, string agentLogin = AppSettings.AgentLogin) =>
+            _policyService.CreatePolicyAsync(request, agentLogin);
     }
 }

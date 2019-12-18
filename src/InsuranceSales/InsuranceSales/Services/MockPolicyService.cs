@@ -16,30 +16,34 @@ namespace InsuranceSales.Services
         {
             new PolicyModel
             {
-                Number = "",
-                PolicyHolder = "",
-                ProductCode = "",
+                Number = "08F377C4-9C15-4B84-88B6-B8DDA21831C5",
+                PolicyHolder = "Ringo Starr",
+                ProductCode = "CAR",
                 Covers = new []
                 {
-                    "",
+                    "C1",
+                    "K1",
+                    "OC"
                 },
                 DateTo = DateTime.Today.AddDays(7),
                 DateFrom = DateTime.Today.AddDays(14),
-                AccountNumber = "",
+                AccountNumber = "A26251D3-E1F9-4478-B2B0-31E78392CB4C",
                 TotalPremium = 2.30m,
-            },    
+            },
             new PolicyModel
             {
-                Number = "",
-                PolicyHolder = "",
-                ProductCode = "",
+                Number = "62F40D04-3C7F-4EEC-89D6-B8DF2CED8387",
+                PolicyHolder = "Mungo Jerry",
+                ProductCode = "FARM",
                 Covers = new []
                 {
-                    "",
+                    "C1",
+                    "C2",
+                    "C3"
                 },
                 DateTo = DateTime.Today.AddDays(7),
                 DateFrom = DateTime.Today.AddDays(14),
-                AccountNumber = "",
+                AccountNumber = "6BCCC002-7635-4141-A233-2D477AB89777",
                 TotalPremium = 2.30m,
             },
         };
@@ -50,7 +54,7 @@ namespace InsuranceSales.Services
             var result = new CreateOfferResultDto
             {
                 OfferNumber = Guid.NewGuid().ToString(),
-                TotalPrice = 21.37m,
+                TotalPrice = new Random().Next(),
                 CoversPrices = request?.SelectedCovers?.ToDictionary(k => k, _ => decimal.Parse(value, CultureInfo.CurrentCulture)),
             };
             return Task.FromResult(result);
@@ -58,13 +62,15 @@ namespace InsuranceSales.Services
 
         public Task<CreatePolicyResultDto> CreatePolicyAsync(CreatePolicyRequestDto request, string agentLogin)
         {
-            var result = new CreatePolicyResultDto { PolicyNumber = Policies?.FirstOrDefault()?.Number };
+            var index = new Random().Next(0, Policies.Count - 1);
+            var result = new CreatePolicyResultDto { PolicyNumber = Policies?.ElementAtOrDefault(index)?.Number };
             return Task.FromResult(result);
         }
 
         public Task<PolicyModel> GetPolicyByNumberAsync(string policyNumber)
         {
-            var result = Policies?.FirstOrDefault();
+            var index = new Random().Next(0, Policies.Count - 1);
+            var result = Policies?.ElementAtOrDefault(index);
             return Task.FromResult(result);
         }
     }

@@ -16,99 +16,105 @@
     Title="{Binding ProductName}">
     <views:ContentPageBase.BindingContext>
 
-        <vm:PolicyOfferFormViewModel />
+        <vm:PolicyOfferFormViewModel x:Name="ViewModel" />
 
     </views:ContentPageBase.BindingContext>
     <views:ContentPageBase.Resources>
 
     </views:ContentPageBase.Resources>
     <views:ContentPageBase.Content>
-        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout>
             <ActivityIndicator IsVisible="{Binding IsBusy}" 
                                IsRunning="{Binding IsBusy}" />
 
-            <Grid IsVisible="{Binding IsNotBusy}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+            <ScrollView>
+                <!-- STEP ONE: Input data for offer -->
+                <!-- STEP TWO: Check the price. "Buy now" goes to step three, "Change Parameters" goes back to step one -->
+                <!-- STEP THREE: Input the policy holder data -->
+                <StackLayout>
+                    <StackLayout IsVisible="{Binding IsOnStepThree, Converter={converters:NegativeBooleanConverter}}">
 
-                <ScrollView Grid.Row="0">
-                    <!-- STEP ONE: Input data for offer -->
-                    <!-- STEP TWO: Check the price, "Buy now" goes to step three, "Change Parameters" goes back to step one -->
-                    <!-- STEP THREE: Input the policy holder data -->
-                    <StackLayout>
-                        <StackLayout IsVisible="{Binding IsOnStepThree, Converter={converters:NegativeBooleanConverter}}">
+                        <Label Text="{Static resources:Labels.From}" FontSize="Small" TextColor="{StaticResource SecondaryText}" />
+                        <DatePicker x:Name="PolicyFromPicker" Date="{Binding ProductFrom}"
+                                    IsEnabled="{Binding IsOnStepTwo, Converter={converters:NegativeBooleanConverter}}" />
 
-                            <Label Text="{Static resources:Labels.From}" FontSize="Small" />
-                            <DatePicker x:Name="PolicyFromPicker" DateSelected="PolicyFromPicker_OnDateSelected"
-                                        IsEnabled="{Binding IsOnStepTwo, Converter={converters:NegativeBooleanConverter}}" />
+                        <Label Text="{Static resources:Labels.To}" FontSize="Small" TextColor="{StaticResource SecondaryText}" />
+                        <DatePicker x:Name="PolicyToPicker" Date="{Binding ProductTo}"
+                                    IsEnabled="{Binding IsOnStepTwo, Converter={converters:NegativeBooleanConverter}}" />
 
-                            <Label Text="{Static resources:Labels.To}" FontSize="Small" />
-                            <DatePicker x:Name="PolicyToPicker" DateSelected="PolicyToPicker_OnDateSelected"
-                                        IsEnabled="{Binding IsOnStepTwo, Converter={converters:NegativeBooleanConverter}}" />
+                        <controls:DynamicEntriesView x:Name="DynamicEntries" x:DataType="{x:Null}"
+                                                     BindingContext="{Binding DynamicEntriesViewModel}" 
+                                                     IsEnabled="{Binding IsEditable}" IsVisible="{Binding IsEditable}" />
 
-                            <controls:DynamicEntriesView x:Name="DynamicEntries" x:DataType="{x:Null}"
-                                                         BindingContext="{Binding DynamicEntriesViewModel}" 
-                                                         IsEnabled="{Binding IsEditable}" />
+                    </StackLayout>
 
-                        </StackLayout>
-
+                    <StackLayout  IsVisible="{Binding IsOnStepTwo}" 
+                                  IsEnabled="{Binding IsOnStepTwo}">
                         <!-- PERSON INFO -->
-                        <StackLayout IsVisible="{Binding IsOnStepThree}">
+                        <StackLayout>
 
                             <Entry x:Name="PersonName" Text="{Binding FirstName}" 
-                                   IsEnabled="{Binding IsOnStepThree}" />
+                                   Placeholder="{Static resources:Labels.PersonFirstName}" />
 
                             <Entry x:Name="PersonSurname" Text="{Binding LastName}" 
-                                   IsEnabled="{Binding IsOnStepThree}" />
+                                   Placeholder="{Static resources:Labels.PersonLastName}" />
 
-                            <Entry x:Name="TaxId" Text="{Binding TaxId}"
-                                   IsEnabled="{Binding IsOnStepThree}" />
+                            <Entry x:Name="TaxId" Text="{Binding TaxId}" 
+                                   Placeholder="{Static resources:Labels.PersonTaxId}" />
 
                         </StackLayout>
-                        <!-- END PERSON INFO -->
+                        <!-- END PERSON INFO --> 
+                        
+                        <!-- ADDRESS INFO -->
+                        <StackLayout>
+
+                            <Entry x:Name="PersonStreet" Text="{Binding Street}" 
+                                   Placeholder="{Static resources:Labels.PersonStreet}"  />
+
+                            <Entry x:Name="PersonCity" Text="{Binding City}" 
+                                   Placeholder="{Static resources:Labels.PersonCity}"  />
+
+                            <Entry x:Name="PersonZipCode" Text="{Binding ZipCode}" 
+                                   Placeholder="{Static resources:Labels.PersonZipCode}"  />
+
+                            <Entry x:Name="PersonCountry" Text="{Binding Country}" 
+                                   Placeholder="{Static resources:Labels.PersonCountry}"  />
+
+                        </StackLayout>
+                        <!-- END ADDRESS INFO -->
+                        </StackLayout>
                     </StackLayout>
                 </ScrollView>
 
                 <!-- BUTTONS -->
-                <StackLayout Grid.Row="1">
+                <StackLayout VerticalOptions="EndAndExpand">
 
                     <BoxView Color="{StaticResource Divider}"
                              IsVisible="{Binding IsOnStepTwo}" 
-                             HeightRequest="2" HorizontalOptions="FillAndExpand" />
+                             HeightRequest=".5" />
 
-                    <StackLayout IsVisible="{Binding IsOnStepTwo}">
+                    <StackLayout IsVisible="{Binding IsOnStepTwo}" Padding="4, 2">
 
                         <Label Text="{Static resources:Labels.TotalPrice}" FontSize="Subtitle" />
 
-                        <Label Text="{Binding Offer.TotalPrice}" FontSize="Title" HorizontalTextAlignment="Center" />
+                        <Label Text="{Binding Offer.TotalPrice}" FontSize="Title" 
+                               HorizontalTextAlignment="Center" />
 
                     </StackLayout>
 
                     <Button Text="{Static resources:Labels.Order}" Clicked="Order_OnClicked"
-                            IsEnabled="{Binding IsOnStepTwo, Converter={converters:NegativeBooleanConverter}}" 
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="EndAndExpand" />
+                            IsEnabled="{Binding IsOnStepTwo, Converter={converters:NegativeBooleanConverter}}" />
 
                     <Button Text="{Static resources:Labels.ChangeParameters}" Command="{Binding ChangeParametersCommand}"
                             IsEnabled="{Binding IsOnStepTwo}" 
-                            IsVisible="{Binding IsOnStepTwo}" 
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="EndAndExpand" />
+                            IsVisible="{Binding IsOnStepTwo}" />
 
                     <Button Text="{Static resources:Labels.BuyNow}" Command="{Binding BuyNowCommand}"
                             IsEnabled="{Binding IsOnStepTwo}"
-                            IsVisible="{Binding IsOnStepTwo}"
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="EndAndExpand" />
+                            IsVisible="{Binding IsOnStepTwo}" />
 
                 </StackLayout>
                 <!-- END BUTTONS -->
-            </Grid>
         </StackLayout>
     </views:ContentPageBase.Content>
 </views:ContentPageBase>

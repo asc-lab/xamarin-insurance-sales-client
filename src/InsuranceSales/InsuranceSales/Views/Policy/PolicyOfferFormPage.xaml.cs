@@ -1,5 +1,4 @@
 ﻿using System;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace InsuranceSales.Views.Policy
@@ -8,10 +7,6 @@ namespace InsuranceSales.Views.Policy
     public partial class PolicyOfferFormPage
     {
         public PolicyOfferFormPage() => InitializeComponent();
-
-        private void PolicyFromPicker_OnDateSelected(object sender, DateChangedEventArgs e) => ViewModel.ProductFrom = e.NewDate;
-
-        private void PolicyToPicker_OnDateSelected(object sender, DateChangedEventArgs e) => ViewModel.ProductTo = e.NewDate;
 
         private void Order_OnClicked(object sender, EventArgs e)
         {
