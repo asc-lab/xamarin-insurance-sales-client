@@ -3,6 +3,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
+using FFImageLoading.Forms.Platform;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Essentials = Xamarin.Essentials.Platform;
@@ -26,6 +27,8 @@ namespace InsuranceSales.Droid
             Essentials.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
             FormsMaterial.Init(this, savedInstanceState);
+            CachedImageRenderer.Init(true);
+
             Window.DecorView.SystemUiVisibility = StatusBarVisibility.Hidden;
 
             LoadApplication(new App());

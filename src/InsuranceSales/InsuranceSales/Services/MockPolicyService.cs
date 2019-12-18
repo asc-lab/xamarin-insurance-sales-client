@@ -62,14 +62,14 @@ namespace InsuranceSales.Services
 
         public Task<CreatePolicyResultDto> CreatePolicyAsync(CreatePolicyRequestDto request, string agentLogin)
         {
-            var index = new Random().Next(0, Policies.Count - 1);
+            var index = new Random().Next(0, Policies.Count);
             var result = new CreatePolicyResultDto { PolicyNumber = Policies?.ElementAtOrDefault(index)?.Number };
             return Task.FromResult(result);
         }
 
         public Task<PolicyModel> GetPolicyByNumberAsync(string policyNumber)
         {
-            var index = new Random().Next(0, Policies.Count - 1);
+            var index = new Random().Next(0, Policies.Count);
             var result = Policies?.ElementAtOrDefault(index);
             return Task.FromResult(result);
         }

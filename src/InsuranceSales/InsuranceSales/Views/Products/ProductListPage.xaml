@@ -8,6 +8,7 @@
     xmlns:controls="clr-namespace:InsuranceSales.Controls"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     x:DataType="vm:ProductListViewModel"
     x:Class="InsuranceSales.Views.Products.ProductListPage"
     x:TypeArguments="vm:ProductListViewModel"
@@ -34,7 +35,7 @@
                                IsRunning="{Binding IsBusy}" 
                                Grid.Row="2" />
 
-            <ListView Grid.Row="2" Footer=""
+            <ListView Grid.Row="2"
                       IsVisible="{Binding IsNotBusy}"
                       HorizontalOptions="FillAndExpand"
                       VerticalOptions="FillAndExpand"
@@ -56,10 +57,11 @@
                                     </Grid.ColumnDefinitions>
 
                                     <!-- IMAGE -->
-                                    <Image Source="{Binding Image}" x:DataType="{x:Null}"
-                                           Aspect="AspectFill"
-                                           Grid.Row="0" 
-                                           Grid.Column="0" />
+                                    <forms:CachedImage Source="{Binding Image}" x:DataType="{x:Null}"
+                                                       DownsampleToViewSize="True"
+                                                       Aspect="AspectFill"
+                                                       Grid.Row="0" 
+                                                       Grid.Column="0" />
 
                                     <BoxView Grid.Row="0"
                                              Grid.Column="0"

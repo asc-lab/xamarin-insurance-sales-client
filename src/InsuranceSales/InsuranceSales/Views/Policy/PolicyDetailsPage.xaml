@@ -34,67 +34,60 @@
                         <StackLayout>
 
                             <Label Text="{Static resources:Labels.ProductCode}" FontSize="Subtitle" 
-                                   TextColor="{StaticResource Divider}" />
+                                   TextColor="{StaticResource SecondaryText}" />
 
                             <Label Text="{Binding ProductCode}" FontSize="Title" 
                                    HorizontalTextAlignment="Center" />
 
                         </StackLayout>
-                        <BoxView Color="{StaticResource Divider}" HeightRequest=".5" />
+                        <BoxView Color="{StaticResource Divider}" HeightRequest=".5" Margin="0, 2" />
                         <StackLayout>
 
                             <Label Text="{Static resources:Labels.PolicyHolder}" FontSize="Subtitle" 
-                                   TextColor="{StaticResource Divider}" />
+                                   TextColor="{StaticResource SecondaryText}" />
 
-                            <Label Text="{Binding Holder}" FontSize="Title" 
+                            <Label Text="{Binding PolicyHolder}" FontSize="Title" 
                                    HorizontalTextAlignment="Center" />
 
                         </StackLayout>
-                        <BoxView Color="{StaticResource Divider}" HeightRequest=".5" />
+                        <BoxView Color="{StaticResource Divider}" HeightRequest=".5" Margin="0, 2" />
                         <StackLayout>
 
                             <Label Text="{x:Static resources:Labels.PolicyStartDate}" FontSize="Subtitle" 
-                                   TextColor="{StaticResource Divider}" />
+                                   TextColor="{StaticResource SecondaryText}" />
 
-                            <Label Text="{Binding StartDate, StringFormat='{0:d.MM.yyyy}'}" FontSize="Title" 
+                            <Label Text="{Binding DateFrom, StringFormat='{0:d.MM.yyyy}'}" FontSize="Title" 
                                    HorizontalTextAlignment="Center" />
 
                         </StackLayout>
-                        <BoxView Color="{StaticResource Divider}" HeightRequest=".5" />
+                        <BoxView Color="{StaticResource Divider}" HeightRequest=".5" Margin="0, 2" />
                         <StackLayout>
 
                             <Label Text="{x:Static resources:Labels.PolicyEndDate}" FontSize="Subtitle" 
-                                   TextColor="{StaticResource Divider}" />
+                                   TextColor="{StaticResource SecondaryText}" />
 
-                            <Label Text="{Binding EndDate, StringFormat='{0:d.MM.yyyy}'}" FontSize="Title"
+                            <Label Text="{Binding DateTo, StringFormat='{0:d.MM.yyyy}'}" FontSize="Title"
                                    HorizontalTextAlignment="Center" />
 
                         </StackLayout>
-                        <BoxView Color="{StaticResource Divider}" HeightRequest=".5" />
+                        <BoxView Color="{StaticResource Divider}" HeightRequest=".5" Margin="0, 2" />
                         <StackLayout>
 
                             <Label Text="{x:Static resources:Labels.PolicyPremiumAmount}" FontSize="Subtitle" 
-                                   TextColor="{StaticResource Divider}" />
+                                   TextColor="{StaticResource SecondaryText}" />
 
                             <Label Text="{Binding PremiumAmount}" FontSize="Title" 
                                    HorizontalTextAlignment="Center" />
 
                         </StackLayout>
-                        <BoxView Color="{StaticResource Divider}" HeightRequest=".5" />
+                        <BoxView Color="{StaticResource Divider}" HeightRequest=".5" Margin="0, 2" />
                         <StackLayout>
 
                             <Label Text="{x:Static resources:Labels.PolicyCovers}" FontSize="Subtitle" 
-                                   TextColor="{StaticResource Divider}" />
+                                   TextColor="{StaticResource SecondaryText}" />
 
-                            <CollectionView ItemsSource="{Binding Covers}">
-                                <CollectionView.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackLayout>
-                                            <Label Text="{Binding .}" HorizontalTextAlignment="Center" />
-                                        </StackLayout>
-                                    </DataTemplate>
-                                </CollectionView.ItemTemplate>
-                            </CollectionView>
+                            
+
                         </StackLayout>
                     </StackLayout>
                 </ScrollView>
