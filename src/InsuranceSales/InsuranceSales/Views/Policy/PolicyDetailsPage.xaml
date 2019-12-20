@@ -86,7 +86,7 @@
                             <Label Text="{x:Static resources:Labels.PolicyCovers}" FontSize="Subtitle" 
                                    TextColor="{StaticResource SecondaryText}" />
 
-                            
+                            <controls:CoverListView BindingContext="{Binding Covers}" />
 
                         </StackLayout>
                     </StackLayout>

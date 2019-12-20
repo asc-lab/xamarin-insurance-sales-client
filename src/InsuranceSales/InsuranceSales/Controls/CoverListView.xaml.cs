@@ -1,5 +1,4 @@
-﻿using InsuranceSales.Resources;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -9,16 +8,11 @@ namespace InsuranceSales.Controls
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CoverListView
     {
-        //private readonly ColorsDictionary _colorsDictionary = new ColorsDictionary();
-
         public CoverListView() => InitializeComponent();
 
         protected override void OnBindingContextChanged()
         {
-            if (!(BindingContext is IList<string> covers))
-                return;
-
-            if (!covers.Any())
+            if (!(BindingContext is IList<string> covers) || !covers.Any())
                 return;
 
             var coverLabels = covers.Where(c => !string.IsNullOrWhiteSpace(c))
@@ -26,7 +20,7 @@ namespace InsuranceSales.Controls
                 {
                     Text = c,
                     HorizontalTextAlignment = TextAlignment.Center,
-                    FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
+                    FontSize = Device.GetNamedSize(NamedSize.Title, typeof(Label)),
                 });
             foreach (var label in coverLabels)
                 PolicyCovers.Children.Add(label);

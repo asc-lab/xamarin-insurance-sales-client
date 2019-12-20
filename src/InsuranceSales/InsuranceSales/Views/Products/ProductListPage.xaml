@@ -2,7 +2,6 @@
 <views:ContentPageBase
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:design="clr-namespace:InsuranceSales"
     xmlns:vm="clr-namespace:InsuranceSales.ViewModels.Product;assembly=InsuranceSales"
     xmlns:views="clr-namespace:InsuranceSales.Views"
     xmlns:controls="clr-namespace:InsuranceSales.Controls"
@@ -74,11 +73,11 @@
                                                  Margin="20"
                                                  VerticalOptions="EndAndExpand">
 
-                                        <Label Style="{StaticResource TitleStyle}"
-                                               Text="{Binding Name}" x:DataType="{x:Null}" />
+                                        <Label Text="{Binding Name}" x:DataType="{x:Null}" 
+                                               Style="{StaticResource TitleStyle}" />
 
-                                        <Label Style="{StaticResource DescriptionStyle}"
-                                               Text="{Binding Description}"  x:DataType="{x:Null}" />
+                                        <Label Text="{Binding Description}" x:DataType="{x:Null}" 
+                                               Style="{StaticResource DescriptionStyle}" />
 
                                     </StackLayout>
                                 </Grid>
