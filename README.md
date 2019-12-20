@@ -4,19 +4,13 @@ This is an example simple mobile client for our [.NET Core Sales Portal](https:/
 
 - Xamarin.Forms 4.x
 - Refit
-- Akavache
-- Polly
 
 ## Architecture overview
 
 [TODO]
 
-## Build
-
-1. 
-2. Restore NuGet packages
-1. Deploy to device using 
-
 ## Run
 
-[TODO]
+1. Clone repo
+2. Restore NuGet packages
+3. Deploy to device using Visual Studio
