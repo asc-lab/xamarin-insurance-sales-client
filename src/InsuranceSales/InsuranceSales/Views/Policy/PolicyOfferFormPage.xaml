@@ -14,14 +14,6 @@
     x:Class="InsuranceSales.Views.Policy.PolicyOfferFormPage"
     mc:Ignorable="d" Visual="Material"
     Title="{Binding ProductName}">
-    <views:ContentPageBase.BindingContext>
-
-        <vm:PolicyOfferFormViewModel x:Name="ViewModel" />
-
-    </views:ContentPageBase.BindingContext>
-    <views:ContentPageBase.Resources>
-
-    </views:ContentPageBase.Resources>
     <views:ContentPageBase.Content>
         <StackLayout>
             <ActivityIndicator IsVisible="{Binding IsBusy}" 
