@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:resources="clr-namespace:InsuranceSales.i18n;assembly=InsuranceSales.i18n"
+             x:Class="InsuranceSales.Controls.CoverTableView" 
+             mc:Ignorable="d" Visual="Material">
+    <ContentView.Content>
+        <Grid x:Name="CoverTableGrid" RowSpacing="0" ColumnSpacing="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.15*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- HEADER -->
+            <Label Text="{x:Static resources:Labels.Index}" FontSize="Subtitle" 
+                   Grid.Row="0" Grid.Column="0" Padding="5, 3"
+                   BackgroundColor="{StaticResource Primary}" 
+                   HorizontalTextAlignment="Center"
+                   TextColor="{StaticResource BackgroundColor}" />
+
+            <Label Text="{x:Static resources:Labels.Name}" FontSize="Subtitle" 
+                   Grid.Row="0" Grid.Column="1" Padding="5, 3"
+                   BackgroundColor="{StaticResource Primary}" 
+                   TextColor="{StaticResource BackgroundColor}" />
+
+            <Label Text="{x:Static resources:Labels.SumInsured}" FontSize="Subtitle" 
+                   Grid.Row="0" Grid.Column="2" Padding="5, 3"
+                   BackgroundColor="{StaticResource Primary}"
+                   TextColor="{StaticResource BackgroundColor}" />
+            <!-- END HEADER -->
+
+        </Grid>
+    </ContentView.Content>
+</ContentView>

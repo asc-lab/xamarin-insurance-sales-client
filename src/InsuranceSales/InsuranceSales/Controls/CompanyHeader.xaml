@@ -1,10 +1,20 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InsuranceSales.Controls.CompanyHeader">
-    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0, 10, 0, 10">
-        <BoxView HeightRequest="40" WidthRequest="40" Color="Orange" />
-        <BoxView WidthRequest="1" Color="{StaticResource Key=SeperatorLineColor}" />
-        <Label Text="Insurance Company" Style="{StaticResource Key=CompanyHeaderStyle}"/>
+             x:Class="InsuranceSales.Controls.CompanyHeader"
+             Visual="Material">
+    <StackLayout Orientation="Horizontal" 
+                 HorizontalOptions="CenterAndExpand" 
+                 Margin="0, 10, 0, 10">
+        
+        <BoxView HeightRequest="40" 
+                 WidthRequest="40" 
+                 Color="{StaticResource Accent}" />
+        
+        <BoxView WidthRequest="1" Color="{StaticResource Divider}" />
+        
+        <Label Text="An Insurance Company" 
+               Style="{StaticResource CompanyHeaderStyle}"/>
+        
     </StackLayout>
 </ContentView>

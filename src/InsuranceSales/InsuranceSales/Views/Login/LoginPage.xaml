@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:InsuranceSales.ViewModels.Login;assembly=InsuranceSales"
+    xmlns:controls="clr-namespace:InsuranceSales.Controls"
+    x:Class="InsuranceSales.Views.Login.LoginPage"
+    Visual="Material">
+    <ContentPage.BindingContext>
+        <vm:LoginPageViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout VerticalOptions="CenterAndExpand"
+                 Margin="10, 0, 10, 0">
+
+        <controls:CompanyHeader />
+        <Entry Placeholder="Username"
+               Text="{Binding Username}" />
+        <Entry Placeholder="Password"
+               IsPassword="True"
+               Text="{Binding Password}" />
+        <Button Text="Sign In"
+                Command="{Binding SignInCommand}" />
+    </StackLayout>
+</ContentPage>

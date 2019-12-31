@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<views:ContentPageBase
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:InsuranceSales.ViewModels.Product;assembly=InsuranceSales"
+    xmlns:views="clr-namespace:InsuranceSales.Views"
+    xmlns:controls="clr-namespace:InsuranceSales.Controls"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    x:DataType="vm:ProductListViewModel"
+    x:Class="InsuranceSales.Views.Products.ProductListPage"
+    x:TypeArguments="vm:ProductListViewModel"
+    mc:Ignorable="d"
+    Visual="Material">
+    <views:ContentPageBase.BindingContext>
+        <vm:ProductListViewModel />
+    </views:ContentPageBase.BindingContext>
+    <views:ContentPageBase.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <controls:CompanyHeader Grid.Row="0" />
+
+            <BoxView Grid.Row="1" 
+                     HeightRequest="1" 
+                     Color="{StaticResource Divider}" />
+
+            <ActivityIndicator IsVisible="{Binding IsBusy}" 
+                               IsRunning="{Binding IsBusy}" 
+                               Grid.Row="2" />
+
+            <ListView Grid.Row="2"
+                      IsVisible="{Binding IsNotBusy}"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      ItemsSource="{Binding Products}" 
+                      ItemSelected="ListView_OnItemSelected"
+                      HasUnevenRows="True"
+                      SeparatorVisibility="None">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Margin="10" HasShadow="True">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="120" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- IMAGE -->
+                                    <forms:CachedImage Source="{Binding Image}" x:DataType="{x:Null}"
+                                                       DownsampleToViewSize="True"
+                                                       Aspect="AspectFill"
+                                                       Grid.Row="0" 
+                                                       Grid.Column="0" />
+
+                                    <BoxView Grid.Row="0"
+                                             Grid.Column="0"
+                                             Color="{StaticResource PrimaryDark}" 
+                                             Opacity=".75" />
+                                    <!-- END IMAGE -->
+
+                                    <StackLayout Grid.Row="0"
+                                                 Grid.Column="0"
+                                                 Margin="20"
+                                                 VerticalOptions="EndAndExpand">
+
+                                        <Label Text="{Binding Name}" x:DataType="{x:Null}" 
+                                               Style="{StaticResource TitleStyle}" />
+
+                                        <Label Text="{Binding Description}" x:DataType="{x:Null}" 
+                                               Style="{StaticResource DescriptionStyle}" />
+
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </views:ContentPageBase.Content>
+</views:ContentPageBase>

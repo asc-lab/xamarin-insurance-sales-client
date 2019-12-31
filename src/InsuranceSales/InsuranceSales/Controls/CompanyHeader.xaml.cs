@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Xamarin.Forms;
-
-namespace InsuranceSales.Controls
+﻿namespace InsuranceSales.Controls
 {
-    public partial class CompanyHeader : ContentView
+    public partial class CompanyHeader
     {
-        public CompanyHeader()
-        {
-            InitializeComponent();
-        }
+        public CompanyHeader() => InitializeComponent();
     }
 }

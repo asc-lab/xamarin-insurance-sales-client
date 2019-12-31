@@ -1,4 +1,4 @@
-﻿using InsuranceSales.ViewModels;
+﻿using InsuranceSales.ViewModels.Login;
 using Xunit;
 
 namespace InsuranceSales.UnitTests
@@ -19,7 +19,7 @@ namespace InsuranceSales.UnitTests
             vm.SignInCommand.Execute(null);
 
             // Assert
-            Assert.True(vm.IsSignIn);
+            Assert.True(vm.IsSignedIn);
         }
     }
 }

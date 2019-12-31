@@ -1,4 +1,6 @@
 ﻿using InsuranceSales.ViewModels;
+using System;
+using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace InsuranceSales.Views
@@ -9,20 +11,23 @@ namespace InsuranceSales.Views
 
         protected virtual T ViewModel => BindingContext as T;
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
-            base.OnAppearing();
-
-            if (!_isInitialized)
+            try
             {
-                ViewModel.InitializeAsync();
+                base.OnAppearing();
+
+                if (_isInitialized)
+                    return;
+
+                await ViewModel.InitializeAsync();
                 _isInitialized = true;
             }
-        }
-
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                throw;
+            }
         }
     }
 }

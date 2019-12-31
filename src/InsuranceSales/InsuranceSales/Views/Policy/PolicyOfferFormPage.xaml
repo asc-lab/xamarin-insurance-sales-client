@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:ContentPageBase
+    x:TypeArguments="vm:PolicyOfferFormViewModel" 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:InsuranceSales.ViewModels.Policy;assembly=InsuranceSales"
+    xmlns:views="clr-namespace:InsuranceSales.Views"
+    xmlns:controls="clr-namespace:InsuranceSales.Controls"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="clr-namespace:InsuranceSales.i18n;assembly=InsuranceSales.i18n"
+    xmlns:converters="clr-namespace:InsuranceSales.Extensions;assembly=InsuranceSales"
+    x:DataType="vm:PolicyOfferFormViewModel"
+    x:Class="InsuranceSales.Views.Policy.PolicyOfferFormPage"
+    mc:Ignorable="d" Visual="Material"
+    Title="{Binding ProductName}">
+    <views:ContentPageBase.Content>
+        <StackLayout>
+            <ActivityIndicator IsVisible="{Binding IsBusy}" 
+                               IsRunning="{Binding IsBusy}" />
+
+            <ScrollView>
+                <!-- STEP ONE: Input data for offer -->
+                <!-- STEP TWO: Check the price. "Buy now" goes to step three, "Change Parameters" goes back to step one -->
+                <!-- STEP THREE: Input the policy holder data -->
+                <StackLayout>
+                    <StackLayout IsVisible="{Binding IsOnStepThree, Converter={converters:NegativeBooleanConverter}}">
+
+                        <Label Text="{Static resources:Labels.From}" FontSize="Small" TextColor="{StaticResource SecondaryText}" />
+                        <DatePicker x:Name="PolicyFromPicker" Date="{Binding ProductFrom}"
+                                    IsEnabled="{Binding IsOnStepTwo, Converter={converters:NegativeBooleanConverter}}" />
+
+                        <Label Text="{Static resources:Labels.To}" FontSize="Small" TextColor="{StaticResource SecondaryText}" />
+                        <DatePicker x:Name="PolicyToPicker" Date="{Binding ProductTo}"
+                                    IsEnabled="{Binding IsOnStepTwo, Converter={converters:NegativeBooleanConverter}}" />
+
+                        <controls:DynamicEntriesView x:Name="DynamicEntries" x:DataType="{x:Null}"
+                                                     BindingContext="{Binding DynamicEntriesViewModel}" 
+                                                     IsEnabled="{Binding IsEditable}" IsVisible="{Binding IsEditable}" />
+
+                    </StackLayout>
+
+                    <StackLayout  IsVisible="{Binding IsOnStepTwo}" 
+                                  IsEnabled="{Binding IsOnStepTwo}">
+                        <!-- PERSON INFO -->
+                        <StackLayout>
+
+                            <Entry x:Name="PersonName" Text="{Binding FirstName}" 
+                                   Placeholder="{Static resources:Labels.PersonFirstName}" />
+
+                            <Entry x:Name="PersonSurname" Text="{Binding LastName}" 
+                                   Placeholder="{Static resources:Labels.PersonLastName}" />
+
+                            <Entry x:Name="TaxId" Text="{Binding TaxId}" 
+                                   Placeholder="{Static resources:Labels.PersonTaxId}" />
+
+                        </StackLayout>
+                        <!-- END PERSON INFO --> 
+                        
+                        <!-- ADDRESS INFO -->
+                        <StackLayout>
+
+                            <Entry x:Name="PersonStreet" Text="{Binding Street}" 
+                                   Placeholder="{Static resources:Labels.PersonStreet}"  />
+
+                            <Entry x:Name="PersonCity" Text="{Binding City}" 
+                                   Placeholder="{Static resources:Labels.PersonCity}"  />
+
+                            <Entry x:Name="PersonZipCode" Text="{Binding ZipCode}" 
+                                   Placeholder="{Static resources:Labels.PersonZipCode}"  />
+
+                            <Entry x:Name="PersonCountry" Text="{Binding Country}" 
+                                   Placeholder="{Static resources:Labels.PersonCountry}"  />
+
+                        </StackLayout>
+                        <!-- END ADDRESS INFO -->
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+
+                <!-- BUTTONS -->
+                <StackLayout VerticalOptions="EndAndExpand">
+
+                    <BoxView Color="{StaticResource Divider}"
+                             IsVisible="{Binding IsOnStepTwo}" 
+                             HeightRequest=".5" />
+
+                    <StackLayout IsVisible="{Binding IsOnStepTwo}" Padding="4, 2">
+
+                        <Label Text="{Static resources:Labels.TotalPrice}" FontSize="Subtitle" />
+
+                        <Label Text="{Binding Offer.TotalPrice}" FontSize="Title" 
+                               HorizontalTextAlignment="Center" />
+
+                    </StackLayout>
+
+                    <Button Text="{Static resources:Labels.Order}" Clicked="Order_OnClicked"
+                            IsEnabled="{Binding IsOnStepTwo, Converter={converters:NegativeBooleanConverter}}" />
+
+                    <Button Text="{Static resources:Labels.ChangeParameters}" Command="{Binding ChangeParametersCommand}"
+                            IsEnabled="{Binding IsOnStepTwo}" 
+                            IsVisible="{Binding IsOnStepTwo}" />
+
+                    <Button Text="{Static resources:Labels.BuyNow}" Command="{Binding BuyNowCommand}"
+                            IsEnabled="{Binding IsOnStepTwo}"
+                            IsVisible="{Binding IsOnStepTwo}" />
+
+                </StackLayout>
+                <!-- END BUTTONS -->
+        </StackLayout>
+    </views:ContentPageBase.Content>
+</views:ContentPageBase>

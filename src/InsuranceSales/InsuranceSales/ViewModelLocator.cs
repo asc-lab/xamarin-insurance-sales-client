@@ -1,10 +1,11 @@
-﻿using InsuranceSales.ViewModels;
+﻿using InsuranceSales.ViewModels.Product;
 
 namespace InsuranceSales
 {
-    public class ViewModelLocator
+    public static class ViewModelLocator
     {
-        private static ProductsPageViewModel productsPageViewModel;
-        public static ProductsPageViewModel ProductsPageViewModel => productsPageViewModel ?? (productsPageViewModel = new ProductsPageViewModel());
+        private static ProductListViewModel _productsViewModel;
+
+        public static ProductListViewModel ProductsViewModel => _productsViewModel ??= new ProductListViewModel();
     }
 }

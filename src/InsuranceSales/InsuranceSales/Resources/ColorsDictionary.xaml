@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="InsuranceSales.Resources.ColorsDictionary">
+    <Color x:Key="BackgroundColor">White</Color>
+
+    <Color x:Key="Primary">#FF9800</Color>
+    <Color x:Key="PrimaryDark">#F57C00</Color>
+    <Color x:Key="PrimaryLight">#FFE0B2</Color>
+    <Color x:Key="Accent">#FF5252</Color>
+    <Color x:Key="PrimaryText">#212121</Color>
+    <Color x:Key="SecondaryText">#757575</Color>
+    <Color x:Key="Icons">#212121</Color>
+    <Color x:Key="Divider">#BDBDBD</Color>
+</ResourceDictionary>
+

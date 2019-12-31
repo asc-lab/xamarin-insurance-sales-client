@@ -1,41 +1,44 @@
 ﻿using InsuranceSales.Interfaces;
 using InsuranceSales.Services;
+using System;
+using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace InsuranceSales
 {
-    public partial class App : Application
+    public partial class App
     {
-        protected internal static NetworkManager NetworkManager => new NetworkManager();
+        private static NetworkManager _networkManager;
+        public static NetworkManager NetworkManager => _networkManager ??= new NetworkManager();
 
         public App()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
 
-            MainPage = new AppShell();
+                // TODO: Connect to API
+                if (AppSettings.UseMockAuthentication)
+                    DependencyService.Register<IAuthenticationService, MockAuthenticationService>();
 
-            if(AppSettings.UseMockAuthentication)
-                DependencyService.Register<IAuthenticationService, MockAuthenticationService>();
+                if (AppSettings.UseMockDataService)
+                {
+                    DependencyService.Register<IProductService, MockProductService>();
+                    DependencyService.Register<IPolicyService, MockPolicyService>();
+                }
+                DependencyService.Register<IDialogService, DialogService>();
 
-            // TODO: Remove
-            /*if (AppSettings.UseMockDataService)
-                DependencyService.Register<IProductsService, MockProductsService>();*/
+                MainPage = new AppShell();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.StackTrace);
+                throw;
+            }
         }
 
-        protected override void OnStart()
-        {
-            // Handle when your app starts
-
-        }
-
-        protected override void OnSleep()
-        {
-            // Handle when your app sleeps
-        }
-
-        protected override void OnResume()
-        {
-            // Handle when your app resumes
-        }
+        protected override void OnStart() { }
+        protected override void OnSleep() { }
+        protected override void OnResume() { }
     }
 }
