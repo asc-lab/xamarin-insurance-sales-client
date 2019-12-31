@@ -40,7 +40,7 @@ namespace InsuranceSales.ViewModels.Policy
         private DynamicEntriesViewModel _dynamicEntriesViewModel;
         public DynamicEntriesViewModel DynamicEntriesViewModel { get => _dynamicEntriesViewModel; set => SetProperty(ref _dynamicEntriesViewModel, value); }
 
-        //! STEP 1
+        #region STEP 1
         private string _productCode = string.Empty;
         public string ProductCode { get => _productCode; set => SetProperty(ref _productCode, value); }
 
@@ -59,14 +59,16 @@ namespace InsuranceSales.ViewModels.Policy
         private IList<CoverModel> _covers;
         public IList<CoverModel> Covers { get => _covers; set => SetProperty(ref _covers, value); }
 
-        //! STEP 2
+        #endregion
+        #region STEP 2
         private bool _isOnStepTwo;
         public bool IsOnStepTwo { get => _isOnStepTwo; set => SetProperty(ref _isOnStepTwo, value); }
 
         private CreateOfferResultDto _offer;
         public CreateOfferResultDto Offer { get => _offer; set => SetProperty(ref _offer, value); }
 
-        //! STEP 3
+        #endregion
+        #region STEP 3
         private bool _isOnStepThree;
         public bool IsOnStepThree { get => _isOnStepThree; set => SetProperty(ref _isOnStepThree, value); }
 
@@ -92,6 +94,7 @@ namespace InsuranceSales.ViewModels.Policy
 
         private string _street = string.Empty;
         public string Street { get => _street; set => SetProperty(ref _street, value); }
+        #endregion
         #endregion
 
         /// <summary>
