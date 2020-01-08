@@ -11,7 +11,7 @@ namespace InsuranceSales.Services
     {
         private bool _isAuthenticated;
 
-        public Task AuthenticateAsync(UserCredentialsModel userCredentials)
+        public Task<bool> AuthenticateAsync(UserCredentialsModel userCredentials)
         {
             // TODO: Implement
             if (userCredentials?.Username == "admin" && userCredentials.Password == "admin")
