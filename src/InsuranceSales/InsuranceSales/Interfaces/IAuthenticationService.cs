@@ -6,6 +6,6 @@ namespace InsuranceSales.Interfaces
     public interface IAuthenticationService
     {
         bool IsAuthenticated();
-        Task AuthenticateAsync(UserCredentialsModel userCredentials);
+        Task<bool> AuthenticateAsync(UserCredentialsModel userCredentials);
     }
 }
