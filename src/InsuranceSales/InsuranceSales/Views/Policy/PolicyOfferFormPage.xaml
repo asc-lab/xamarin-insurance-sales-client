@@ -14,6 +14,9 @@
     x:Class="InsuranceSales.Views.Policy.PolicyOfferFormPage"
     mc:Ignorable="d" Visual="Material"
     Title="{Binding ProductName}">
+    <views:ContentPageBase.BindingContext>
+        <vm:PolicyOfferFormViewModel />
+    </views:ContentPageBase.BindingContext>
     <views:ContentPageBase.Content>
         <StackLayout>
             <ActivityIndicator IsVisible="{Binding IsBusy}" 
@@ -55,8 +58,8 @@
                                    Placeholder="{Static resources:Labels.PersonTaxId}" />
 
                         </StackLayout>
-                        <!-- END PERSON INFO --> 
-                        
+                        <!-- END PERSON INFO -->
+
                         <!-- ADDRESS INFO -->
                         <StackLayout>
 
@@ -74,39 +77,39 @@
 
                         </StackLayout>
                         <!-- END ADDRESS INFO -->
-                        </StackLayout>
                     </StackLayout>
-                </ScrollView>
+                </StackLayout>
+            </ScrollView>
 
-                <!-- BUTTONS -->
-                <StackLayout VerticalOptions="EndAndExpand">
+            <!-- BUTTONS -->
+            <StackLayout VerticalOptions="EndAndExpand">
 
-                    <BoxView Color="{StaticResource Divider}"
+                <BoxView Color="{StaticResource Divider}"
                              IsVisible="{Binding IsOnStepTwo}" 
                              HeightRequest=".5" />
 
-                    <StackLayout IsVisible="{Binding IsOnStepTwo}" Padding="4, 2">
+                <StackLayout IsVisible="{Binding IsOnStepTwo}" Padding="4, 2">
 
-                        <Label Text="{Static resources:Labels.TotalPrice}" FontSize="Subtitle" />
+                    <Label Text="{Static resources:Labels.TotalPrice}" FontSize="Subtitle" />
 
-                        <Label Text="{Binding Offer.TotalPrice}" FontSize="Title" 
+                    <Label Text="{Binding Offer.TotalPrice}" FontSize="Title" 
                                HorizontalTextAlignment="Center" />
 
-                    </StackLayout>
+                </StackLayout>
 
-                    <Button Text="{Static resources:Labels.Order}" Clicked="Order_OnClicked"
+                <Button Text="{Static resources:Labels.Order}" Clicked="Order_OnClicked"
                             IsEnabled="{Binding IsOnStepTwo, Converter={converters:NegativeBooleanConverter}}" />
 
-                    <Button Text="{Static resources:Labels.ChangeParameters}" Command="{Binding ChangeParametersCommand}"
+                <Button Text="{Static resources:Labels.ChangeParameters}" Command="{Binding ChangeParametersCommand}"
                             IsEnabled="{Binding IsOnStepTwo}" 
                             IsVisible="{Binding IsOnStepTwo}" />
 
-                    <Button Text="{Static resources:Labels.BuyNow}" Command="{Binding BuyNowCommand}"
+                <Button Text="{Static resources:Labels.BuyNow}" Command="{Binding BuyNowCommand}"
                             IsEnabled="{Binding IsOnStepTwo}"
                             IsVisible="{Binding IsOnStepTwo}" />
 
-                </StackLayout>
-                <!-- END BUTTONS -->
+            </StackLayout>
+            <!-- END BUTTONS -->
         </StackLayout>
     </views:ContentPageBase.Content>
 </views:ContentPageBase>
